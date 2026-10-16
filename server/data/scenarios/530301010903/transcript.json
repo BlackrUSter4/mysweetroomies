@@ -1,0 +1,584 @@
+{
+ "scenario_id": "530301010903",
+ "scenario_data": [
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_003"
+   },
+   "speaker": "Mitsuka",
+   "body": "\"OK! All done.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_003"
+   },
+   "speaker": "William",
+   "body": "\"Huh!? You're finished!?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_003"
+   },
+   "speaker": "",
+   "body": "Before I know it, dinner is ready.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_001"
+   },
+   "speaker": "",
+   "body": "The bowl is piled high with stir fried vegetables.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_001"
+   },
+   "speaker": "William",
+   "body": "(Wow... i-it looks amazing...)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_001"
+   },
+   "speaker": "William",
+   "body": "(Th-this is nothing like my cooking at all!)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_009"
+   },
+   "speaker": "Mitsuka",
+   "body": "\"Have a taste, William!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_009"
+   },
+   "speaker": "William",
+   "body": "\"Huh? May I!?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_009"
+   },
+   "speaker": "Mitsuka",
+   "body": "\"Yes, please do! I tried out a different flavor today:'\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_009"
+   },
+   "speaker": "William",
+   "body": "\"I-I see... all right, then...\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_001"
+   },
+   "speaker": "",
+   "body": "*Chomp*",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_001"
+   },
+   "speaker": "William",
+   "body": "\"Th-this is delicious!\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_001"
+   },
+   "speaker": "William",
+   "body": "\"Really, really delicious!\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_011"
+   },
+   "speaker": "Mitsuka",
+   "body": "\"Really? Thank goodness...\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_011"
+   },
+   "speaker": "",
+   "body": "Mitsuka blushes slightly, looking bashful.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_011"
+   },
+   "speaker": "William",
+   "body": "(It's beautifully served, too, and she was so fast making it...)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_011"
+   },
+   "speaker": "William",
+   "body": "(Her cooking really is in a completely different league from mine...)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_011"
+   },
+   "speaker": "",
+   "body": "I feel a little depressed as I think this, and Mitsuka looks at me with a puzzled expression.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_009"
+   },
+   "speaker": "Mitsuka",
+   "body": "\"Is something wrong, William?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_009"
+   },
+   "speaker": "William",
+   "body": "\"N-no... I was just thinking how awful my cooking is compared to yours...\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_009"
+   },
+   "speaker": "William",
+   "body": "\"A-ahaha...\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_009"
+   },
+   "speaker": "",
+   "body": "All I can do is smile wryly.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_001"
+   },
+   "speaker": "",
+   "body": "As I do, though...",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_012"
+   },
+   "speaker": "Mitsuka",
+   "body": "\"Th-that's not true!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Mitsuka_C09_012"
+   },
+   "speaker": "William",
+   "body": "\"Eh!?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "end_mark": true
+  }
+ ],
+ "_source": "OCR of YouTube upload Mitsuka_C09 (DevilGh0stz), part 3. Text is machine-read: expect small typos. Player name normalised to William. Field nesting is a guess."
+}

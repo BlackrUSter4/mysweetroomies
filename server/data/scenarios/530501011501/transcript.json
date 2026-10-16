@@ -1,0 +1,607 @@
+{
+ "scenario_id": "530501011501",
+ "scenario_data": [
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_002"
+   },
+   "speaker": "",
+   "body": "Everyone pulled themselves back together after the horror movie.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_002"
+   },
+   "speaker": "",
+   "body": "...Or so I thought.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_003"
+   },
+   "speaker": "Misaki",
+   "body": "\"H-huh? Girls, what's wrong?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_002"
+   },
+   "speaker": "",
+   "body": "All my roommates are still, with anxious faces.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_004"
+   },
+   "speaker": "Misaki",
+   "body": "\"We should all get to bed...\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_005"
+   },
+   "speaker": "Sayaka",
+   "body": "\"I c-couldn't agree more... But...\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_006"
+   },
+   "speaker": "Mitsuka",
+   "body": "\"I'm scared... to s-sleep alone!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_006"
+   },
+   "speaker": "Mitsuka",
+   "body": "\"I keep thinking that ghost will be waiting for me!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_007"
+   },
+   "speaker": "Aoi",
+   "body": "\"Ahhh, what if it's under my bed!?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_008"
+   },
+   "speaker": "Aki",
+   "body": "\"U-under the bed!?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_009"
+   },
+   "speaker": "Ren",
+   "body": "\"Aoi! Please, stop, you're scaring me!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_002"
+   },
+   "speaker": "William",
+   "body": "(Th...they do have a point. Sleeping alone might be scary!)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_002"
+   },
+   "speaker": "",
+   "body": "...Everyone seems reluctant to go back to their rooms.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_010"
+   },
+   "speaker": "Misaki",
+   "body": "\"Th-then why don't we camp in the living room tonight... all together?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_011"
+   },
+   "speaker": "Sayaka",
+   "body": "\"Camp in the living room?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_004"
+   },
+   "speaker": "Misaki",
+   "body": "\"It won't be scary if we're all together, right?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_004"
+   },
+   "speaker": "Misaki",
+   "body": "\"...Yeah, that's a good idea! Let's do that!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_004"
+   },
+   "speaker": "",
+   "body": "...Misaki says eagerly in a voice that's still shaking.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_004"
+   },
+   "speaker": "William",
+   "body": "(...Misaki, are you the most scared of us all!?)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_002"
+   },
+   "speaker": "",
+   "body": "But I seem to be the only one who noticed.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_012"
+   },
+   "speaker": "Sayaka",
+   "body": "\"I guess... I won't be scared if you're all with me...\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_009"
+   },
+   "speaker": "Ren",
+   "body": "\"Y-yes, that's true...\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_009"
+   },
+   "speaker": "",
+   "body": "Misaki's assurance seems to brighten everyone's faces.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_013"
+   },
+   "speaker": "Aoi",
+   "body": "\"Ahaha! This feels like a school camping trip!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_014"
+   },
+   "speaker": "Mitsuka",
+   "body": "\"Wow, you sure change quickly, Aoi.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Sayaka_C15_002"
+   },
+   "speaker": "",
+   "body": "...And so, everyone lined up sleeping bags on the floor to sleep.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "end_mark": true
+  }
+ ],
+ "_source": "OCR of YouTube upload Sayaka_C15 (DevilGh0stz), part 1. Text is machine-read: expect small typos. Player name normalised to William. Field nesting is a guess."
+}

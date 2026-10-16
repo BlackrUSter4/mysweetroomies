@@ -1,0 +1,814 @@
+{
+ "scenario_id": "530201014604",
+ "scenario_data": [
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_014"
+   },
+   "speaker": "Aki",
+   "body": "\"Huh?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_016"
+   },
+   "speaker": "Kaede",
+   "body": "\"Aki!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_016"
+   },
+   "speaker": "William",
+   "body": "\"K-Kaede!?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_016"
+   },
+   "speaker": "",
+   "body": "The person who appears... is completely unexpected.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_016"
+   },
+   "speaker": "",
+   "body": "The support manager comes closer to us.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_017"
+   },
+   "speaker": "Aki",
+   "body": "\"W-Why...! Why are you here, Kaede...!?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_016"
+   },
+   "speaker": "Kaede",
+   "body": "\".!! Ah..... um...\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_016"
+   },
+   "speaker": "Kaede",
+   "body": "\"I couldn't get in contact with you, so I came looking...!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_017"
+   },
+   "speaker": "Aki",
+   "body": "\"!? Huh......!?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_018"
+   },
+   "speaker": "",
+   "body": "Aki sorts out her thoughts, and tries to speak.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_017"
+   },
+   "speaker": "Aki",
+   "body": "\"W-Wait a moment!... How did you know that I was here?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_016"
+   },
+   "speaker": "Kaede",
+   "body": "\"I dropped by Famille... your housemates told me.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_014"
+   },
+   "speaker": "Aki",
+   "body": "\"...! Ah...\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_016"
+   },
+   "speaker": "Kaede",
+   "body": "\"A-Aki... what are you doing here? I was so worried...\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_013"
+   },
+   "speaker": "Aki",
+   "body": "\"S-Sorry.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_013"
+   },
+   "speaker": "Aki",
+   "body": "\"My phone battery must have died.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_013"
+   },
+   "speaker": "William",
+   "body": "(W-What...!!)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_013"
+   },
+   "speaker": "",
+   "body": "Aki and I become drained of our strength all of a sudden.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_013"
+   },
+   "speaker": "",
+   "body": "Aki smiles bitterly, and answers Kaede.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_014"
+   },
+   "speaker": "Aki",
+   "body": "\"Okay, Kaede. It's about work, right?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_013"
+   },
+   "speaker": "Aki",
+   "body": "\"Thanks for coming all the way out here. Let's go.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_016"
+   },
+   "speaker": "Kaede",
+   "body": "\"Ah, yes.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_009"
+   },
+   "speaker": "Aki",
+   "body": "\"William, come on! Let's go home.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_009"
+   },
+   "speaker": "",
+   "body": "Aki pulls my hand.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_009"
+   },
+   "speaker": "William",
+   "body": "\"A-Aki... is it really okay to leave like this?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_012"
+   },
+   "speaker": "Aki",
+   "body": "\"Yeah...... it's fine.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_012"
+   },
+   "speaker": "",
+   "body": "Aki smiles sadly.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_019"
+   },
+   "speaker": "William",
+   "body": "(I guess she really wanted to meet her mother after all...)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_009"
+   },
+   "speaker": "William",
+   "body": "(But...)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_009"
+   },
+   "speaker": "",
+   "body": "Because we could meet Aki's mother, in the end nothing changed.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_009"
+   },
+   "speaker": "",
+   "body": "Aki is still tense.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_020"
+   },
+   "speaker": "Aki",
+   "body": "\"Hey, William! Quickly!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_014"
+   },
+   "speaker": "William",
+   "body": "\"Y-Yeah.\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_014"
+   },
+   "speaker": "William",
+   "body": "(Is it really okay like this...?)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C46_021"
+   },
+   "speaker": "",
+   "body": "And then, a few days later.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "end_mark": true
+  }
+ ],
+ "_source": "OCR of YouTube upload Aki_C46 (DevilGh0stz), part 4. Text is machine-read: expect small typos. Player name normalised to William. Field nesting is a guess."
+}

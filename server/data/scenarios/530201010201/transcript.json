@@ -1,0 +1,768 @@
+{
+ "scenario_id": "530201010201",
+ "scenario_data": [
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_001"
+   },
+   "speaker": "William",
+   "body": "(I'm going to be living with a pop idol!?)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_001"
+   },
+   "speaker": "William",
+   "body": "(Seriously!?)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_002"
+   },
+   "speaker": "",
+   "body": "As I stand there, Ren looks at me with a stunned expression.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_003"
+   },
+   "speaker": "Ren",
+   "body": "\"You really didn't know that Aki was a pop star until right this minute?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_003"
+   },
+   "speaker": "William",
+   "body": "\"Y...yes!?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_004"
+   },
+   "speaker": "Aoi",
+   "body": "\"But Aki's super popular right now!?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_002"
+   },
+   "speaker": "",
+   "body": "Both Ren and Sayaka nod in agreement.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_003"
+   },
+   "speaker": "Ren",
+   "body": "\"She's been in a ton of variety shows and dramas.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_005"
+   },
+   "speaker": "Sayaka",
+   "body": "\"She's been in almost every recent magazine.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_005"
+   },
+   "speaker": "William",
+   "body": "\"I know that, but!?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_002"
+   },
+   "speaker": "",
+   "body": "Aoi suddenly bends over.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_006"
+   },
+   "speaker": "Aoi",
+   "body": "\"Aki, you're going to be in a gig over the Golden Week holidays, right?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_007"
+   },
+   "speaker": "Aki",
+   "body": "\"I guess.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_007"
+   },
+   "speaker": "William",
+   "body": "\"A live show? How many people will come?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_007"
+   },
+   "speaker": "",
+   "body": "I daringly ask her a question.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_007"
+   },
+   "speaker": "Aki",
+   "body": "\"Does it matter how many people there are?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_007"
+   },
+   "speaker": "William",
+   "body": "(Urk!)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_002"
+   },
+   "speaker": "",
+   "body": "...I'm sunk.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_002"
+   },
+   "speaker": "",
+   "body": "But Aoi answers my question in her place.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_008"
+   },
+   "speaker": "Aoi",
+   "body": "\"Haha. William, how many people do you think there will be?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_008"
+   },
+   "speaker": "William",
+   "body": "\"What? Umm, about 1 million?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_009"
+   },
+   "speaker": "Aki",
+   "body": "\"Huh?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_010"
+   },
+   "speaker": "Aki",
+   "body": "\"There would never be that many people!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_011"
+   },
+   "speaker": "William",
+   "body": "\"Huh!?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_011"
+   },
+   "speaker": "William",
+   "body": "\"Of... of course... Hahaha!?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_012"
+   },
+   "speaker": "Sayaka",
+   "body": "*Snicker*",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_001"
+   },
+   "speaker": "",
+   "body": "As everyone else laughs, Aki sniffs in disgust.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_001"
+   },
+   "speaker": "Aki",
+   "body": "\"About 100,000.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_001"
+   },
+   "speaker": "William",
+   "body": "\"One hundred!?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_001"
+   },
+   "speaker": "",
+   "body": "...That's still pretty darn amazing.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_001"
+   },
+   "speaker": "William",
+   "body": "(I think that the world she lives in must be very different than mine...)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_002"
+   },
+   "speaker": "",
+   "body": "...During dinner, Aki is the topic of conversation.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Aki_C02_002"
+   },
+   "speaker": "",
+   "body": "After dinner...",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "end_mark": true
+  }
+ ],
+ "_source": "OCR of YouTube upload Aki_C02 (DevilGh0stz), part 1. Text is machine-read: expect small typos. Player name normalised to William. Field nesting is a guess."
+}

@@ -1,0 +1,630 @@
+{
+ "scenario_id": "530101013801",
+ "scenario_data": [
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_001"
+   },
+   "speaker": "",
+   "body": "I send Ren a message asking and... a few days later we go on a date!",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_001"
+   },
+   "speaker": "",
+   "body": "I wait for Ren at our meeting place.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_002"
+   },
+   "speaker": "Ren",
+   "body": "\"... Ah...\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_002"
+   },
+   "speaker": "William",
+   "body": "\"! Ren!\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_003"
+   },
+   "speaker": "",
+   "body": "Ren comes running towards me. She's come straight from class.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_004"
+   },
+   "speaker": "Ren",
+   "body": "\"William, I'm sorry! Did you have to wait long?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_004"
+   },
+   "speaker": "William",
+   "body": "\"No. I just got here. It's fine.\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_005"
+   },
+   "speaker": "Ren",
+   "body": "\"Really?... Good.\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_005"
+   },
+   "speaker": "",
+   "body": "Our gaze meets, and we become shy,",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_005"
+   },
+   "speaker": "William",
+   "body": "\"Ahaha...! It's been a while since we've gone on a date.\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_006"
+   },
+   "speaker": "Ren",
+   "body": "\"Hehe... We haven't in ages, have We?\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_006"
+   },
+   "speaker": "William",
+   "body": "\"Okay! Let's have as much fun as we can, then!\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_007"
+   },
+   "speaker": "Ren",
+   "body": "\"Sure!\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_007"
+   },
+   "speaker": "William",
+   "body": "\"Let's go!\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_001"
+   },
+   "speaker": "",
+   "body": "I start walking, excited for our date.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_006"
+   },
+   "speaker": "Ren",
+   "body": "\"... Ah....\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_006"
+   },
+   "speaker": "William",
+   "body": "(Hm?)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_008"
+   },
+   "speaker": "",
+   "body": "Ren doesn't move. Her face becomes red and she hesitates",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_009"
+   },
+   "speaker": "",
+   "body": "Her eyes dart to my hands.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_009"
+   },
+   "speaker": "William",
+   "body": "(...! Ah... Don't tell me....)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_006"
+   },
+   "speaker": "William",
+   "body": "\"R-Ren..... If you'd like, shall we hold hands?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_005"
+   },
+   "speaker": "Ren",
+   "body": "\"! Ah....\"",
+   "show_tail": true,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_005"
+   },
+   "speaker": "",
+   "body": "However, our meeting place is full of other people around us.",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_005"
+   },
+   "speaker": "William",
+   "body": "(M-Maybe we can't... Ren gets embarrassed about doing things like that in front of people.)",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_001"
+   },
+   "speaker": "",
+   "body": "As I think this...",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_010"
+   },
+   "speaker": "",
+   "body": "*Squeeze!*",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "scene": {
+    "type": "text",
+    "layer": [],
+    "link_scene": null,
+    "bg": "Ren_C38_010"
+   },
+   "speaker": "William",
+   "body": "\"! Huh...?\"",
+   "show_tail": false,
+   "audio": {
+    "bgm": null,
+    "voice": null
+   },
+   "visual": {
+    "fade": null,
+    "camera": null,
+    "filter": null,
+    "manpu": null,
+    "shake": null,
+    "particle": null
+   }
+  },
+  {
+   "end_mark": true
+  }
+ ],
+ "_source": "OCR of YouTube upload Ren_C38 (DevilGh0stz), part 1. Text is machine-read: expect small typos. Player name normalised to William. Field nesting is a guess."
+}

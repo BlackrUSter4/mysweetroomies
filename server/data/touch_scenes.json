@@ -1,0 +1,140 @@
+{
+ "02": {
+  "popup": "What? You've come to see me again? ...Thanks.",
+  "source": "YouTube _Ve8sVkG1XM (DevilGh0stz, 2017-12-01)",
+  "scenario_data": [
+   {
+    "scene": {
+     "speaker": "Aki",
+     "body": "\"I'm finally at home! I'm super tired today.\"",
+     "bg": "Touch_02_001",
+     "show_tail": "speak"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "William",
+     "body": "\"Do you need a massage, Aki?\"",
+     "bg": "Touch_02_002",
+     "show_tail": "none"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "Aki",
+     "body": "\"Really? Ohhh, yes, there... You are pretty good at this.\"",
+     "bg": "Touch_02_003",
+     "show_tail": "speak"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "William",
+     "body": "\"Aki, the way you say it is like... a middle aged man.\"",
+     "bg": "Touch_02_004",
+     "show_tail": "none"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "Aki",
+     "body": "\"What!? I don't care!! You just give me more massage!\"",
+     "bg": "Touch_02_005",
+     "show_tail": "speak"
+    }
+   }
+  ]
+ },
+ "05": {
+  "popup": "I love you, William... Let's stay together forever.",
+  "source": "YouTube _Ve8sVkG1XM (DevilGh0stz, 2017-12-01)",
+  "scenario_data": [
+   {
+    "scene": {
+     "speaker": "Sayaka",
+     "body": "\"Hey, you have chocolate on the face.\"",
+     "bg": "Touch_05_001",
+     "show_tail": "speak"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "Sayaka",
+     "body": "\"Don't move... I can wipe it off with my finger.\"",
+     "bg": "Touch_05_002",
+     "show_tail": "speak"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "",
+     "body": "\"*Munch*\"",
+     "bg": "Touch_05_003",
+     "show_tail": "none"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "William",
+     "body": "\"Huh...? Sayaka!?\"",
+     "bg": "Touch_05_004",
+     "show_tail": "none"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "Sayaka",
+     "body": "\"Hehe. I can taste you...\"",
+     "bg": "Touch_05_005",
+     "show_tail": "speak"
+    }
+   }
+  ]
+ },
+ "04": {
+  "popup": "William! Heh-hee hee... I just wanted to see what happened when I called you. Wait up!",
+  "source": "YouTube _Ve8sVkG1XM (DevilGh0stz, 2017-12-01)",
+  "scenario_data": [
+   {
+    "scene": {
+     "speaker": "Aoi",
+     "body": "\"W, what? When did I start feeling for William?\"",
+     "bg": "Touch_04_001",
+     "show_tail": "speak"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "Aoi",
+     "body": "\"What kind of question are you asking me!?\"",
+     "bg": "Touch_04_002",
+     "show_tail": "speak"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "William",
+     "body": "\"W, well, I'm just curious...\"",
+     "bg": "Touch_04_003",
+     "show_tail": "none"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "Aoi",
+     "body": "\"Well... I have been in love with you since...\"",
+     "bg": "Touch_04_004",
+     "show_tail": "speak"
+    }
+   },
+   {
+    "scene": {
+     "speaker": "Aoi",
+     "body": "\"...No!! I can't tell you!!\"",
+     "bg": "Touch_04_005",
+     "show_tail": "speak"
+    }
+   }
+  ]
+ }
+}

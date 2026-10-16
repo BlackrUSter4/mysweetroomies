@@ -1,0 +1,21 @@
+# research workspace (videos, OCR output, frame caches; tens of GB)
+/research/
+
+# the original app and anything built from it
+*.apk
+/offline/decoded/
+/offline/build/
+/offline/tools/
+*.keystore
+
+# story pictures (7.3 GB; inside the offline APK)
+/server/data/static/img/resource/
+
+# local state
+/server/data/mock.sqlite3
+*.log
+__pycache__/
+*.pyc
+.pytest_cache/
+*.idsig
+/.claude/

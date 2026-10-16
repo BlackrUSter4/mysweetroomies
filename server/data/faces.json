@@ -1,0 +1,237 @@
+{
+ "_source": "research/face_items.py: expressions lifted from story pictures (frontal head, matched to the Taiwan wardrobe cut-outs); names from the Taiwan board (Bahamut snA=182 #1).",
+ "names": [
+  {
+   "en": "Smile",
+   "zh": "笑顏"
+  },
+  {
+   "en": "Angry",
+   "zh": "生氣"
+  },
+  {
+   "en": "Crying",
+   "zh": "哭泣"
+  },
+  {
+   "en": "Shy",
+   "zh": "害羞"
+  },
+  {
+   "en": "Surprised",
+   "zh": "驚訝"
+  },
+  {
+   "en": "Confused",
+   "zh": "困惑"
+  },
+  {
+   "en": "Squint",
+   "zh": "瞇眼"
+  },
+  {
+   "en": "Very Shy",
+   "zh": "超害羞"
+  }
+ ],
+ "01": {
+  "box": [
+   210,
+   290,
+   450,
+   380
+  ],
+  "ref": "01_tw08",
+  "faces": {
+   "Smile": "01_smile.png",
+   "Angry": "01_angry.png",
+   "Crying": "01_crying.png",
+   "Shy": "01_shy.png",
+   "Surprised": "01_surprised.png",
+   "Confused": "01_confused.png",
+   "Squint": "01_squint.png",
+   "Very Shy": "01_very_shy.png"
+  },
+  "from": {
+   "Smile": "Ren_C38_050",
+   "Angry": "Ren_C25_006",
+   "Crying": "Sayaka_E01_038",
+   "Shy": "Ren_C03_012",
+   "Surprised": "Ren_E02_012",
+   "Confused": "Aki_C18_031",
+   "Squint": "Ren_E02_030",
+   "Very Shy": "Ren_C35_012"
+  },
+  "icon_confirmed": [
+   "Crying",
+   "Shy",
+   "Smile"
+  ]
+ },
+ "02": {
+  "box": [
+   210,
+   300,
+   410,
+   355
+  ],
+  "ref": "02_tw17",
+  "faces": {
+   "Smile": "02_smile.png",
+   "Angry": "02_angry.png",
+   "Crying": "02_crying.png",
+   "Shy": "02_shy.png",
+   "Surprised": "02_surprised.png",
+   "Confused": "02_confused.png",
+   "Squint": "02_squint.png",
+   "Very Shy": "02_very_shy.png"
+  },
+  "from": {
+   "Smile": "Ren_C33_020",
+   "Angry": "Ren_C28_003",
+   "Crying": "Aki_C28_003",
+   "Shy": "Aki_C52_015",
+   "Surprised": "Aki_C18_008",
+   "Confused": "Aki_C54_016",
+   "Squint": "Aki_C50_016",
+   "Very Shy": "Aki_C33_013"
+  },
+  "icon_confirmed": [
+   "Shy",
+   "Smile"
+  ]
+ },
+ "03": {
+  "box": [
+   230,
+   300,
+   370,
+   360
+  ],
+  "ref": "03_tw26",
+  "faces": {
+   "Smile": "03_smile.png",
+   "Angry": "03_angry.png",
+   "Crying": "03_crying.png",
+   "Shy": "03_shy.png",
+   "Surprised": "03_surprised.png",
+   "Confused": "03_confused.png",
+   "Squint": "03_squint.png",
+   "Very Shy": "03_very_shy.png"
+  },
+  "from": {
+   "Smile": "Mitsuka_C36_011",
+   "Angry": "Aki_C32_004",
+   "Crying": "Mitsuka_C24_002",
+   "Shy": "Misaki_C48_027",
+   "Surprised": "Aki_C04_021",
+   "Confused": "Mitsuka_C29_013",
+   "Squint": "Aoi_C14_015",
+   "Very Shy": "Aoi_C39_029"
+  },
+  "icon_confirmed": [
+   "Crying",
+   "Shy"
+  ]
+ },
+ "04": {
+  "box": [
+   250,
+   300,
+   390,
+   365
+  ],
+  "ref": "04_tw11",
+  "faces": {
+   "Smile": "04_smile.png",
+   "Angry": "04_angry.png",
+   "Crying": "04_crying.png",
+   "Shy": "04_shy.png",
+   "Surprised": "04_surprised.png",
+   "Confused": "04_confused.png",
+   "Squint": "04_squint.png",
+   "Very Shy": "04_very_shy.png"
+  },
+  "from": {
+   "Smile": "Aki_E01_039",
+   "Angry": "Aoi_C49_019",
+   "Crying": "Misaki_C50_025",
+   "Shy": "Aoi_C36_013",
+   "Surprised": "Mitsuka_C23_024",
+   "Confused": "Aoi_C17_003",
+   "Squint": "Aoi_C51_012",
+   "Very Shy": "Aoi_C19_013"
+  },
+  "icon_confirmed": [
+   "Smile"
+  ]
+ },
+ "05": {
+  "box": [
+   250,
+   300,
+   390,
+   365
+  ],
+  "ref": "05_tw20",
+  "faces": {
+   "Smile": "05_smile.png",
+   "Angry": "05_angry.png",
+   "Crying": "05_crying.png",
+   "Shy": "05_shy.png",
+   "Surprised": "05_surprised.png",
+   "Confused": "05_confused.png",
+   "Squint": "05_squint.png",
+   "Very Shy": "05_very_shy.png"
+  },
+  "from": {
+   "Smile": "Aki_C45_011",
+   "Angry": "Sayaka_C32_029",
+   "Crying": "Sayaka_C51_014",
+   "Shy": "Sayaka_C09_020",
+   "Surprised": "Prologue_01_024",
+   "Confused": "Sayaka_C14_035",
+   "Squint": "Sayaka_C44_037",
+   "Very Shy": "Sayaka_C17_025"
+  },
+  "icon_confirmed": [
+   "Crying",
+   "Shy",
+   "Smile"
+  ]
+ },
+ "06": {
+  "box": [
+   340,
+   310,
+   370,
+   355
+  ],
+  "ref": "06_tw26",
+  "faces": {
+   "Smile": "06_smile.png",
+   "Angry": "06_angry.png",
+   "Crying": "06_crying.png",
+   "Shy": "06_shy.png",
+   "Surprised": "06_surprised.png",
+   "Confused": "06_confused.png",
+   "Squint": "06_squint.png",
+   "Very Shy": "06_very_shy.png"
+  },
+  "from": {
+   "Smile": "Misaki_C44_030",
+   "Angry": "Aki_C29_009",
+   "Crying": "Misaki_C51_014",
+   "Shy": "Misaki_C32_004",
+   "Surprised": "Misaki_C24_008",
+   "Confused": "Misaki_C03_014",
+   "Squint": "Aoi_C04_011",
+   "Very Shy": "Misaki_C03_012"
+  },
+  "icon_confirmed": [
+   "Crying",
+   "Shy",
+   "Smile"
+  ]
+ }
+}

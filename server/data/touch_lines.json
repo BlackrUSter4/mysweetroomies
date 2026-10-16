@@ -1,0 +1,614 @@
+{
+ "_source": "Home-screen chat bubbles shown when the heroine is touched. The full pool is the 82 voice clips in the Japanese 1.4.6 APK (Application/sound/voice/mypage/<voice>.ogg; the client's /native/speak?message=..&voice=.. shows the line and plays the clip). en_official = read from English uploads (research/hunt2/english_footage/texts/chat_bubbles_en.md); otherwise my translation. jp = read by eye from 神崎LEN's footage where available, else machine transcription of the clip (jp_asr true). Built by research/hunt2/merge/build_touch_lines.py.",
+ "01": [
+  {
+   "voice": "13010101865",
+   "jp": "勉強、教えてあげようかうん、色々お世話になってるからそれじゃあ、後で私の部屋で",
+   "jp_asr": true,
+   "en": "Want me to help you study? Yeah, you've done so much for me. Okay then, later, in my room.",
+   "en_official": false
+  },
+  {
+   "voice": "13010101866",
+   "jp": "はぁ、さっき読んだ漫画、すごくおもしろかった。アニメ化するのが楽しみかも。うふふ、チェックしとかないと。",
+   "jp_asr": true,
+   "en": "Haa, that manga I just read was so good. I'm kind of looking forward to the anime. Hehe, I'd better keep an eye out for it.",
+   "en_official": false
+  },
+  {
+   "voice": "13010101867",
+   "jp": "家の修理してるときのあなたって 何でもないあの 迷惑じゃなかったらもう少し横で見ててもいい",
+   "jp_asr": true,
+   "en": "When you're fixing things around the house, you... Oh, it's nothing. Um... if it's not a bother, could I watch from beside you a little longer?",
+   "en_official": false
+  },
+  {
+   "voice": "13010101868",
+   "jp": "駅前に新しいカフェができたんだって あのよかったら一緒に行かない なんとなく一緒に行ってみたくて",
+   "jp_asr": true,
+   "en": "I heard a new café opened in front of the station. Um, would you like to go together? I just... kind of wanted to go with you.",
+   "en_official": false
+  },
+  {
+   "voice": "13010101869",
+   "jp": "メイド喫茶ってちょっと楽しそうだよねお帰りなさい、ご主人様なんて、ど、どう?変じゃなかった?",
+   "jp_asr": true,
+   "en": "A maid café sounds kind of fun, doesn't it? \"Welcome home, Master!\"... H-how was that? Was it weird?",
+   "en_official": false
+  },
+  {
+   "voice": "13010101870",
+   "jp": "ミツカさんの育ててる花って いつも息息してる気がするやっぱり愛情を持って育ててると 植物にも伝わるのかな",
+   "jp_asr": true,
+   "en": "Mitsuka's flowers always look so full of life. I guess when you raise them with love, even plants can feel it.",
+   "en_official": false
+  },
+  {
+   "voice": "13010101871",
+   "jp": "ピアノ弾けるって言ったら、葵さんにびっくりされちゃった。そんな大したことじゃないと思うけどな。え、聴いてみたいって?",
+   "jp_asr": true,
+   "en": "When I said I can play the piano, Aoi was really surprised. I don't think it's that big a deal... Huh? You want to hear me play?",
+   "en_official": false
+  },
+  {
+   "voice": "13010101872",
+   "jp": "ホラー映画を見たら眠れなくなっちゃって…。少しだけ一緒にいてくれない…？あ、別に一緒に寝て欲しいとかじゃなくて…！うぅ、私、なに言ってるんだろ…。",
+   "jp_asr": false,
+   "en": "I watched a horror movie and now I can't sleep... Could you stay with me, just for a little while...? Ah, I-I don't mean sleep with me or anything...! Ugh, what am I saying...",
+   "en_official": false
+  },
+  {
+   "voice": "13010101873",
+   "jp": "え、ノート貸して欲しいの？もう、しょうがないな、今回だけだよ。…ふふっ、今度は一緒に授業受けましょうか。",
+   "jp_asr": false,
+   "en": "Huh, you want to borrow my notes? Geez, fine, but just this once. ...Hehe, next time let's go to the lecture together.",
+   "en_official": false
+  },
+  {
+   "voice": "13010101874",
+   "jp": "あの…うまく言えないんだけど…あなたが来てくれて、私、変わった気がするんだ。だから、その…ありがとね。",
+   "jp_asr": false,
+   "en": "Um... I can't really put it into words, but... since you came here, I feel like I've changed. So, um... thank you.",
+   "en_official": false
+  },
+  {
+   "voice": "13010101875",
+   "jp": "おすすめの本?いろいろあるけど、よかったら一冊貸してあげようか。この漫画なんて主人公があなたみたいで、あ、ご、ごめん、私ばっかり盛り上がっちゃって。",
+   "jp_asr": true,
+   "en": "A book to recommend? There are lots, but I could lend you one if you like. The main character in this manga is just like you... Ah, s-sorry, I'm the only one getting excited.",
+   "en_official": false
+  },
+  {
+   "voice": "13010101876",
+   "jp": "病気は治すよりも予防する方がずっと簡単なんだよ。必要なのは栄養バランスのとれた食事に規則正しい生活。そう言ったら、あおいさんはそれが難しいって笑ってたけど…。",
+   "jp_asr": false,
+   "en": "It's easier to prevent sickness than to cure it. It's so simple. The key is a balanced diet. But when I told that to Aoi, she laughed and said that was too hard...",
+   "en_official": true,
+   "en_source": "y6e8aQGwUOY 19:51"
+  },
+  {
+   "voice": "13010101877",
+   "jp": "あ…もうこんな時間。ちょっと紅茶でも淹れようかな。一緒に飲む？ふふっ、この前、喫茶店のマスターにおいしい紅茶を分けてもらったんだ。",
+   "jp_asr": false,
+   "en": "Oh... it's already this late. Maybe I'll make some tea. Want some? Hehe, the café owner gave me some really good tea the other day.",
+   "en_official": false
+  }
+ ],
+ "02": [
+  {
+   "voice": "13020202134",
+   "jp": "ミツカってほんといい子よねー 私が男だったら絶対お嫁さんにしてるわあっ言っとくけどミツカに手を出したら ただじゃ置かないわよ",
+   "jp_asr": true,
+   "en": "Mitsuka is such a good girl. If I were a guy, I'd marry her for sure. Ah, just so you know, if you lay a finger on Mitsuka, you won't get off easy!",
+   "en_official": false
+  },
+  {
+   "voice": "13020202135",
+   "jp": "はぁ たまには変装なしで遊びに行きたいなぁねえねえボディガードになってくれない 大丈夫大丈夫骨を拾ってあげるからさ",
+   "jp_asr": true,
+   "en": "Haa... I want to go out without a disguise for once. Hey, won't you be my bodyguard? Don't worry, don't worry, I'll pick up your bones afterwards.",
+   "en_official": false
+  },
+  {
+   "voice": "13020202136",
+   "jp": "仕事してる時のみさきさんってかっこいいよねー 私もああいう大人になりたいなーアイドルから美人秘書に転身 なんてなんかできる女っぽくない",
+   "jp_asr": true,
+   "en": "Misaki is so cool when she's working, isn't she? I want to be a grown-up like that. From idol to beautiful secretary... Doesn't that sound like a capable woman?",
+   "en_official": false
+  },
+  {
+   "voice": "13020202137",
+   "jp": "さやかさんたら、またあんな格好で、はぁ、みんなもっと男子が一緒だって自覚してくれなきゃ困るわよ",
+   "jp_asr": true,
+   "en": "Geez, Sayaka's dressed like that again... Haa, everyone needs to remember there's a guy living here too!",
+   "en_official": false
+  },
+  {
+   "voice": "13020202138",
+   "jp": "みつかの肉じゃがを食べると家に帰ってきたーって気分になるんだよね あの肉じゃがにはどんな料理も買ってないなぁ",
+   "jp_asr": true,
+   "en": "Whenever I eat Mitsuka's meat and potatoes, I feel like I'm home. Nothing can beat that meat and potatoes.",
+   "en_official": false
+  },
+  {
+   "voice": "13020202139",
+   "jp": "一口にアイドルと言ってもいろんな仕事があるんだよねでもやっぱり私は歌うことが好きだないろんな人に思いを伝えられるからさ",
+   "jp_asr": true,
+   "en": "There's a lot of work that comes with being an idol, not just singing. Of course, I do love the singing. It allows me to convey my feelings with the world.",
+   "en_official": true,
+   "en_source": "ChQYNuZWDkk 14:34"
+  },
+  {
+   "voice": "13020202140",
+   "jp": "私の曲で誰かを元気にするそれがアイドルとしての私の目標かなあんたは私の歌聞いたことある",
+   "jp_asr": true,
+   "en": "I make people feel good with my music. That's my goal as an idol. Have you ever heard any of my songs?",
+   "en_official": true,
+   "en_source": "IjHbp8Wv-6U 12:28"
+  },
+  {
+   "voice": "13020202141",
+   "jp": "花嫁さんか、なんか憧れちゃうな、べ、別に深い意味はないのよ、え、言わなくても分かってるって、違うわよ、この鈍感!",
+   "jp_asr": true,
+   "en": "Ooh, what a dream to be a young bride... Huh? I'm not trying to tell you anything. What? You say you know what I mean? ...What do you know, blockhead!",
+   "en_official": true,
+   "en_source": "ChQYNuZWDkk 14:41"
+  },
+  {
+   "voice": "13020202142",
+   "jp": "あんたのサークルって何やってるんだっけ カメラなんだちょっと面白そうかも今度を見学に行ってもいい",
+   "jp_asr": true,
+   "en": "What does your club do again? Hmm, photography? That sounds fun. Can I join you guys next time?",
+   "en_official": true,
+   "en_source": "DkFp2WwPHIE 0:08"
+  },
+  {
+   "voice": "13020202143",
+   "jp": "ロケ弁ってけっこうカロリーがあるのよね。太らないように気をつけないと。あ、アンタがお弁当作ってくれる!?",
+   "jp_asr": false,
+   "en": "Those lunches on the set have so many calories. I have to watch my weight. Oh, won't you make me a lunch?",
+   "en_official": true,
+   "en_source": "yBPMBEow39I 14:32"
+  },
+  {
+   "voice": "13020202144",
+   "jp": "駅前に美味しいスイーツの店ができたんだって!ちょっと一緒に行かない?ほら、たまには甘いものもいいでしょ?",
+   "jp_asr": true,
+   "en": "I heard there's a new candy store in front of the train station! Won't you come to check it out with me? Hey! I'm allowed to have sweets every once in a while!",
+   "en_official": true,
+   "en_source": "O0js-vIgJMQ 8:05"
+  },
+  {
+   "voice": "13020202145",
+   "jp": "あたしが買っておいたアイス知らない!? う〜楽しみにしてたのに〜…犯人はあおいさんかさやかさんか…まさか、アンタじゃないでしょうね!?",
+   "jp_asr": false,
+   "en": "Do you know where my ice cream is!? Oooh! I was really looking forward to eating that! I bet it was Sayaka or Aoi that took it... You wouldn't do anything like that, right!?",
+   "en_official": true,
+   "en_source": "nObKszlL0Xo 5:04"
+  },
+  {
+   "voice": "13020202146",
+   "jp": "ロケで白猫っていうメイド喫茶に行ったんだけど…可愛い子ばっかりで驚いちゃった！む…、なんだかそわそわしてるみたいだけど、今から行く気じゃないでしょうね？",
+   "jp_asr": false,
+   "en": "I went to a maid cafe called the \"White Cat\" next to our set, and the girls were so cute, I was totally shocked! Hmm... You're looking fidgety. You want to go, don't you?",
+   "en_official": true,
+   "en_source": "1Gamg3Erbno 17:35"
+  },
+  {
+   "voice": "13020202147",
+   "jp": "好きなタイプ？そうね、なんでも一生懸命になれる人は素敵だと思うかな。あとは…優しくて、日曜大工とかが好きで…って！べ、別にアンタのことじゃないからね!!",
+   "jp_asr": false,
+   "en": "What type of guy do I like? Well, I think guys who work hard to achieve their goals are really cool. Also, I like nice guys, handymen... I, I'm not talking about you!!",
+   "en_official": true,
+   "en_source": "nObKszlL0Xo 3:21"
+  }
+ ],
+ "03": [
+  {
+   "voice": "13030301783",
+   "jp": "お散歩すると気分が晴れやかになりますね今度一緒にお散歩行きませんか?",
+   "jp_asr": true,
+   "en": "Going for a walk really clears my head. Would you like to go for a walk together sometime?",
+   "en_official": false
+  },
+  {
+   "voice": "13030301784",
+   "jp": "あ、ちょっと、うん、はい、これで大丈夫。寝癖がついてましたよ。え?キスするかと思った?も、もう、何言ってんですか?",
+   "jp_asr": true,
+   "en": "Ah, hold still... There, that's better. You had bed hair. Huh? You thought I was going to kiss you? G-geez, what are you saying?",
+   "en_official": false
+  },
+  {
+   "voice": "13030301785",
+   "jp": "今日、楽しい夢を見ました。えっと、私と先輩が出てきて、それで、こ、ここから先は秘密です!",
+   "jp_asr": true,
+   "en": "I had a happy dream today. Um, you and I were in it, and then... th-the rest is a secret!",
+   "en_official": false
+  },
+  {
+   "voice": "13030301786",
+   "jp": "男の人ってちょっと苦手だったんですけど一緒にいるとなんか楽しいですこういうのを初めてだからなんかちょっとドキドキしますね",
+   "jp_asr": true,
+   "en": "I was never good around men, but being with you is kind of fun. It's my first time feeling like this, so my heart's pounding a little.",
+   "en_official": false
+  },
+  {
+   "voice": "13030301787",
+   "jp": "おはようございます 朝ごはんちゃんと食べてくれましたか",
+   "jp_asr": true,
+   "en": "Good morning. Did you eat your breakfast properly?",
+   "en_official": false
+  },
+  {
+   "voice": "13030301788",
+   "jp": "紅茶入れたんですけど飲みますか 今日はアールグレーンにしてみましたえっ美味しい ありがとうございます",
+   "jp_asr": true,
+   "en": "I made some tea, would you like some? I tried Earl Grey today. Huh? It's good? Thank you!",
+   "en_official": false
+  },
+  {
+   "voice": "13030301789",
+   "jp": "アールグレイって、実は人の名前なんですよアールは白色って意味でグレイ白色が気に入ったことから付けられたみたいなんです面白いですよね",
+   "jp_asr": true,
+   "en": "Did you know Earl Grey is actually a person's name? It seems it was named after an earl called Grey who liked it. Interesting, isn't it?",
+   "en_official": false
+  },
+  {
+   "voice": "13030301790",
+   "jp": "アキちゃんとは中学の時に知り合ったんですあの時からアキちゃんは正義感が強くて優しくてえ、優しくない?そんなことないですよ少し照れ屋さんなだけですよ",
+   "jp_asr": true,
+   "en": "I met Aki in middle school. Even back then she had a strong sense of justice and was so kind. Huh, not kind? That's not true. She's just a little shy.",
+   "en_official": false
+  },
+  {
+   "voice": "13030301791",
+   "jp": "さやかさんってすごく綺麗ですよね 私もあと3年経ったらあんな風に綺麗になれるかなえっ 今のままでも中文あっありがとうございます",
+   "jp_asr": true,
+   "en": "Sayaka is so beautiful, isn't she? I wonder if I'll be that beautiful in three more years... Huh? I already am...? Ah, th-thank you.",
+   "en_official": false
+  },
+  {
+   "voice": "13030301792",
+   "jp": "たまにはみんなでどこかに出かけたいですね どこか行きたいとこありますか",
+   "jp_asr": true,
+   "en": "It'd be nice for all of us to go out somewhere once in a while. Is there anywhere you'd like to go?",
+   "en_official": false
+  },
+  {
+   "voice": "13030301793",
+   "jp": "えっと、今日の夕飯は…あ、アオイさん!まだ食べちゃダメですって!もう、笑ってないで止めてくださいよ!",
+   "jp_asr": true,
+   "en": "Let's see, tonight's dinner is... Ah, Aoi! You can't eat that yet! Geez, stop laughing and help me stop her!",
+   "en_official": false
+  },
+  {
+   "voice": "13030301794",
+   "jp": "ふぅ、宿題終わりっと。手伝ってくれてありがとうございます。お礼に今日の夕飯は先輩の好きなものにしますね。",
+   "jp_asr": true,
+   "en": "Phew, homework's done. Thank you for helping me. To thank you, I'll make your favorite for dinner tonight.",
+   "en_official": false
+  },
+  {
+   "voice": "13030301795",
+   "jp": "今日、学校で試験があったんです。自信ですか？ふふっ、ありますよ。だって、先輩が教えてくれましたから！",
+   "jp_asr": false,
+   "en": "We had a test at school today. Am I confident? Hehe, I am. After all, you tutored me!",
+   "en_official": false
+  },
+  {
+   "voice": "13030301796",
+   "jp": "うわぁ…この部屋寒いです…あの…隣に行ってもいいですか?",
+   "jp_asr": true,
+   "en": "Brr... it's cold in this room... Um... can I sit next to you?",
+   "en_official": false
+  },
+  {
+   "voice": "13030301797",
+   "jp": "私の好きな食べ物ですか 焼き魚とかハンバーグとかです何か好きな食べ物ありますか 今度頑張って作りますよ",
+   "jp_asr": true,
+   "en": "What's my favorite food? I like stuff like grilled fish and hamburgers! What do you like? I'll do my best to make it next time!",
+   "en_official": true,
+   "en_source": "IWbg66S7cYk 0:15"
+  },
+  {
+   "voice": "13030301798",
+   "jp": "課題、終わりそうですか？ケーキを作ったんですけど、よかったら息抜きにどうぞ！",
+   "jp_asr": false,
+   "en": "Are you almost done with your assignment? I baked a cake, so take a break and have some if you like!",
+   "en_official": false
+  },
+  {
+   "voice": "13030301799",
+   "jp": "今度のお休み、なにか予定とかあります？もしなければ、一緒に…や、やっぱりなんでもないですっ！",
+   "jp_asr": false,
+   "en": "Do you have any plans for the next day off? If not, maybe we could... n-never mind, it's nothing!",
+   "en_official": false
+  },
+  {
+   "voice": "13030301800",
+   "jp": "うぅ〜…さっき怖い夢を見ちゃって……。あの…少しだけ、そばにいてもいいですか…？",
+   "jp_asr": false,
+   "en": "I just had a bad dream... Um... Is it okay if I stay with you for a little bit...?",
+   "en_official": true,
+   "en_source": "0Jh1vPRJObY 0:00"
+  },
+  {
+   "voice": "13030301801",
+   "jp": "あっ、もうこんな時間ですね。そろそろ寝ないと…。おやすみなさい。ほんとは一緒に…あっ！なんでもないですなんでもっ！",
+   "jp_asr": false,
+   "en": "Oh, it's already so late. I should get to bed... Good night. Honestly I'd like to... ah! It's nothing, nothing at all!",
+   "en_official": false
+  }
+ ],
+ "04": [
+  {
+   "voice": "13040402142",
+   "jp": "おはよー!早起きしたからランニングしてきちゃったー!たっぷり朝日を浴びてエネルギー満タンって感じ!",
+   "jp_asr": true,
+   "en": "Morning! I woke up early so I went for a run! I soaked up plenty of morning sun, I'm fully charged!",
+   "en_official": false
+  },
+  {
+   "voice": "13040402143",
+   "jp": "んー、やっぱり朝ごはんはちゃんと食べないとダメだよねー、お昼まで元気が持たないよー。",
+   "jp_asr": true,
+   "en": "Hm! You better eat your breakfast! Otherwise, you're going to run out of fuel by the afternoon!",
+   "en_official": true,
+   "en_source": "Q07Rk30hnXQ 8:21"
+  },
+  {
+   "voice": "13040402144",
+   "jp": "だいぶみっちゃんと打ち解けてきたね まああんたなら大丈夫だと思ってたよ不器用だし鈍感だし あや褒めてるんだって",
+   "jp_asr": true,
+   "en": "You've really opened up to Mitchan, huh. Well, I figured you'd be fine. You're clumsy, and dense, and... Hey, that's a compliment!",
+   "en_official": false
+  },
+  {
+   "voice": "13040402145",
+   "jp": "やっほー!ん?くっつきすぎだって?でも嫌じゃないでしょ?ふふふ",
+   "jp_asr": true,
+   "en": "Yahoo! Hm? I'm too close? But you don't hate it, right? Hehehe.",
+   "en_official": false
+  },
+  {
+   "voice": "13040402146",
+   "jp": "わー、お腹と背中がくっつきそう。なんかお菓子とか持ってない?わー、みっちゃんの作った肉じゃがが食べたいよ。",
+   "jp_asr": true,
+   "en": "Waah, I'm so hungry my stomach's stuck to my back. Got any snacks? Waah, I want Mitchan's meat and potatoes.",
+   "en_official": false
+  },
+  {
+   "voice": "13040402147",
+   "jp": "ムニャムニャ、オムライス、肉じゃがわ、チャーハン…くっひひ、もう食べられないよ…",
+   "jp_asr": true,
+   "en": "Mmm... omelette rice... meat and potatoes... fried rice... hehehe, I can't eat any more...",
+   "en_official": false
+  },
+  {
+   "voice": "13040402148",
+   "jp": "お昼食べた後って なんか眠くなるよねーい、いやいや でも今日の授業は超重要絶対に寝るわけには… 寝るわけには…",
+   "jp_asr": true,
+   "en": "I'm so sleepy after eating that lunch... N-no, no, I got an important class coming up soon, so I gotta stay awake, no matter what... No matter wh... Zzz...",
+   "en_official": true,
+   "en_source": "vzmjp73Z0Jk 0:09"
+  },
+  {
+   "voice": "13040402149",
+   "jp": "ひぃぃ、来週までにレポート300枚だって、お願い、手伝って!",
+   "jp_asr": true,
+   "en": "Eek, a 300-page report due next week! Please, help me!",
+   "en_official": false
+  },
+  {
+   "voice": "13040402150",
+   "jp": "ちゃんと大学行ってる 全然最近会わないからさあ見かけたらちゃんと声かけてよ 寂しいじゃん",
+   "jp_asr": true,
+   "en": "Are you going to your classes? I haven't run into you at all lately. If you see me, say hi! It's lonely, you know.",
+   "en_official": false
+  },
+  {
+   "voice": "13040402151",
+   "jp": "ギョロギョロ、よし、誰も見てないうちに、はっ、はっ、な、何もしてないよ!",
+   "jp_asr": true,
+   "en": "*Glance, glance* Okay, while no one's looking... Ah! I-I wasn't doing anything!",
+   "en_official": false
+  },
+  {
+   "voice": "13040402152",
+   "jp": "やっぱり男の子って、おしとやかな女の子の方が好きなのかな？だって、マンガのヒロインとか、そういう感じの子が多いじゃない？",
+   "jp_asr": false,
+   "en": "Guys like girls who are graceful, right? That's the feeling I get when I read comic books. Most of the heroines are really graceful, right?",
+   "en_official": true,
+   "en_source": "cBoWHmPu5KA 7:18"
+  },
+  {
+   "voice": "13040402153",
+   "jp": "お、女の子からラブレターもらっちゃったよ。どうしよう…。気持ちはうれしいけど、アタシは……ハッ!? な、なんでもないよ!!",
+   "jp_asr": false,
+   "en": "I got a love letter from a girl... Oh no... I appreciate it, but I like yo... Oh!? Never mind!",
+   "en_official": true,
+   "en_source": "gf3-Bbo61Vg 5:29"
+  },
+  {
+   "voice": "13040402154",
+   "jp": "となり町でメイド喫茶のバイトを募集してたんだけど…あははっ、アタシには似合わないよね、って、なんで笑ってんのよ!!",
+   "jp_asr": false,
+   "en": "A maid café in the next town is hiring part-timers... Ahaha, that wouldn't suit me, right? Hey, why are you laughing!!",
+   "en_official": false
+  },
+  {
+   "voice": "13040402155",
+   "jp": "ねぇねぇ、友達から怖い話のDVD借りちゃったの、絶対絶対一人で見られないから、一緒に見て!お願い!",
+   "jp_asr": true,
+   "en": "Hey, my friend lent me this horror movie on DVD. There's no way I'll be able to watch it alone. Won't you watch it with me? Pleeeeaase!",
+   "en_official": true,
+   "en_source": "O0js-vIgJMQ 7:14"
+  },
+  {
+   "voice": "13040402156",
+   "jp": "あ〜飲みすぎちゃったぁ…。部屋に戻るから…ちょっと肩貸してくれる？ほら、なに照れてんのよ！",
+   "jp_asr": false,
+   "en": "Ahh... I drank too much... I'm going back to my room. Won't you help me...? Hey! What are you acting all shy over!?",
+   "en_official": true,
+   "en_source": "J2R4Re1eiMo 0:27"
+  }
+ ],
+ "05": [
+  {
+   "voice": "13050502278",
+   "jp": "ふぅ、ちょっと飲みすぎちゃったかなぁあ、水持ってきてくれたの?ふふ、優しいね、ちょっとドギッとしちゃった",
+   "jp_asr": true,
+   "en": "Phew, maybe I drank a little too much... Oh, you brought me water? Hehe, you're sweet. My heart skipped a beat.",
+   "en_official": false
+  },
+  {
+   "voice": "13050502279",
+   "jp": "アオイとは高校からの付き合いだけど、もうずっと一緒にいる気がするな。波長が会うっていうか、一緒にいるとすごい楽なんだよね。",
+   "jp_asr": true,
+   "en": "I've known Aoi since high school, but it feels like we've always been together. We're on the same wavelength, I guess. Being with her is so easy.",
+   "en_official": false
+  },
+  {
+   "voice": "13050502280",
+   "jp": "仕事がない日ってなんか退屈ねー そうだ、ちょうど荷物持ちくんじゃなくて君もいることだし買い物にでも行こうか ね、お茶くらいおごってあげるから",
+   "jp_asr": true,
+   "en": "Days off are kind of boring. Oh, I know! Since my bag carrier... I mean, since you're here, let's go shopping. I'll at least treat you to tea.",
+   "en_official": false
+  },
+  {
+   "voice": "13050502281",
+   "jp": "うーん おはよううーん ちょっと頭が痛いえっ お水持ってきてくれるの?やっぱり優しいんだね",
+   "jp_asr": true,
+   "en": "Mmm... morning... Ugh, my head hurts a little. Huh, you'll bring me water? You really are sweet.",
+   "en_official": false
+  },
+  {
+   "voice": "13050502282",
+   "jp": "今日ね、お店で良いワイン貰っちゃったの。 せっかくだから、夜に二人で飲まない?うふふっ",
+   "jp_asr": true,
+   "en": "I got this great wine at my job today! It would be a waste to drink it alone. Why don't we drink it, just the two of us? Hehe!",
+   "en_official": true,
+   "en_source": "ADnDUKF-Xr0 8:37"
+  },
+  {
+   "voice": "13050502283",
+   "jp": "たまには仕事を休んで、ゆっくり温泉に行きたいなぁうふふ、君も一緒に来る?もしかして、婚欲だったりしてうふふ、なんてね",
+   "jp_asr": true,
+   "en": "I like to go a hot spring every once in a while during my days off. Hehe, want to come with me sometime? Maybe we can go to the one that guys and girls bathe together... What do you think?♪",
+   "en_official": true,
+   "en_source": "vzmjp73Z0Jk 6:54"
+  },
+  {
+   "voice": "13050502284",
+   "jp": "女の子のメイクって奥が深いんだよねえ、よかったら教えてあげよっか君ってお化粧似合うと思うんだよねうふふ、新しい世界に目覚めちゃうかもよ",
+   "jp_asr": true,
+   "en": "There's lots to learn when it comes to girl's make-up. I think you'd look good in some make-up, you know. Hehehe! It might open up a whole new world for you!",
+   "en_official": true,
+   "en_source": "vzmjp73Z0Jk 6:45"
+  },
+  {
+   "voice": "13050502285",
+   "jp": "ふふっ、葵と一緒に新しい水着買っちゃった。 ちょっと大胆すぎて、君には刺激が強いかも。ふふっ、どうしてもって言うなら、見せてあげてもいいけど。",
+   "jp_asr": true,
+   "en": "Hehe, I bought a new swimsuit with Aoi. It's a bit bold, maybe too much for you. Hehe, but if you really insist, I might show you.",
+   "en_official": false
+  },
+  {
+   "voice": "13050502286",
+   "jp": "初恋はいつだった?わたしはねーフフッ秘密女は秘密が多い方が魅力的って言うでしょ",
+   "jp_asr": true,
+   "en": "When was your first love? Me? Hehe, it's a secret. They say a woman with lots of secrets is more attractive, right?",
+   "en_official": false
+  },
+  {
+   "voice": "13050502287",
+   "jp": "ふぁ〜、ねむーい。でもひとりだと寝付けなくって…。一緒に隣で寝てくれる？その間…ふふっ。",
+   "jp_asr": false,
+   "en": "Yaaaawn! I'm so sleepy. But I can't fall asleep when I'm by myself. Will you sleep next to me? Your face... What are you thinking about, huh? Hehe...",
+   "en_official": true,
+   "en_source": "xGY5ULrCAR8 1:14"
+  },
+  {
+   "voice": "13050502288",
+   "jp": "この服、今夜お店で着ようと思うんだけど…やっぱり露出しすぎかな？じゃあきみだけに特別に見せてあげるっ！",
+   "jp_asr": false,
+   "en": "I was thinking about wearing these clothes, but they're too revealing, huh? Well, I guess I'll just show them off to you!",
+   "en_official": true,
+   "en_source": "xGY5ULrCAR8 6:45"
+  },
+  {
+   "voice": "13050502289",
+   "jp": "あーあ、お店行かないでこのまま一緒にいたいな〜…なんてねっ♪え、ちょっと顔真っ赤だけど!?",
+   "jp_asr": false,
+   "en": "Ahh, I wish I could skip work and just stay here with you~... Just kidding♪ Huh, your face is bright red!?",
+   "en_official": false
+  },
+  {
+   "voice": "13050502290",
+   "jp": "アオイたちと飲むのも楽しいけど、たまには二人っきりで飲みに行きたいなぁ、よかったら、今度一緒にどう?",
+   "jp_asr": true,
+   "en": "Going out drinking with Aoi is fun, but I'd like it if just you and me would go out every once in a while. What do you think? Want to go out with me?",
+   "en_official": true,
+   "en_source": "qa9S_zHpKjM 13:24"
+  },
+  {
+   "voice": "13050502291",
+   "jp": "君って反応がかわいいから、ついからがいたくなっちゃうんだよねーほら、その困った顔とか、くせになっちゃうなー",
+   "jp_asr": true,
+   "en": "You're so adorable when you get worked up that I can't stop teasing you.♪ Yeah, like that! Hehe! I can't help myself!",
+   "en_official": true,
+   "en_source": "V25pjbGxM1I 12:07"
+  }
+ ],
+ "06": [
+  {
+   "voice": "13060602051",
+   "jp": "やっぱり家が一番落ち着くわね。え、あなたもそう思う?うふふ、そう言ってくれるなんて、すごく嬉しい。",
+   "jp_asr": true,
+   "en": "Home really is the most relaxing place. Huh, you think so too? Hehe, I'm so happy to hear you say that.",
+   "en_official": false
+  },
+  {
+   "voice": "13060602052",
+   "jp": "あなたもだいぶシェアハウスに慣れてきたみたいね。だけど、困ったことがあったら遠慮なく言っていいのよ?",
+   "jp_asr": true,
+   "en": "You seem to have gotten used to the share house. But if anything's bothering you, don't hesitate to tell me, okay?",
+   "en_official": false
+  },
+  {
+   "voice": "13060602053",
+   "jp": "おはよう、今日はちゃんと起きれたのね。あんまり夜更かししちゃダメよ",
+   "jp_asr": true,
+   "en": "Good morning. You managed to get up on time today. Don't stay up too late, okay?",
+   "en_official": false
+  },
+  {
+   "voice": "13060602054",
+   "jp": "みんなの笑顔を見ていると、シェアハウスをやっててよかったって思うんだ。",
+   "jp_asr": true,
+   "en": "Seeing everyone smile makes me glad I run this share house.",
+   "en_official": false
+  },
+  {
+   "voice": "13060602055",
+   "jp": "あなたがシェアハウスに来て、ここもだいぶ賑やかになったわ。もう立派な家族の一員ね。",
+   "jp_asr": true,
+   "en": "Since you came to the share house, it's gotten so much livelier. You're a proper member of the family now.",
+   "en_official": false
+  },
+  {
+   "voice": "13060602056",
+   "jp": "私も、もっと料理が上手くなりたいな…。上手くなって、カレに…って、い、いつからそこにいたの!? い、今聞いたことは忘れて…!!",
+   "jp_asr": false,
+   "en": "I wish I could get better at cooking too... Then I could make something for him... W-wait, how long have you been there!? F-forget what you just heard...!!",
+   "en_official": false
+  },
+  {
+   "voice": "13060602057",
+   "jp": "今度の休日、予定が空いちゃったんだけど、よかったら一緒にショッピングに行かない?",
+   "jp_asr": true,
+   "en": "My plans for the next holiday fell through. If you'd like, want to go shopping together?",
+   "en_official": false
+  }
+ ]
+}

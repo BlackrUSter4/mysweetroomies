@@ -1,0 +1,974 @@
+{
+ "_source": "Event Stories known by name only; no text of any event has been found (DOCUMENTATION.md section 4). game 'famille' = ようこそ！ファミーユへ (archived @MF_Novel tweets, research/wayback/tw_2014.html, tw_2015.html); game 'uchikano' = the predecessor ただいま！うちカノジョ (Mobage fan circle うちカノ非公式ｻｰｸﾙ, research/hunt2/yakumo/ and japanese_web/). No English event name is known, so 'title' is my translation. Banners are the only surviving pictures (320 px, or a 150 px tweet thumbnail).",
+ "events": [
+  {
+   "id": "famille_edo",
+   "game": "famille",
+   "title": "Edo Pure Love Story",
+   "title_jp": "大江戸純愛物語",
+   "date": null,
+   "heroine_id": null,
+   "scenario_id": "530008010101",
+   "note": "Gacha event in an Edo-themed amusement park: reading normal stories earns event gacha tickets; a spin (5 tickets) gives the next episode of one heroine's event story (20 parts per heroine). The preview (TW recording V9e3_sRj-No) and Sayaka's episode 1 (HFtNCIJ2i1Q) survive.",
+   "source": "Traditional Chinese edition (TW run from 2017-01-19, Bahamut snA=169)",
+   "banner": "img/event/famille_edo.jpg",
+   "banner_source": "Bahamut 女子宿舍禁愛令 board image 434c85d2 (TW promo card)",
+   "parts": [
+    {
+     "scenario_id": "530008010101",
+     "title": "Preview"
+    },
+    {
+     "scenario_id": "530008050101",
+     "title": "Sayaka Episode 1",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530008020101",
+     "title": "Aki Episode 1",
+     "heroine_id": "02"
+    }
+   ]
+  },
+  {
+   "id": "famille_hotspring_trip",
+   "game": "famille",
+   "title": "Let's Go on a Hot-Spring Love Trip",
+   "title_jp": null,
+   "title_tw": "去溫泉戀愛旅行吧",
+   "date": null,
+   "heroine_id": null,
+   "banner": null,
+   "parts": [
+    {
+     "scenario_id": "530009050101",
+     "title": "Sayaka Episode 1",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009050201",
+     "title": "Sayaka Episode 2",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009050301",
+     "title": "Sayaka Episode 3",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009050401",
+     "title": "Sayaka Episode 4",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009050501",
+     "title": "Sayaka Episode 5",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009050601",
+     "title": "Sayaka Episode 6",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009050701",
+     "title": "Sayaka Episode 7",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009050801",
+     "title": "Sayaka Episode 8",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009050901",
+     "title": "Sayaka Episode 9",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009051001",
+     "title": "Sayaka Episode 10",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009051101",
+     "title": "Sayaka Episode 11",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009051201",
+     "title": "Sayaka Episode 12",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009051301",
+     "title": "Sayaka Episode 13",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009051401",
+     "title": "Sayaka Episode 14",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009051501",
+     "title": "Sayaka Episode 15",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009051601",
+     "title": "Sayaka Episode 16",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009051701",
+     "title": "Sayaka Episode 17",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009051801",
+     "title": "Sayaka Episode 18",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009051901",
+     "title": "Sayaka Episode 19",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530009052001",
+     "title": "Sayaka Episode 20",
+     "heroine_id": "05",
+     "final": true
+    },
+    {
+     "scenario_id": "530009040101",
+     "title": "Aoi Episode 1",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009040201",
+     "title": "Aoi Episode 2",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009040301",
+     "title": "Aoi Episode 3",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009040401",
+     "title": "Aoi Episode 4",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009040501",
+     "title": "Aoi Episode 5",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009040601",
+     "title": "Aoi Episode 6",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009040701",
+     "title": "Aoi Episode 7",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009040801",
+     "title": "Aoi Episode 8",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009040901",
+     "title": "Aoi Episode 9",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009041001",
+     "title": "Aoi Episode 10",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009041101",
+     "title": "Aoi Episode 11",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009041201",
+     "title": "Aoi Episode 12",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009041301",
+     "title": "Aoi Episode 13",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009041401",
+     "title": "Aoi Episode 14",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009041501",
+     "title": "Aoi Episode 15",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009041601",
+     "title": "Aoi Episode 16",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009041701",
+     "title": "Aoi Episode 17",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009041801",
+     "title": "Aoi Episode 18",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009041901",
+     "title": "Aoi Episode 19",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530009042001",
+     "title": "Aoi Episode 20",
+     "heroine_id": "04",
+     "final": true
+    }
+   ],
+   "note": "Special event, 20 episodes per heroine. Sayaka: a day-trip date ends at a dog-friendly resort inn with an open-air bath. Aoi: her live-in job at a hot-spring inn runs over, and William goes to find out why. Only Sayaka's and Aoi's routes survive (TW recordings by breeze llc). The Japanese title is unknown (possibly 癒やし癒され温泉紀行; the TW board lists 溫泉戀旅甜蜜行).",
+   "source": "Traditional Chinese edition (breeze llc hzUg9o_Op0o, wF1WNECAvE8)"
+  },
+  {
+   "id": "famille_dangerous_christmas",
+   "game": "famille",
+   "title": "A Dangerous Christmas for Two",
+   "title_jp": null,
+   "title_tw": "兩個人的危險聖誕節",
+   "date": null,
+   "heroine_id": null,
+   "banner": null,
+   "parts": [
+    {
+     "scenario_id": "530010010101",
+     "title": "Ren Episode 1",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010010201",
+     "title": "Ren Episode 2",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010010301",
+     "title": "Ren Episode 3",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010010401",
+     "title": "Ren Episode 4",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010010501",
+     "title": "Ren Episode 5",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010010601",
+     "title": "Ren Episode 6",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010010701",
+     "title": "Ren Episode 7",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010010801",
+     "title": "Ren Episode 8",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010010901",
+     "title": "Ren Episode 9",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010011001",
+     "title": "Ren Episode 10",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010011101",
+     "title": "Ren Episode 11",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010011201",
+     "title": "Ren Episode 12",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010011301",
+     "title": "Ren Episode 13",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010011401",
+     "title": "Ren Episode 14",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010011501",
+     "title": "Ren Episode 15",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010011601",
+     "title": "Ren Episode 16",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010011701",
+     "title": "Ren Episode 17",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010011801",
+     "title": "Ren Episode 18",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010011901",
+     "title": "Ren Episode 19",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530010012001",
+     "title": "Ren Final Episode",
+     "heroine_id": "01",
+     "final": true
+    }
+   ],
+   "note": "Scratch-card event: stories earn scratch-card points, which give event points for the heroine on the home screen; points unlock her 20 episodes and a limited picture. Ren secretly works at a maid café to pay for a surprise Christmas Eve at a hotel. Only Ren's route survives (TW recording, 21 videos by 大熊猫中国); episode 2's opening and the end of the final episode are lost. The Japanese title is unknown.",
+   "source": "Traditional Chinese edition (大熊猫中国, YouTube uz7QvqA4A3s ... IPTxrWC_hfY)"
+  },
+  {
+   "id": "famille_seaside_cinderella",
+   "game": "famille",
+   "title": "Seaside Cinderella",
+   "title_jp": "海辺のシンデレラ",
+   "date": "2014-08-21",
+   "heroine_id": null,
+   "note": "Slot event: spin to earn scenario points for limited scenarios; a heroine in a swimsuit on My Page improves the slot; swimsuit gacha rate-up.",
+   "banner": "img/event/famille_seaside_cinderella.jpg",
+   "parts": [
+    {
+     "scenario_id": "530011010101",
+     "title": "Ren Episode 1",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011010201",
+     "title": "Ren Episode 2",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011010301",
+     "title": "Ren Episode 3",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011010501",
+     "title": "Ren Episode 5",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011010601",
+     "title": "Ren Episode 6",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011010701",
+     "title": "Ren Episode 7",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011010801",
+     "title": "Ren Episode 8",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011010901",
+     "title": "Ren Episode 9",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011011001",
+     "title": "Ren Episode 10",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011011101",
+     "title": "Ren Episode 11",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011011201",
+     "title": "Ren Episode 12",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011011301",
+     "title": "Ren Episode 13",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011011401",
+     "title": "Ren Episode 14",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011011501",
+     "title": "Ren Episode 15",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011011601",
+     "title": "Ren Episode 16",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011019901",
+     "title": "Ren Secret Story",
+     "heroine_id": "01"
+    },
+    {
+     "scenario_id": "530011020101",
+     "title": "Aki Episode 1",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011020401",
+     "title": "Aki Episode 4",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011020501",
+     "title": "Aki Episode 5",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011020601",
+     "title": "Aki Episode 6",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011020701",
+     "title": "Aki Episode 7",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011020801",
+     "title": "Aki Episode 8",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011021001",
+     "title": "Aki Episode 10",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011021101",
+     "title": "Aki Episode 11",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011021201",
+     "title": "Aki Episode 12",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011021301",
+     "title": "Aki Episode 13",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011021401",
+     "title": "Aki Episode 14",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011021501",
+     "title": "Aki Episode 15",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011021601",
+     "title": "Aki Episode 16",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011021701",
+     "title": "Aki Episode 17",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011021801",
+     "title": "Aki Episode 18",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011021901",
+     "title": "Aki Episode 19",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011022001",
+     "title": "Aki Episode 20",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011029801",
+     "title": "Early-Clear Bonus Story",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530011040101",
+     "title": "Aoi Episode 1",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530011040301",
+     "title": "Aoi Episode 3",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530011040401",
+     "title": "Aoi Episode 4",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530011040701",
+     "title": "Aoi Episode 7",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530011040801",
+     "title": "Aoi Episode 8",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530011040901",
+     "title": "Aoi Episode 9",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530011041001",
+     "title": "Aoi Episode 10",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530011041101",
+     "title": "Aoi Episode 11",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530011041201",
+     "title": "Aoi Episode 12",
+     "heroine_id": "04"
+    },
+    {
+     "scenario_id": "530011050101",
+     "title": "Sayaka Episode 1",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011050201",
+     "title": "Sayaka Episode 2",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011050301",
+     "title": "Sayaka Episode 3",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011050501",
+     "title": "Sayaka Episode 5",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011050601",
+     "title": "Sayaka Episode 6",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011050701",
+     "title": "Sayaka Episode 7",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011050801",
+     "title": "Sayaka Episode 8",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011050901",
+     "title": "Sayaka Episode 9",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011051001",
+     "title": "Sayaka Episode 10",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011051101",
+     "title": "Sayaka Episode 11",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011051201",
+     "title": "Sayaka Episode 12",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011051301",
+     "title": "Sayaka Episode 13",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011051401",
+     "title": "Sayaka Episode 14",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011051501",
+     "title": "Sayaka Episode 15",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011051601",
+     "title": "Sayaka Episode 16",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011051701",
+     "title": "Sayaka Episode 17",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011051801",
+     "title": "Sayaka Episode 18",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011051901",
+     "title": "Sayaka Episode 19",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011052001",
+     "title": "Sayaka Episode 20",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011059901",
+     "title": "Sayaka Secret Story",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530011060101",
+     "title": "Misaki Episode 1",
+     "heroine_id": "06"
+    },
+    {
+     "scenario_id": "530011060201",
+     "title": "Misaki Episode 2",
+     "heroine_id": "06"
+    },
+    {
+     "scenario_id": "530011060301",
+     "title": "Misaki Episode 3",
+     "heroine_id": "06"
+    },
+    {
+     "scenario_id": "530011060401",
+     "title": "Misaki Episode 4",
+     "heroine_id": "06"
+    },
+    {
+     "scenario_id": "530011060701",
+     "title": "Misaki Episode 7",
+     "heroine_id": "06"
+    },
+    {
+     "scenario_id": "530011060901",
+     "title": "Misaki Episode 9",
+     "heroine_id": "06"
+    },
+    {
+     "scenario_id": "530011061001",
+     "title": "Misaki Episode 10",
+     "heroine_id": "06"
+    },
+    {
+     "scenario_id": "530011069901",
+     "title": "Misaki Secret Story",
+     "heroine_id": "06"
+    }
+   ],
+   "title_tw": "海邊的仙杜瑞拉",
+   "text_source": "Traditional Chinese edition, A機's 2016 stream (YouTube 1fHANkyLgOI (stream #7)); 71 episodes recovered"
+  },
+  {
+   "id": "famille_another_prologue",
+   "game": "famille",
+   "title": "Another Prologue",
+   "title_jp": "もうひとつのプロローグ",
+   "date": "2015-01-14",
+   "heroine_id": null,
+   "note": "Slot event: how the six met and how Famille began.",
+   "banner": "img/event/famille_another_prologue.jpg"
+  },
+  {
+   "id": "famille_their_valentines",
+   "game": "famille",
+   "title": "Their Valentine's",
+   "title_jp": "彼女たちのバレンタイン",
+   "date": "2015-01-28",
+   "heroine_id": null,
+   "note": ""
+  },
+  {
+   "id": "famille_police",
+   "game": "famille",
+   "title": "Famille Police",
+   "title_jp": "ファミーユ☆ポリス",
+   "date": "2015-02-13",
+   "heroine_id": null,
+   "note": "The heroines as police officers; 30 episodes, 3 epilogues.",
+   "banner": "img/event/famille_police.jpg"
+  },
+  {
+   "id": "famille_inc",
+   "game": "famille",
+   "title": "Famille Inc.",
+   "title_jp": "株式会社ファミーユ",
+   "date": "2015-02-27",
+   "heroine_id": null,
+   "note": "Everyone as office workers; new costumes.",
+   "banner": "img/event/famille_inc.jpg"
+  },
+  {
+   "id": "famille_kenka",
+   "game": "famille",
+   "title": "If You Fight With Her...",
+   "title_jp": "カノジョとケンカしちゃったら…",
+   "date": "2015-03-16",
+   "heroine_id": null,
+   "banner": "img/event/famille_kenka.jpg",
+   "note": "30 episodes; epilogue: Mitsuka's cute revenge."
+  },
+  {
+   "id": "famille_school_fes",
+   "game": "famille",
+   "title": "Famille! School Fes",
+   "title_jp": "ファミーユ☆スクールフェス",
+   "date": null,
+   "heroine_id": null,
+   "note": "The heroines as school idols (idol outfits).",
+   "source": "Mega Assets event cards",
+   "banner": "img/event/famille_school_fes.jpg"
+  },
+  {
+   "id": "famille_summer_together",
+   "game": "famille",
+   "title": "A Summer Together With Her",
+   "title_jp": "カノジョとふたりですごす夏",
+   "date": null,
+   "heroine_id": null,
+   "note": "Summer festival, fireworks and yukata.",
+   "source": "Mega Assets event cards",
+   "banner": "img/event/famille_summer_together.jpg",
+   "parts": [
+    {
+     "scenario_id": "530012021101",
+     "title": "Aki Episode 11",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530012021201",
+     "title": "Aki Episode 12",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530012021301",
+     "title": "Aki Episode 13",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530012021401",
+     "title": "Aki Episode 14",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530012021501",
+     "title": "Aki Episode 15",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530012021601",
+     "title": "Aki Episode 16",
+     "heroine_id": "02"
+    },
+    {
+     "scenario_id": "530012051801",
+     "title": "Sayaka Episode 18",
+     "heroine_id": "05"
+    },
+    {
+     "scenario_id": "530012051901",
+     "title": "Sayaka Episode 19",
+     "heroine_id": "05"
+    }
+   ],
+   "title_tw": "和她一起共度的夏日祭",
+   "text_source": "Traditional Chinese edition, A機's 2016 stream (YouTube -gMddz_st84 (stream #26)); 8 episodes recovered"
+  },
+  {
+   "id": "famille_cafe",
+   "game": "famille",
+   "title": "Welcome to Café Famille",
+   "title_jp": "ようこそファミーユカフェへ",
+   "date": null,
+   "heroine_id": null,
+   "note": "Autumn maid café; maid outfits.",
+   "source": "Mega Assets event cards",
+   "banner": "img/event/famille_cafe.jpg"
+  },
+  {
+   "id": "famille_dress",
+   "game": "famille",
+   "title": "When She Changes Into a Dress",
+   "title_jp": "彼女がドレスに着替えたら",
+   "date": null,
+   "heroine_id": null,
+   "note": "Wedding dresses.",
+   "source": "Mega Assets event cards",
+   "banner": "img/event/famille_dress.jpg"
+  },
+  {
+   "id": "famille_onsen",
+   "game": "famille",
+   "title": "A Healing Hot-Spring Trip",
+   "title_jp": "癒やし癒され温泉紀行",
+   "date": null,
+   "heroine_id": null,
+   "note": "Hot-spring trip in yukata.",
+   "source": "Mega Assets event cards",
+   "banner": "img/event/famille_onsen.jpg"
+  },
+  {
+   "id": "famille_propose_again",
+   "game": "famille",
+   "title": "Propose Once More",
+   "title_jp": "プロポーズをもう一度",
+   "date": null,
+   "heroine_id": null,
+   "note": "Evening dresses.",
+   "source": "Mega Assets event cards",
+   "banner": "img/event/famille_propose_again.jpg"
+  },
+  {
+   "id": "famille_white_day",
+   "game": "famille",
+   "title": "White Day",
+   "title_jp": "White Day",
+   "date": null,
+   "heroine_id": null,
+   "note": "Famille's own White Day event (not the うちカノ one).",
+   "source": "Mega Assets event cards",
+   "banner": "img/event/famille_white_day.jpg"
+  },
+  {
+   "id": "famille_yamato_nadeshiko",
+   "game": "famille",
+   "title": "Yamato Nadeshiko",
+   "title_jp": "山となでしこ",
+   "date": null,
+   "heroine_id": null,
+   "note": "Pun on 大和撫子; mountain/countryside theme.",
+   "source": "Mega Assets event cards",
+   "banner": "img/event/famille_yamato_nadeshiko.jpg"
+  },
+  {
+   "id": "famille_newlywed_lesson",
+   "game": "famille",
+   "title": "Newlywed Lessons♪",
+   "title_jp": "新婚レッスン♪",
+   "date": null,
+   "heroine_id": null,
+   "note": "",
+   "source": "Mega Assets event cards",
+   "banner": "img/event/famille_newlywed_lesson.jpg"
+  },
+  {
+   "id": "uchikano_white_day_2013",
+   "game": "uchikano",
+   "title": "White Day 2013",
+   "title_jp": "White Day 2013",
+   "date": "2013-03",
+   "heroine_id": null,
+   "banner": "img/event/white_day_2013.jpg",
+   "note": ""
+  },
+  {
+   "id": "uchikano_valentine_1",
+   "game": "uchikano",
+   "title": "Valentine's, Part 1",
+   "title_jp": "バレンタイン第一弾",
+   "date": null,
+   "heroine_id": "03",
+   "note": "Had a Mitsuka part; later re-run for a fee."
+  },
+  {
+   "id": "uchikano_second_valentine",
+   "game": "uchikano",
+   "title": "A Second Valentine's",
+   "title_jp": "二度目のバレンタイン",
+   "date": null,
+   "heroine_id": "01",
+   "banner": "img/event/nidome_no_valentine.jpg",
+   "note": "Banner shows Ren Kiryu."
+  },
+  {
+   "id": "uchikano_christmas_rhapsody",
+   "game": "uchikano",
+   "title": "Christmas Rhapsody",
+   "title_jp": "クリスマス狂詩曲〜ラプソディー〜",
+   "date": null,
+   "heroine_id": null,
+   "banner": "img/event/christmas_rhapsody.jpg",
+   "note": "Banner shows the heroines in witch costumes."
+  },
+  {
+   "id": "uchikano_ma_chere_famille",
+   "game": "uchikano",
+   "title": "Ma chère famille",
+   "title_jp": "Ma chère famille",
+   "date": "2017",
+   "heroine_id": null,
+   "note": "The last うちカノ event."
+  }
+ ]
+}

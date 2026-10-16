@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<!-- width=320 matches the original web team's pages (assets/html/error.html in the Famille APK) -->
+<meta name="viewport" content="width=320,user-scalable=no">
+<title>My Sweet Roomies!</title>
+<!--
+  Rebuilt from recordings of the real English front-end. Reference frames:
+    home / MENU / Character   YouTube YYlJJHsm0t0 (2016) 1:00, 3:24, 3:30-4:03
+    Memory / Memory Pass / out-of-energy / Crystal Shop   FNCwWtZM420 2:30-3:51
+    post-story "EXP is now x%!" popup   sXvwTBCjVR8 1:12
+  The Story button plays the next unread part straight away (no list); Memory
+  is the replay list. Character art isn't shipped, so heroines are drawn as
+  coloured placeholders.
+
+  On a device, /native/<method>?a=..&b=.. is intercepted by JsViewClient and
+  mapped to a Java method with arguments taken POSITIONALLY in query order.
+  After a story the app loads site_url + "#" + callbackurl.
+  ES5 + XMLHttpRequest for old Android WebViews.
+-->
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body { font-family: sans-serif; color: #5a4636; background: #bfe6f6; }
+  a { color: inherit; text-decoration: none; }
+  svg { display: block; }
+  .outl { text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; }
+
+  /* ---- home (matches the 2019 recordings: Thanh Bui XvnBVVhYjh8 1:30) ---- */
+  @font-face { font-family: "Rnd"; src: url(/static/1/fonts/rounded.woff2) format("woff2"); }
+  @font-face { font-family: "Hand"; src: url(/static/1/fonts/hand.ttf) format("truetype"); }
+  /* The game's own font (Mega Assets pack, Game Assets/fonts/07YasashisaGothic.ttf): text in windows and stories. */
+  @font-face { font-family: "Yasashisa"; src: url(/static/1/fonts/yasashisa.ttf) format("truetype"); font-display: swap; }
+  body { font-family: "Yasashisa", sans-serif; }
+  /* Title screen, laid out from the APK's StartGameSceneLayer.ccbi (research/ccbi_dump.py): a 320x568
+     design screen; positions are % of it from the bottom-left. White layer; top_bg fades in 1.5-3.5 s;
+     the logo (anchor bottom-right at 98%/80%) rises from 75% while fading in 3.7-4.87 s; top_char fades in
+     4.5-5.43 s; "Start the Game!" (scale .45, centre 50%/23%) wiggles at 5.07 s; Contact and Option sit at
+     7.5%/95% and 20%/95%. The title music is the APK's sound/bgm/splash/13_01.ogg (= the pack's
+     "Opening Track"), started by the timeline's onTitleShowCallback at 4.03 s. */
+  #title, #notice { display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 90; background: #fff; }
+  #notice { z-index: 91; cursor: pointer; }
+  .tbox { position: absolute; top: 0; bottom: 0; left: 50%; height: 100%; width: min(100vw, 56.34vh); transform: translateX(-50%); overflow: hidden; }
+  .tbox .full { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  #t-bg { animation: tfade 2s 1.5s both; }
+  #t-char { animation: tfade .93s 4.5s both; }
+  #t-logo { position: absolute; right: 2%; bottom: 80%; width: 39.5%; animation: trise 1.17s 3.7s both; }
+  #t-start { position: absolute; left: 50%; bottom: 23%; width: 75%; transform: translate(-50%, 50%); cursor: pointer;
+             animation: twiggle .5s 5.07s both; }
+  #t-start:active { filter: brightness(1.15); }
+  #t-contact, #t-option { position: absolute; top: 5%; width: 11%; transform: translate(-50%, -50%); cursor: pointer; }
+  #t-contact { left: 7.5%; } #t-option { left: 20%; }
+  #t-option.off { filter: grayscale(1) opacity(.6); }
+  #n-notice { position: absolute; left: 50%; top: 50%; width: 94.7%; transform: translate(-50%, -50%); animation: tfade .87s .17s both; }
+  /* Opening movie (the APK's video/opening.mp4 = English; the Mega Assets "opening ver2" = the Japanese
+     original with the voice actors' names) and the other editions' title screens: on a fresh start the mock
+     picks at random (see bootIntro). */
+  #opening { display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 95; background: #000; }
+  #opening video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: contain; }
+  #op-skip { position: absolute; right: 12px; bottom: 14px; padding: 6px 14px; border-radius: 14px; background: rgba(255,255,255,.25);
+             color: #fff; font: 14px "Rnd", sans-serif; z-index: 2; }
+  #op-sound { display: none; position: absolute; left: 0; right: 0; top: 14px; text-align: center; color: #fff; font: 14px "Rnd", sans-serif; z-index: 2; }
+  #alttitle { display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 90; background: #000; cursor: pointer; }
+  #alt-blur { filter: blur(18px) brightness(.8); transform: scale(1.1); }
+  #alt-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: contain; animation: tfade 1s both; }
+  @keyframes tfade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes trise { from { opacity: 0; bottom: 75%; } to { opacity: 1; bottom: 80%; } }
+  @keyframes twiggle { 0% { transform: translate(-50%, 50%) rotate(0); } 33% { transform: translate(-50%, 50%) rotate(-2deg); }
+                       66% { transform: translate(-50%, 50%) rotate(1deg); } 100% { transform: translate(-50%, 50%) rotate(0); } }
+  #stage { position: absolute; left: 0; right: 0; top: 0; bottom: 0; overflow: hidden;
+           background: #9fd7f5 url(/static/1/img/heroine/home_bg.png) center 30% / cover no-repeat; }
+  #heroine { position: absolute; left: 0; right: 0; top: 7.5%; bottom: 8%; display: block;
+             background: center top / auto 100% no-repeat; }
+  #heroine .head, #heroine .body, #heroine .nm { display: none; }
+  #heroine.no-pic .head, #heroine.no-pic .body, #heroine.no-pic .nm { display: block; }
+  #heroine.no-pic { left: 50%; right: auto; width: 230px; margin-left: -115px; top: 20%; bottom: 0; }
+  #heroine .head { position: absolute; left: 60px; top: 0; width: 110px; height: 120px; border-radius: 55px 55px 50px 50px; }
+  #heroine .body { position: absolute; left: 10px; right: 10px; top: 105px; bottom: 0; border-radius: 100px 100px 0 0; }
+  #heroine .nm { position: absolute; left: 0; right: 0; top: 190px; text-align: center; color: #fff; font-weight: bold; font-size: 18px; }
+  #ticker { position: absolute; left: 0; right: 0; top: 0; height: 34px; overflow: hidden; white-space: nowrap;
+            background: linear-gradient(rgba(150,236,250,.85), rgba(80,205,240,.85)); border-bottom: 2px solid #2f8fd0; }
+  #ticker span { display: inline-block; padding-left: 100%; line-height: 34px; font: 15px "Rnd", sans-serif; color: #2a2a2a;
+                 -webkit-animation: tick 18s linear infinite; animation: tick 18s linear infinite; }
+  @-webkit-keyframes tick { from { -webkit-transform: translateX(0); } to { -webkit-transform: translateX(-100%); } }
+  @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+  #homeicon { position: absolute; left: 8px; top: 3px; width: 34px; height: 28px; color: #3a9ad8; z-index: 2; }
+  #getcrystal { position: absolute; left: 0; bottom: 92px; width: 100px; text-align: center; zoom: .66; }
+  #getcrystal .sale { display: block; margin: 0 auto -2px; width: 96px; color: #fff; font: 12px/1.1 "Rnd", sans-serif;
+                      text-shadow: 0 0 2px #c0201a, 0 0 2px #c0201a, 0 0 2px #c0201a; transform: rotate(-6deg); }
+  #getcrystal .sale b { display: inline-block; font-size: 18px; background: #f4402f; border-radius: 3px; padding: 0 6px;
+                        color: #fff; box-shadow: 0 0 0 2px #ffd34d; font-weight: normal; }
+  .hex { width: 64px; height: 58px; margin: 4px auto 0; position: relative;
+         background: linear-gradient(135deg, #fff7b0, #ffd84a 45%, #e8a926);
+         -webkit-clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); }
+  .hex:before { content: ""; position: absolute; left: 5px; top: 5px; right: 5px; bottom: 5px; background: linear-gradient(#fffbe0, #ffe682);
+                -webkit-clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); }
+  .hex i { position: absolute; left: 22px; top: 10px; width: 20px; height: 38px; background: linear-gradient(100deg, #ffd0dd 0, #ffd0dd 45%, #f08aa6 45%, #e26a8c);
+           -webkit-clip-path: polygon(50% 0, 100% 22%, 100% 78%, 50% 100%, 0 78%, 0 22%); clip-path: polygon(50% 0, 100% 22%, 100% 78%, 50% 100%, 0 78%, 0 22%); }
+  #getcrystal > b { display: block; font: 16px "Rnd", sans-serif; font-weight: normal; color: #f2756d; margin-top: -6px;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 4px #fff; }
+  .tilelbl { display: block; font-size: 10px; color: #e2457a; margin-top: -4px; }
+  #storybtn { position: absolute; right: 2px; bottom: 86px; width: 168px; height: 200px; zoom: .62; }
+  #storybtn .ball { position: absolute; left: 14px; top: 26px; width: 146px; height: 146px; border-radius: 73px; text-align: center;
+                    background: radial-gradient(circle at 50% 40%, #ffd3e2 0, #ff9dbd 45%, #f45d93 100%);
+                    border: 5px solid #fff; box-shadow: 0 0 0 3px rgba(255,190,215,.9), 0 3px 6px rgba(0,0,0,.25); overflow: hidden; }
+  #storybtn .book { position: absolute; left: 26px; top: 8px; width: 84px; height: 66px; opacity: .6; }
+  #storybtn .ball b { position: absolute; left: 0; right: 0; top: 60px; font: 28px "Rnd", sans-serif; font-weight: normal; color: #fff;
+                      text-shadow: 0 0 2px #e2457a, 0 0 2px #e2457a, 0 0 2px #e2457a, 0 0 3px #e2457a; }
+  #storybtn .ball small { position: absolute; left: 20px; right: 20px; top: 100px; height: 26px; line-height: 26px; border-radius: 13px;
+                          background: rgba(255,226,214,.92); color: #e2457a; font: 17px "Rnd", sans-serif; }
+  #storybtn .tag { position: absolute; left: 4px; top: 4px; z-index: 2; background: #fff; color: #e2457a; padding: 3px 20px 0;
+                   font: 24px "Hand", cursive; transform: rotate(-7deg); box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+  #storybtn .bar { position: absolute; left: 4px; right: 18px; bottom: 2px; height: 22px; border-radius: 11px; background: #e9c79b;
+                   border: 3px solid #f6be5a; box-shadow: 0 0 0 2px #fff; overflow: hidden; }
+  #storybtn .bar i { display: block; height: 100%; background: linear-gradient(#ffe48a, #f6a531); }
+  #storybtn .lock { position: absolute; right: 0; bottom: -4px; width: 36px; height: 32px; }
+  #bar { position: absolute; left: 0; right: 0; bottom: 8px; height: 82px; zoom: .64; display: flex; align-items: flex-end; pointer-events: none; }
+  #bar > * { pointer-events: auto; }
+  .pill { flex: 1; height: 52px; position: relative; overflow: hidden; display: block;
+          background: linear-gradient(#bff3ff, #39c3ea 60%, #22b0dd); border: 3px solid #fff; box-shadow: 0 0 0 2px #2b8fd0; }
+  .pill.l { border-radius: 0 26px 26px 0; border-left: 0; }
+  .pill.r { border-radius: 26px 0 0 26px; border-right: 0; }
+  .pill .chev { position: absolute; top: 7px; font: 28px/34px "Rnd", sans-serif; color: #fff; text-shadow: 0 0 3px #2b8fd0; }
+  .pill.l .chev { left: 12px; } .pill.r .chev { right: 12px; }
+  .pill .pf { position: absolute; top: 0; bottom: 0; width: 100px; background-repeat: no-repeat; }
+  .pill .pf { left: 40px; right: 40px; width: auto; background-position: center; }   /* face centred between the chevron and the end */
+  .face { display: inline-block; width: 30px; height: 30px; border-radius: 15px; border: 2px solid #fff; color: #fff; font-size: 12px; font-weight: bold; text-align: center; line-height: 26px; }
+  .stat { flex: 1; height: 52px; margin: 0 4px; border-radius: 6px; background: linear-gradient(#fff3d9, #f2d6a0); border: 2px solid #d9a650; text-align: center; display: none; }
+  .stat em { display: block; font: italic bold 13px serif; color: #fff; background: #73b84a; border-radius: 0 0 8px 8px; margin: 0 14px; }
+  .stat b { font-size: 16px; color: #6a4a2a; }
+  .stat b u { color: #e2457a; text-decoration: none; font-size: 20px; }
+  body.win-open .pill { display: none; } body.win-open .stat { display: block; }
+  #menubtn { flex: 0 0 90px; height: 82px; text-align: center; position: relative; }
+  #menubtn span { position: absolute; left: 8px; top: 0; width: 74px; height: 66px; text-align: left; border-radius: 30px 30px 34px 34px;
+                  background: #fff8ec; border: 3px solid #f0c890; box-shadow: 0 2px 3px rgba(0,0,0,.2); padding: 11px 0 0 15px; overflow: hidden; } #menubtn span i:nth-child(3n+1) { clear: left; }
+  #menubtn span i { float: left; width: 12px; height: 11px; margin: 0 2px 2px 0; border-radius: 2px; background: linear-gradient(#ffb36b, #f5862c); }
+  #menubtn b { position: absolute; left: 0; right: 0; bottom: 0; font: 19px "Rnd", sans-serif; font-weight: normal; color: #fff;
+               text-shadow: 0 0 2px #8a5a2a, 0 0 2px #8a5a2a, 0 0 2px #8a5a2a, 0 0 3px #8a5a2a; }
+
+  /* ---- windows ---- */
+  #dim { position: absolute; left: 0; right: 0; top: 0; bottom: 70px; display: none; }
+  body.win-open #dim { display: block; z-index: 15; }
+  body.win-open #ticker, body.win-open #homeicon { display: none; }
+  .win { position: absolute; z-index: 20; left: 10px; right: 10px; top: 10px; max-height: 76%; display: none; flex-direction: column;
+         background: rgba(252,244,214,.94); border: 3px solid #d9a650; border-radius: 4px; box-shadow: inset 0 0 0 2px #f8e8bd, 0 2px 6px rgba(0,0,0,.25); }
+  .win.on { display: flex; }
+  .win .t { margin: 6px 40px 4px 6px; height: 26px; line-height: 26px; padding-left: 36px; position: relative; font-size: 14px; color: #5a3a1a;
+            background: linear-gradient(#f9b45b, #f29a35); border-radius: 3px; }
+  .win .t .hi { position: absolute; left: -2px; top: -2px; width: 32px; height: 30px; border-radius: 6px; background: #f6edd8; border: 1px solid #d7c2a0; color: #8f8169; padding: 3px 4px; }
+  .win .t b { color: #2b8fd8; font-weight: normal; }
+  .win .x { position: absolute; right: 4px; top: 3px; width: 32px; height: 32px; border-radius: 16px; background: radial-gradient(#ff8a7a, #e8392c); border: 2px solid #fff; box-shadow: 0 1px 2px rgba(0,0,0,.3); }
+  .win .x:before, .win .x:after { content: ""; position: absolute; left: 13px; top: 5px; width: 3px; height: 18px; background: #fff; border-radius: 2px; transform: rotate(45deg); }
+  .win .x:after { transform: rotate(-45deg); }
+  .win .b { flex: 1; overflow-y: auto; padding: 4px 8px 8px; font-size: 13px; -webkit-overflow-scrolling: touch; }
+  .row { background: repeating-linear-gradient(90deg, #d7f5f8 0 4px, #cbf0f4 4px 8px); border-left: 5px solid #5fd6a8; border-radius: 3px;
+         padding: 9px 8px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; color: #4d7a64; }
+  .row small { display: block; color: #8a9a8a; font-size: 11px; }
+  .row.go { color: #e2457a; }
+  .row.item { display: flex; align-items: center; }
+  .row.item > span { flex: 1; padding-left: 8px; color: #e2457a; }
+  .tkt { flex: 0 0 52px; height: 44px; border-radius: 4px; font: bold 10px/1.1 sans-serif; font-style: normal; text-align: center; padding-top: 11px; transform: rotate(-6deg); }
+  .tkt.gold { background: linear-gradient(#fff2a0, #e8b830); color: #6a4a10; }
+  .tkt.panel { background: linear-gradient(#a8f0e8, #48c0c8); color: #1a5a6a; }
+  .tkt.pass { background: linear-gradient(#3a8ae0, #1a5ab0); color: #fff; border-radius: 6px 6px 10px 10px; }
+  .row.head { display: block; background: #b9e6f6; color: #2a6fb0; border-left-color: #8ccdea; }   /* chapter heading (expands) */
+  .row.head:after { content: ""; float: right; width: 9px; height: 9px; margin: 4px 6px 0 0; border: solid #3d8fe0;
+                    border-width: 0 3px 3px 0; transform: rotate(45deg); }
+  .row.head.open:after { transform: rotate(-135deg); margin-top: 9px; }
+  .row.go > span:first-child { text-decoration: underline; }
+  .row.go:after { content: "\203A"; display: inline-block; color: #3d8fe0; font-size: 22px; line-height: 12px; }
+  .red, .blue, .green { display: block; text-align: center; color: #fff; border-radius: 16px; padding: 7px; margin: 6px 4px; font-size: 13px; border: 2px solid #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+  .red { background: linear-gradient(#ff6b6b, #e3212e); } .blue { background: linear-gradient(#5aa8ff, #1e6ee0); margin: 6px 30px; }
+  .green { background: linear-gradient(#6fd84f, #2fa52a); }
+  .btn { border: 2px solid #fff; border-radius: 14px; background: linear-gradient(#ff6b6b, #e3212e); color: #fff; padding: 6px 14px; font-size: 12px; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+  .btn[disabled] { background: #bbb; }
+  .bubble { background: #fff; border: 2px solid #f6c3cf; border-radius: 10px; padding: 8px 10px; margin: -40px 10px 8px; position: relative; font-size: 13px; line-height: 1.35; }
+  .bubble em { color: #e2457a; font-style: normal; }
+  .pic { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: center top / contain no-repeat; }
+  .portrait { height: 150px; margin: 0 -8px; position: relative; overflow: hidden; background: linear-gradient(#efe6da 0 60%, #c9b59a 60%); }
+  .portrait .head { position: absolute; left: 50%; margin-left: -45px; top: 12px; width: 90px; height: 100px; border-radius: 45px 45px 40px 40px; }
+  .portrait .body { position: absolute; left: 50%; margin-left: -80px; top: 95px; width: 160px; height: 120px; border-radius: 80px 80px 0 0; }
+  .banner { display: block; height: 46px; margin: 6px 0; border-radius: 2px; color: #fff; text-align: right; padding: 4px 8px; font: 12px serif; line-height: 1.3;
+            background: linear-gradient(90deg, #6b3f7a, #b98ac6 40%, #e9d3ef); }
+  .banner small { display: block; font-size: 9px; }
+  .fill { background: #39a82f; color: #fff; padding: 3px 8px; font-size: 12px; margin-top: 4px; }
+  .card { display: flex; background: #f4fbe8; border: 1px solid #d8e8c8; padding: 6px; margin-bottom: 4px; }
+  .card .tk { width: 74px; height: 62px; flex: 0 0 74px; border-radius: 4px; color: #fff; font: bold 13px serif; text-align: center; padding-top: 14px; line-height: 1.1; border: 3px solid #fff; box-shadow: 0 0 0 1px #ccc; }
+  .card .tx { padding-left: 8px; color: #e2457a; font-size: 12px; } .card .tx small { display: block; color: #e2457a; font-size: 10px; }
+  /* MENU */
+  .grid { display: flex; flex-wrap: wrap; padding: 0 2px; }
+  .grid a { width: 25%; padding: 3px; }
+  .grid span { display: block; height: 62px; border-radius: 6px; background: linear-gradient(#b4ef8f, #49c13c); border: 2px solid #e6ffd6; box-shadow: 0 1px 2px rgba(0,0,0,.3); text-align: center; color: #fff; padding-top: 5px; }
+  .grid span svg { margin: 0 auto; }
+  .grid b { display: block; font-size: 11px; font-weight: normal; margin-top: 1px; text-shadow: 0 0 2px #2c7a24, 0 0 2px #2c7a24; }
+  /* Memory */
+  .ribbon { display: flex; align-items: center; height: 40px; margin: 0 -8px 6px; overflow: hidden; }
+  .ribbon .side { flex: 0 0 40px; font: italic bold 11px serif; color: #fff; padding: 12px 2px; white-space: nowrap; overflow: hidden; opacity: .8; }
+  .ribbon .arw { flex: 0 0 22px; height: 22px; border-radius: 11px; background: #fff; color: #3d8fe0; text-align: center; line-height: 20px; font-weight: bold; border: 2px solid #9bd0f2; }
+  .ribbon .mid { flex: 1; height: 36px; margin: 0 2px; border-radius: 4px; position: relative; color: #fff; font: italic bold 14px serif; text-align: right; padding: 16px 10px 0 0;
+                 text-shadow: 0 0 2px rgba(0,0,0,.4); border: 2px solid #fff; }
+  .ribbon .mid .face { position: absolute; left: 6px; top: 1px; }
+  .ribbon .mid.art { text-shadow: 0 0 3px rgba(0,0,0,.45), 0 0 2px rgba(0,0,0,.4); }   /* her face on the ribbon (FNCwWtZM420 3:36) */
+  .ribbon .mid i { position: absolute; right: 8px; top: -2px; font-style: normal; color: #f9a23b; }
+  .tabs { display: flex; margin-bottom: 6px; }
+  .tabs a { flex: 1; margin: 0 3px; height: 38px; border-radius: 6px; color: #fff; font: italic bold 12px serif; line-height: 15px; text-align: center; padding-top: 4px;
+            background: linear-gradient(#ffc56b, #f28a1f); border: 2px solid #ffe6b8; text-shadow: 0 0 2px #b25a00; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+  .tabs a.on { background: linear-gradient(#7fe08f, #2fb550); border-color: #d6ffd8; text-shadow: 0 0 2px #1d7a33; }
+  /* modal over a window (Memory Pass) */
+  #modal { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: rgba(110,220,220,.55); display: none; z-index: 40; }
+  #modal div { position: absolute; left: 16px; right: 16px; top: 120px; background: #f7fbef; border-radius: 4px; padding: 10px 6px; text-align: center; font-size: 13px; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+  /* Character */
+  .note { background: #fffdf3; border: 1px solid #e8dcc0; border-left: 14px solid #fff; position: relative; padding: 8px 8px 8px 10px; margin: 0 -2px; min-height: 380px;
+          background-image: radial-gradient(circle at 0 12px, transparent 4px, #fff 4px); }
+  .note h3 { margin: 4px 0 0; font: italic bold 20px serif; text-align: right; }
+  .note .meas { text-align: right; font-size: 11px; color: #8a6a7a; }
+  .note .selrow { display: flex; align-items: center; margin: 22px 0 14px; position: relative; z-index: 1; }
+  .note .q { flex: 1; font: italic 15px serif; color: #e2457a; text-align: right; padding-left: 6px; }
+  .note .tx { position: relative; z-index: 1; background: rgba(255,255,255,.85); border: 1px solid #eed; padding: 6px; font-size: 11px; text-align: center; color: #b05a8a; line-height: 1.45; }
+  .note .sel { flex: 0 0 74px; width: 74px; height: 74px; border-radius: 37px; color: #fff; text-align: center; font: italic bold 13px serif;
+               padding-top: 18px; border: 3px solid #fff; box-shadow: 0 2px 4px rgba(0,0,0,.3); text-shadow: 0 0 2px rgba(0,0,0,.5); }
+  .note .who { position: absolute; right: -4px; top: 92px; width: 60%; height: 330px; z-index: 0; }   /* her art fills the right side (Eb07iH2w5L8 34:40) */
+  .note h3, .note .meas { position: relative; z-index: 1; }
+  .note .q { text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 4px #fff; }
+  .note .who .head { width: 56px; height: 60px; margin: 0 auto; border-radius: 28px; } .note .who .body { height: 60px; border-radius: 45px 45px 0 0; margin-top: -6px; }
+  .locked { background: #cfcfcf; color: #fff; text-align: center; font: bold 44px serif; padding-top: 110px; }
+  #panels { display: flex; flex-wrap: wrap; width: 240px; height: 320px; margin: 8px auto; background: #cdeef0 center / cover; }   /* 4x4, like the game */
+  #panels i { width: 60px; height: 80px; border: 1px solid #fff; box-sizing: border-box; background: linear-gradient(#8fd3f4, #4aa7e8); }
+  #panels i.open { background: none; }
+  .dgrid { display: flex; flex-wrap: wrap; gap: 4px; }
+  .dgrid a, .dgrid i { width: calc(33.3% - 3px); height: 70px; border-radius: 6px; background: linear-gradient(#f3fbe9, #c9efb0); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; color: #3a6; text-decoration: none; font-style: normal; }
+  .dgrid i { font-size: 40px; font-weight: bold; color: #4ccf3c; }
+  .dgrid a.on { outline: 3px solid #f6a623; }
+  .gbanner { width: 100%; border-radius: 6px; }
+  .gpts { margin: 8px 0; padding: 8px; background: #effbf3; border-radius: 6px; text-align: center; }
+  .gpts b { color: #e0457a; }
+  .gshort { margin: 6px 0; padding: 6px; background: #f6e8ec; border-radius: 14px; text-align: center; color: #c79; }
+  #chat { display: none; position: absolute; left: 6%; right: 6%; top: 56%; z-index: 5; padding: 8px 10px; font-size: 13px; line-height: 1.45;
+           background: rgba(255,255,255,.9); border: 2px solid #9fe0f0; border-radius: 4px; color: #333; pointer-events: none; }
+  #gacha-anim { display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 60; background: rgba(0,0,0,.65); }
+  #gacha-anim video { position: absolute; left: 0; width: 100%; top: 50%; transform: translateY(-50%); }
+  .gskip { position: absolute; left: 12%; right: 12%; bottom: 9%; padding: 10px; border-radius: 22px; background: linear-gradient(#ff9ab8, #f06493);
+           color: #fff; text-align: center; text-decoration: none; border: 3px solid #fff; }
+  .gconf { position: absolute; left: 6%; right: 6%; top: 38%; padding: 14px 10px 6px; background: #fff; border-radius: 6px; text-align: center; }
+  .gconf p { margin: 4px 0 10px; color: #e0457a; }
+  .gres { display: flex; gap: 8px; margin: 8px 0; padding: 6px; background: #fff; border: 1px solid #eac; border-radius: 4px; }
+  .gres img, .gres i { width: 76px; height: 90px; object-fit: cover; object-position: top; border: 2px solid #f39; border-radius: 3px; }
+  .gres div { color: #555; font-size: 13px; } .gres span { color: #e0457a; } .gres small { display: block; color: #999; margin-top: 4px; }
+  .ptabs { display: flex; gap: 4px; margin: 4px 0 6px; }
+  .ptabs a { flex: 1; text-align: center; padding: 6px 0; border-radius: 12px; background: #f08a24; color: #fff; text-decoration: none; font-size: 12px; }
+  .ptabs a.on { background: #8ccf4a; }
+  .pcap { text-align: center; color: #e0457a; margin: 2px 0 8px; }
+  #photoview { display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: #1ec8c8; z-index: 50; text-align: center; }
+  #photoview img { width: 100%; max-width: 480px; margin-top: 12%; }
+  #photoview div { color: #e0457a; background: rgba(60,220,220,.85); padding: 8px; margin-top: -90px; position: relative; }
+  #photoview a { display: inline-block; margin-top: 6px; padding: 5px 60px; border-radius: 14px; background: #1f8cf0; color: #fff; text-decoration: none; }
+  pre { white-space: pre-wrap; font-family: inherit; margin: 0; }
+  #toast { position: absolute; left: 20px; right: 20px; bottom: 60px; background: rgba(0,0,0,.75); color: #fff; padding: 10px; border-radius: 8px; font-size: 12px; text-align: center; display: none; }
+</style>
+</head>
+<body>
+<div id="title" onpointerdown="titleTouch()"><div class="tbox">
+  <img class="full" id="t-bg" src="/static/1/img/title/top_bg.png" alt="">
+  <img class="full" id="t-char" src="/static/1/img/title/top_char.png" alt="">
+  <img id="t-logo" src="/static/1/img/title/logo.png" alt="My Sweet Roomies!">
+  <img id="t-start" src="/static/1/img/title/btn_start.png" alt="Start the Game!" onclick="startGame()">
+  <img id="t-contact" src="/static/1/img/title/btn_top_contact.png" alt="Contact" onclick="toast('Contact isn't available in this mock.')">
+  <img id="t-option" src="/static/1/img/title/btn_top_option.png" alt="Option" onclick="toggleBgm()">
+</div></div>
+<div id="opening" onclick="openingTap()"><video id="op-video" playsinline preload="auto"></video>
+  <span id="op-sound">Tap for sound</span><a id="op-skip" href="javascript:void 0" onclick="event.stopPropagation(); endOpening()">Skip &#9654;</a></div>
+<div id="alttitle" onpointerdown="titleTouch()" onclick="startGame()"><div class="tbox">
+  <img class="full" id="alt-blur" src="" alt=""><img id="alt-img" src="" alt="">
+</div></div>
+<div id="notice" onclick="closeNotice()"><div class="tbox">
+  <img class="full" src="/static/1/img/title/top_bg.png" alt=""><img id="n-notice" src="/static/1/img/title/top_notice.png" alt="">
+</div></div>
+
+<div id="stage">
+  <div id="chat"></div>
+<div id="gacha-anim"></div>
+<a id="heroine" href="javascript:touchHeroine()"><div class="head"></div><div class="body"></div><div class="nm" id="hname"></div></a>
+  <div id="ticker"><span id="tickertext"></span></div>
+  <a id="homeicon" href="javascript:openWin('news')"></a>
+  <a id="getcrystal" href="javascript:openShop('crystals')"><span class="sale">First Purchase<br><b>SALE!</b></span><div class="hex"><i></i></div><b>Get Crystal</b></a>
+  <a id="storybtn" href="javascript:storyButton()">
+    <span class="ball"><span class="book" id="bookicon"></span><b>Story&#9656;&#9656;</b><small id="pct"></small></span>
+    <span class="tag" id="htag"></span>
+    <span class="bar"><i id="meter"></i></span><span class="lock" id="lockicon"></span>
+  </a>
+</div>
+<div id="dim" onclick="closeWin()"></div>
+<div id="bar">
+  <a class="pill l" href="javascript:cycle(-1)"><span class="chev">&laquo;</span><span class="pf" id="prevface"></span></a>
+  <div class="stat"><em>Crystal</em><b id="crystals"></b></div>
+  <a id="menubtn" href="javascript:openWin('menu')"><span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><b>Menu</b></a>
+  <div class="stat"><em>Energy</em><b id="energy"></b></div>
+  <a class="pill r" href="javascript:cycle(1)"><span class="pf" id="nextface"></span><span class="chev">&raquo;</span></a>
+</div>
+
+<!-- windows: each has a title bar with the house icon and the red close button -->
+<div class="win" id="win-menu"><div class="t"><span class="hi"></span>MENU</div><a class="x" href="javascript:closeWin()"></a><div class="b">
+  <a class="banner" href="javascript:openWin('pass')">I don't wanna lose the memories with you&hellip;<small>If you wanna save the story with her, CLICK HERE!</small></a>
+  <div class="grid" id="menugrid"></div>
+</div></div>
+<div class="win" id="win-news"><div class="t"><span class="hi"></span>News</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="news-body"></div></div>
+<div class="win" id="win-shop"><div class="t"><span class="hi"></span><span id="shop-title">Shop</span></div><a class="x" href="javascript:closeWin()"></a><div class="b" id="shop-body"></div></div>
+<div class="win" id="win-item"><div class="t"><span class="hi"></span>Item</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="item-body"></div></div>
+<div class="win" id="win-memory"><div class="t"><span class="hi"></span>Memory</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="memory-body"></div></div>
+<div class="win" id="win-character"><div class="t"><span class="hi"></span>Character</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="character-body"></div></div>
+<div class="win" id="win-gacha"><div class="t"><span class="hi"></span>Machine</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="gacha-body"></div></div>
+<div class="win" id="win-dress"><div class="t"><span class="hi"></span>Dress Up</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="dress-body"></div></div>
+<div id="photoview"></div>
+<div class="win" id="win-photo"><div class="t"><span class="hi"></span>Photo</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="photo-body"></div></div>
+<div class="win" id="win-more"><div class="t"><span class="hi"></span>More</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="more-body"></div></div>
+<div class="win" id="win-pass"><div class="t"><span class="hi"></span>Memory Pass</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="pass-body"></div></div>
+<div class="win" id="win-result"><div class="t" id="result-title"></div><a class="x" href="javascript:closeWin()"></a><div class="b" id="result-body"></div></div>
+<div id="modal"><div id="modal-body"></div></div>
+<div id="toast"></div>
+
+<script>
+  var SESSION = "{{ session }}";
+  var S = {{ state | tojson }};
+  var timer = null, memTab = "main", memHeroine = null, memOpenHead = null, memHeads = [], charIdx = 0, newsCache = null;
+  // What each heroine says in the post-story popup, read from the "Memory of ..." popups
+  // in DevilGh0stz's chapter uploads (Chapter 5 of each route; the chapter-end lines from
+  // Aoi C09, Ren C07/C11, Sayaka C12, Mitsuka C15, Aki C55, Misaki C23).
+  // NEXT_LINE: [how the title is closed, line] when another part of the chapter follows.
+  var NEXT_LINE = {"01": ['."', "I'm so curious."], "02": ['"!!', "I'm gonna die of curiosity, you know?"],
+                   "03": ['."', "What's gonna happen next?"], "04": ['"!!', "I wanna know what's gonna happen next..."],
+                   "05": ['."', "Aren't you curious to find out what happens if you continue?"],
+                   "06": ['."', "I wonder what'll happen next? I can't wait to see..."]};
+  // END_LINE: after the last part of a chapter (the popup then only offers Back to List).
+  var END_LINE = {"01": "When I look back, it's a bit embarrassing... But the moments I spent with {name} are treasured memories.",
+                  "02": "Oh, this is gonna make me blush... Still, it was so much fun... So count me in!",
+                  "03": "I have nothing but happy memories with {name}. Oh... This is embarrassing.",
+                  "04": "Wasn't that time so much fun? Let's create more happy memories! I'm so looking forward to it. ♪",
+                  "05": "Wasn't that time fun? Let's keep on making lots of happy memories, okay?♪",
+                  "06": "{name}, you keep getting better and better. I can't wait for what's to come!"};
+  var FREE_REPLAYS = 2;  // GUESS: without the Memory Pass only the latest parts were links (FNCwWtZM420 2:30)
+
+  // ---- icons (white line drawings like the original tiles) -----------------
+  function svg(d, size, fill) {
+    return '<svg width="' + (size || 30) + '" height="' + (size || 30) + '" viewBox="0 0 24 24"><g fill="' + (fill ? "currentColor" : "none") +
+      '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + d + "</g></svg>";
+  }
+  var ICON = {
+    house: '<path d="M2 12 12 3l10 9"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
+    news: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r=".6"/>',
+    present: '<rect x="3" y="9" width="18" height="12"/><path d="M2 9h20M12 9v12M12 9C9 3 5 5 8 8M12 9c3-6 7-4 4-1"/>',
+    photo: '<rect x="3" y="3" width="18" height="18"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>',
+    item: '<path d="M4 20l3-1L20 6l-2-2L5 17z"/><path d="M15 7l2 2"/>',
+    shop: '<path d="M2 4h3l3 11h11l2-8H6"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/>',
+    gacha: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>',
+    dress: '<path d="M9 3h6l-1 4 3 3-2 6h-6l-2-6 3-3z"/><path d="M12 16v5M9 21h6"/>',
+    character: '<path d="M12 20s-8-5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z"/>',
+    memory: '<rect x="2" y="5" width="20" height="14"/><path d="M2 8h20M2 16h20M6 5v3M10 5v3M14 5v3M18 5v3M6 16v3M10 16v3M14 16v3M18 16v3"/>',
+    more: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><circle cx="12" cy="17" r=".6"/>',
+    mail: '<rect x="3" y="5" width="18" height="14"/><path d="M3 5l9 8 9-8"/>',
+    grid: '<rect x="3" y="3" width="5" height="5"/><rect x="10" y="3" width="5" height="5"/><rect x="17" y="3" width="4" height="5"/><rect x="3" y="10" width="5" height="5"/><rect x="10" y="10" width="5" height="5"/><rect x="17" y="10" width="4" height="5"/><rect x="3" y="17" width="5" height="4"/><rect x="10" y="17" width="5" height="4"/><rect x="17" y="17" width="4" height="4"/>',
+    book: '<path d="M2 5c4-1 7 0 10 2 3-2 6-3 10-2v14c-4-1-7 0-10 2-3-2-6-3-10-2z"/><path d="M12 7v14"/>'
+  };
+  var MENU = [["News", "news", "openWin('news')"], ["Present", "present", "toast('No present available.')"], ["Photo", "photo", "openWin('photo')"],
+    ["Item", "item", "openWin('item')"], ["Shop", "shop", "openShop()"], ["Machine", "gacha", "openWin('gacha')"], ["Dress Up", "dress", "openWin('dress')"],
+    ["Character", "character", "openCharacter()"], ["Memory", "memory", "openMemory(S.heroine_id)"], ["More", "more", "openWin('more')"],
+    ["Inquiries", "mail", "toast('Inquiries are closed.')"]];
+
+  // ---- plumbing -----------------------------------------------------------
+  function qs(pairs) {
+    var out = [];
+    for (var i = 0; i < (pairs || []).length; i++) out.push(encodeURIComponent(pairs[i][0]) + "=" + encodeURIComponent(pairs[i][1]));
+    return out.length ? "?" + out.join("&") : "";
+  }
+  function http(method, url, body, cb) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url, true);
+    xhr.setRequestHeader("X-Mock-Session", SESSION);
+    if (body) xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState !== 4) return;
+      var data = null;
+      try { data = JSON.parse(xhr.responseText); } catch (e) {}
+      if (data && data.state) { S = data.state; renderHome(); }
+      if (cb) cb(xhr.status, data, xhr.responseText);
+    };
+    xhr.send(body ? JSON.stringify(body) : null);
+  }
+  // pairs is an ordered array because the bridge maps arguments by position.
+  function native(name, pairs, cb) { http("GET", "/native/" + name + qs(pairs), null, function (s, d, t) { if (cb) cb(t); }); }
+  function el(id) { return document.getElementById(id); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function toast(msg) { var t = el("toast"); t.textContent = msg; t.style.display = "block"; setTimeout(function () { t.style.display = "none"; }, 2200); }
+  function heroine(id) { for (var i = 0; i < S.heroines.length; i++) if (S.heroines[i].id === (id || S.heroine_id)) return S.heroines[i]; }
+  function visible() { var o = []; for (var i = 0; i < S.heroines.length; i++) if (!S.heroines[i].hidden) o.push(S.heroines[i]); return o; }
+  function clock(sec) { function p(n) { return (n < 10 ? "0" : "") + n; } return p(Math.floor(sec / 3600)) + ":" + p(Math.floor(sec % 3600 / 60)) + ":" + p(sec % 60); }
+  function face(h) { return '<span class="face" style="background:' + h.color + '">' + esc(h.short.charAt(0)) + "</span>"; }
+  function figure(h) {
+    if (h.stand_url) return '<div class="pic" style="background-image:url(' + h.stand_url + ')"></div>';
+    return '<div class="head" style="background:' + h.color + '"></div><div class="body" style="background:' + h.color + '"></div>';
+  }
+  // System sounds from the APK / Mega Assets pack (sound effects/se-system-*.ogg).
+  // Sound before the first touch is blocked by browsers; swallow that rejection quietly.
+  function playSound(url) { try { var p = new Audio(url).play(); if (p && p.catch) p.catch(function () {}); } catch (e) {} }
+  function se(name) { playSound("/static/1/sound/se/se-system-" + name + ".ogg"); }
+  function store(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) {} }
+  // Title music: the APK's splash BGM. Browsers block sound before a touch, so a touch on the title starts
+  // it if the 4.03 s callback couldn't. Option turns it off (remembered per browser); it fades out on home.
+  var bgm = null;
+  function bgmOff() { try { return localStorage.getItem("bgm_off") === "1"; } catch (e) { return false; } }
+  function playBgm() {
+    if (bgmOff()) return;
+    if (!bgm) { bgm = new Audio("/static/1/sound/bgm/13_01.ogg"); bgm.loop = true; bgm.volume = .6; }
+    try { var pr = bgm.play(); if (pr && pr.catch) pr.catch(function () {}); } catch (e) {}
+  }
+  function fadeBgm() {
+    if (!bgm) return;
+    var b = bgm, t = setInterval(function () { b.volume = Math.max(0, b.volume - .05); if (!b.volume) { b.pause(); clearInterval(t); } }, 60);
+    bgm = null;
+  }
+  function toggleBgm() {
+    var off = !bgmOff();
+    try { localStorage.setItem("bgm_off", off ? "1" : "0"); } catch (e) {}
+    el("t-option").className = off ? "off" : "";
+    if (off && bgm) { bgm.pause(); } else playBgm();
+    toast(off ? "BGM off" : "BGM on");
+  }
+  function showTitle() {
+    el("title").style.display = "block";
+    el("t-option").className = bgmOff() ? "off" : "";
+    setTimeout(function () { if (el("title").style.display === "block") playBgm(); }, 4033);
+  }
+  function titleTouch() { if (!bgm || bgm.paused) playBgm(); }
+  // A fresh start (a new browser session, like relaunching the app) picks at random: the opening movie
+  // first half the time (English or Japanese), then one of five title screens: the English edition's own
+  // (StartGameSceneLayer) or another edition's: Love Rock x うちカノ, Honey I'm Home! (the predecessor's
+  // English edition), Full House (Vietnamese), 女子宿舍禁愛令 (Traditional Chinese). Those four are
+  // screenshots, so a touch anywhere starts.
+  var ALT_TITLES = ["alt_loverock.jpg", "alt_honey.jpg", "alt_fullhouse.jpg", "alt_tw.jpg"], afterOpening = null;
+  function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+  function bootIntro() {
+    // ?intro=en|ja (that opening, then a random title), title, alt1..alt4: force one, for testing
+    var q = /[?&]intro=(\w+)/.exec(location.search);
+    if (q && (q[1] === "en" || q[1] === "ja")) return playOpening(q[1], showRandomTitle);
+    if (q && q[1] === "title") return showTitle();
+    if (q && /^alt[1-4]$/.test(q[1])) return showRandomTitle(+q[1].charAt(3));
+    if (Math.random() < .5) playOpening(pick(["en", "ja"]), showRandomTitle); else showRandomTitle();
+  }
+  function showRandomTitle(force) {
+    var k = typeof force === "number" ? force : Math.floor(Math.random() * (ALT_TITLES.length + 1));
+    if (!k) return showTitle();
+    var src = "/static/1/img/title/" + ALT_TITLES[k - 1];
+    el("alt-img").src = src; el("alt-blur").src = src;
+    el("alttitle").style.display = "block";
+    setTimeout(function () { if (el("alttitle").style.display === "block") playBgm(); }, 1000);
+  }
+  function playOpening(lang, then) {
+    var v = el("op-video"); afterOpening = then;
+    v.src = "/static/1/video/opening_" + lang + ".mp4"; v.muted = false;
+    el("opening").style.display = "block";
+    v.onended = endOpening;
+    var pr = v.play();
+    if (pr && pr.catch) pr.catch(function () {          // no sound before a touch: play muted until tapped
+      v.muted = true; el("op-sound").style.display = "block";
+      var p2 = v.play(); if (p2 && p2.catch) p2.catch(endOpening);
+    });
+  }
+  function openingTap() {
+    var v = el("op-video");
+    if (v.muted) { v.muted = false; el("op-sound").style.display = "none"; } else endOpening();
+  }
+  function endOpening() {
+    var v = el("op-video"); v.pause(); v.removeAttribute("src"); v.load();
+    if (el("opening").style.display !== "block") return;
+    el("opening").style.display = "none";
+    var t = afterOpening; afterOpening = null; if (t) t();
+  }
+  function startGame() {
+    se("button");
+    el("title").style.display = "none"; el("alttitle").style.display = "none";
+    var seen = null; try { seen = localStorage.getItem("notice_seen"); localStorage.setItem("notice_seen", "1"); } catch (e) {}
+    if (!seen) el("notice").style.display = "block"; else fadeBgm();
+  }
+  function closeNotice() { el("notice").style.display = "none"; se("close"); fadeBgm(); }
+  function openWin(name) {
+    se("button");
+    closeWin(true);
+    var r = window["render_" + name]; if (r) r();
+    el("win-" + name).className = "win on";
+    document.body.className = "win-open";
+  }
+  function closeWin(keepTimer) {
+    if (document.body.className === "win-open" && keepTimer !== true) se("close");
+    var w = document.querySelectorAll(".win");
+    for (var i = 0; i < w.length; i++) w[i].className = "win";
+    el("modal").style.display = "none";
+    document.body.className = "";
+    if (!keepTimer) clearInterval(timer);
+  }
+
+  // ---- home ---------------------------------------------------------------
+  function renderHome() {
+    var h = heroine(), v = visible(), n = v.length, idx = 0;
+    for (var i = 0; i < n; i++) if (v[i].id === h.id) idx = i;
+    el("crystals").innerHTML = S.crystals;
+    el("energy").innerHTML = "<u>" + S.tickets.tickets + "</u>/" + S.tickets.max;
+    // Her standing art (official site art, research/stand_art.md) over the share house.
+    el("stage").style.backgroundImage = h.bg_url ? "url(" + h.bg_url + ")" : "";   // Dress Up > Background
+    el("heroine").className = h.stand_url ? "" : "no-pic";
+    el("heroine").style.backgroundImage = h.stand_url ? "url(" + h.stand_url + ")" : "none";
+    // The art is #heroine's own background (full height, what placeFace measures against); a .pic child as well
+    // drew a second, "contain"-sized copy on top, visible with outfits wider than the screen (the bust-up ones).
+    el("heroine").innerHTML = (h.stand_url ? "" : figure(h)) + '<div class="nm">' + esc(h.name) + "</div>";
+    placeFace();
+    el("htag").textContent = h.short;
+    el("pct").textContent = h.progress.toFixed(1) + "%";
+    el("meter").style.width = h.progress + "%";
+    pillFace("prevface", v[(idx + n - 1) % n]);
+    pillFace("nextface", v[(idx + 1) % n]);
+  }
+  // The pills at the bottom show the neighbouring heroines' faces (XvnBVVhYjh8 1:30).
+  function pillFace(id, x) {
+    var e = el(id);
+    // A square head crop, scaled to the pill's height and centred, so the whole face shows.
+    if (x.face_url) { e.style.backgroundImage = "url(" + x.face_url + ")"; e.style.backgroundSize = "auto 100%"; e.style.backgroundPosition = "50% 50%"; e.innerHTML = ""; }
+    else { e.style.backgroundImage = "none"; e.innerHTML = face(x); }
+  }
+  function selectHeroine(id, cb) { http("POST", "/api/heroine/" + id, {}, function (st, data) { if (data) { S = data; renderHome(); } if (cb) cb(); }); }
+  function cycle(dir) {
+    var v = visible(), idx = 0;
+    for (var i = 0; i < v.length; i++) if (v[i].id === S.heroine_id) idx = i;
+    selectHeroine(v[(idx + dir + v.length) % v.length].id);
+  }
+  // Touching her plays a short scene in the story viewer, then the "EXP x%" popup with her
+  // line (_Ve8sVkG1XM). Heroines whose scene wasn't recorded just say their card quote.
+  // Touching her shows a chat bubble over her (JP 「いつでもおしゃべり!」; lines in data/touch_lines.json).
+  // Heroines with a recorded touch scene (_Ve8sVkG1XM) play it on every third touch.
+  var touchCount = 0;
+  function touchHeroine() {
+    var h = heroine(); touchCount++;
+    if (h.touch_id && touchCount % 3 === 0) return native("start_story", [["story_id", h.touch_id], ["callbackurl", "/my/touched/" + h.id]]);
+    // The game called /native/speak?message=..&voice=<id>, which plays sound/voice/mypage/<id>.ogg from the
+    // APK (only the Japanese APK ships them). The mock plays the clip itself, so it works in a browser and
+    // in the English app alike.
+    var lines = h.chat && h.chat.length ? h.chat : [{text: h.quote}];
+    var line = lines[(touchCount - 1) % lines.length];
+    if (line.voice) playSound("/static/1/sound/voice/mypage/" + line.voice + ".ogg");
+    else native("play_voice", [["charactor", h.key]]);
+    var b = el("chat");
+    b.textContent = line.text.replace(/William/g, S.name || "William");
+    b.style.display = "block";
+    clearTimeout(b._t); b._t = setTimeout(function () { b.style.display = "none"; }, 4500);
+  }
+  function showTouched() {
+    var h = heroine();
+    el("result-title").innerHTML = '<span class="hi">' + svg(ICON.house, 22) + "</span>EXP " + h.progress.toFixed(1) + "%";
+    el("result-body").innerHTML = (h.popup_url ? '<div class="portrait" style="background:url(' + h.popup_url + ') center / cover"></div>'
+                                               : '<div class="portrait">' + figure(h) + "</div>") +
+      '<div class="bubble">' + esc((h.touch_line || h.quote).replace(/William/g, S.name || "William")) + "</div>" +
+      '<a class="banner" href="javascript:openWin(\'pass\')">I don\'t wanna lose the memories with you&hellip;<small>If you wanna save the story with her, CLICK HERE!</small></a>';
+    openWin("result");
+  }
+  function partLabel(st) { return st.kind === "prologue" || st.kind === "secret" ? st.title : st.title + " " + st.part; }
+
+  // ---- Story button: plays the next unread part of the current heroine ------
+  function storyButton() {
+    http("GET", "/api/stories/" + S.heroine_id, null, function (s, d) {
+      for (var i = 0; i < d.stories.length; i++) {
+        var st = d.stories[i];
+        if (st.kind !== "main" && st.kind !== "prologue") continue;   // epilogues are offered by the popup
+        if (!st.read && !st.locked) return playStory(st.scenario_id);
+      }
+      toast("You've read all of " + heroine().short + "'s story!");
+    });
+  }
+  function playStory(id) {
+    http("POST", "/api/story/" + id + "/read", {}, function (status, data) {
+      if (status === 200) { closeWin(); native("start_story", [["story_id", id], ["callbackurl", "/my/after/" + id]]); }
+      else if (status === 409) showResult(null);
+      else toast((data && (data.message || data.error)) || "Error " + status);
+    });
+  }
+
+  // ---- post-story popup ("EXP is now x%!") and the out-of-energy popup ------
+  function showResult(afterId) {
+    var h = heroine();
+    el("result-title").innerHTML = '<span class="hi">' + svg(ICON.house, 22) + "</span>" +
+      (afterId ? "EXP is now <b>" + h.progress.toFixed(1) + "%</b>!" : "Not enough energy...");
+    var body = h.popup_url ? '<div class="portrait" style="background:url(' + h.popup_url + ') center / cover"></div>'
+                           : '<div class="portrait">' + figure(h) + "</div>";
+    el("result-body").innerHTML = body;
+    if (S.tickets.tickets > 0 && afterId) {
+      http("GET", "/api/stories/" + h.id, null, function (s, d) {
+        var next = null, done = null;
+        for (var i = 0; i < d.stories.length; i++) {
+          if (d.stories[i].scenario_id === afterId) done = d.stories[i];
+          if (!next && !d.stories[i].read && (d.stories[i].kind === "main" || d.stories[i].kind === "prologue")) next = d.stories[i];
+        }
+        // JP: finishing a route half shows 「エピローグ出現!!」 (an epilogue for EPILOGUE_COST crystals)
+        var epi = null;
+        for (var j = 0; j < d.stories.length; j++)
+          if (d.stories[j].kind === "epilogue" && !d.stories[j].read && !d.stories[j].locked) epi = epi || d.stories[j];
+        var nl = NEXT_LINE[h.id] || NEXT_LINE["04"];
+        var sameChapter = next && done && next.kind === done.kind && next.chapter === done.chapter && next.heroine_id === done.heroine_id;
+        var line = !next ? "That's the end of our story... Thank you for staying with me."
+                 : sameChapter ? 'The next story is "' + esc(partLabel(next)) + nl[0] + " " + esc(nl[1])
+                 : esc((END_LINE[h.id] || END_LINE["04"]).replace(/\{name\}/g, S.name || "William"));
+        if (epi && (!next || !sameChapter))
+          line += '<br><a class="red" href="javascript:playStory(\'' + epi.scenario_id + '\')">' + esc(epi.title) + ' is here! The real ending&hellip; (10 crystals)</a>';
+        el("result-body").innerHTML = body + '<div class="bubble">' + line + "</div>" +
+          '<a class="banner" href="javascript:openWin(\'pass\')">I don\'t wanna lose the memories with you&hellip;<small>If you wanna save the story with her, CLICK HERE!</small></a>';
+      });
+    } else {
+      var it = S.items, card;
+      if (it.bronze_ticket >= 4) card = ["bronze_ticket", "#c9884f", "BRONZE<br>TICKET", "Restore one energy bar with 4 Bronze Tickets", it.bronze_ticket + " -> " + (it.bronze_ticket - 4)];
+      else if (it.silver_ticket > 0) card = ["silver_ticket", "#9aa6b2", "SILVER<br>TICKET", "Restore one energy bar with 1 Silver Ticket", it.silver_ticket + " -> " + (it.silver_ticket - 1)];
+      else if (it.gold_ticket > 0) card = ["gold_ticket", "#e0b02c", "GOLD<br>TICKET", "Fill up the energy bar with 1 Gold Ticket", it.gold_ticket + " -> " + (it.gold_ticket - 1)];
+      else card = ["crystal", "#e0457a", "CRYSTAL", "Restore one energy bar with 1 crystal", S.crystals + " -> " + Math.max(0, S.crystals - 1)];
+      el("result-body").innerHTML = body +
+        '<div class="bubble">Uh-oh! It looks like <em>you used up all your energy</em>. Don\'t you wanna read more? You can <em>fill up the energy bar</em>, if you use <em>Crystals</em>.</div>' +
+        (afterId ? "" : '<div style="text-align:center;font-size:12px">[Energy recovers in: <b id="cd">' + clock(S.tickets.next_in) + "</b>]</div>") +
+        '<div class="fill">Fill up Energy Now!</div><div class="card"><div class="tk" style="background:' + card[1] + '">' + card[2] +
+        '</div><div class="tx">' + card[3] + "<small>You have: " + card[4] + "</small></div></div>" +
+        '<a class="red" href="javascript:recover(\'' + card[0] + '\')">Use</a><a class="blue" href="javascript:closeWin()">Close</a>';
+      if (!afterId) {
+        var left = S.tickets.next_in;
+        clearInterval(timer);
+        timer = setInterval(function () { if (left > 0) left--; var c = el("cd"); if (c) c.textContent = clock(left); }, 1000);
+      }
+    }
+    closeWin(true);
+    el("win-result").className = "win on";
+    document.body.className = "win-open";
+  }
+
+  // ---- MENU -----------------------------------------------------------------
+  function render_menu() {
+    var html = "";
+    for (var i = 0; i < MENU.length; i++) html += '<a href="javascript:' + MENU[i][2] + '"><span>' + svg(ICON[MENU[i][1]], 30) + "<b>" + MENU[i][0] + "</b></span></a>";
+    el("menugrid").innerHTML = html;
+  }
+
+  // ---- Memory (Main Story / Secret Story / Epilogue / Event Story) ---------
+  function openMemory(hid) { memHeroine = heroine(hid).hidden ? visible()[0].id : hid; memTab = "main"; memOpenHead = null; openWin("memory"); }
+  function render_memory() {
+    var b = el("memory-body"), v = visible(), idx = 0, n = v.length;
+    for (var i = 0; i < n; i++) if (v[i].id === memHeroine) idx = i;
+    var h = v[idx], pv = v[(idx + n - 1) % n], nx = v[(idx + 1) % n];
+    http("GET", "/api/stories/" + h.id, null, function (s, d) {
+      var tabs = [["main", "Main<br>Story"], ["secret", "Secret<br>Story"], ["epilogue", "Epilogue<br>&nbsp;"], ["event", "Event<br>Story"]];
+      var html = '<div class="ribbon"><span class="side" style="background:' + pv.color + '">' + esc(pv.short) + '</span><a class="arw" href="javascript:memCycle(-1)">&lsaquo;</a>' +
+        '<span class="mid' + (h.stand_url ? ' art' : '') + '" style="background:' + h.color + (h.stand_url ? ' url(' + h.stand_url + ') 6% 9% / 62% auto no-repeat' : '') + '">' + (h.stand_url ? '' : face(h)) + esc(h.name) + '<i>&#10084;</i></span><a class="arw" href="javascript:memCycle(1)">&rsaquo;</a>' +
+        '<span class="side" style="background:' + nx.color + '">' + esc(nx.short) + "</span></div><div class=\"tabs\">";
+      for (var t = 0; t < tabs.length; t++) html += '<a class="' + (memTab === tabs[t][0] ? "on" : "") + '" href="javascript:memTabTo(\'' + tabs[t][0] + "')\">" + tabs[t][1] + "</a>";
+      html += "</div>";
+      if (memTab === "event") return renderEvents(b, html);
+      var rows = [];
+      for (var j = 0; j < d.stories.length; j++) {
+        var st = d.stories[j], kind = st.kind === "prologue" ? "main" : st.kind;
+        // Secret stories are listed once unlocked (their chapter read), read or not.
+        if (kind === memTab && (st.read || (kind === "secret" && !st.locked))) rows.push(st);
+      }
+      var pass = S.memory_pass;
+      // Rows are grouped under expandable chapter headings, as in the recordings
+      // (Memory > Main Story: "Chapter 4 - Wall of Obstinacy" with a chevron; p99LNijyFWc 19:20).
+      var lastHead = null, latest = rows.length ? headOf(rows[rows.length - 1]) : null;
+      memHeads = [];
+      for (var k = 0; k < rows.length; k++) {
+        var hd = headOf(rows[k]);
+        if (hd && hd !== lastHead) {
+          lastHead = hd;
+          var on = memOpenHead === hd || (memOpenHead === null && hd === latest);
+          memHeads.push(hd);
+          html += '<a class="row head' + (on ? " open" : "") + '" href="javascript:memToggle(' + (memHeads.length - 1) + ')"><span>' + esc(hd) + "</span></a>";
+        }
+        if (hd && !(memOpenHead === hd || (memOpenHead === null && hd === latest))) continue;
+        var open = pass || k >= rows.length - FREE_REPLAYS || (rows[k].kind === "secret" && !rows[k].read);
+        html += '<a class="row' + (open ? " go" : "") + '" href="javascript:' + (open ? "playStory('" + rows[k].scenario_id + "')" : "memoryPass()") + '"><span>' + esc(partLabel(rows[k])) + "</span></a>";
+      }
+      b.innerHTML = html + (rows.length ? "" : '<p style="text-align:center;color:#8a6a4a">No memories yet.</p>');
+      b.scrollTop = b.scrollHeight;
+    });
+  }
+  // Event Story: no event text survives, so the known events are listed (with a banner where one
+  // survives) and tapping one just says so. famille = 『ファミーユ』 events, uchikano = the predecessor's.
+  function renderEvents(b, html) {
+    http("GET", "/api/events", null, function (s, d) {
+      var ev = (d && d.events) || [];
+      for (var i = 0; i < ev.length; i++) {
+        var e = ev[i];
+        // Events with recovered text (only the Edo event: its preview and Sayaka's episode 1, from Taiwan recordings)
+        // list their parts under the event, as the real Memory > Event tab lists 大江戸純愛物語 > 朝彌香 1話.
+        var parts = e.parts || (e.scenario_id ? [{scenario_id: e.scenario_id, title: "Preview"}] : []);
+        var play = function (sid) { return "javascript:closeWin();native('start_story',[['story_id','" + sid + "'],['callbackurl','/my/']])"; };
+        var go = parts.length === 1 ? play(parts[0].scenario_id) : parts.length ? "javascript:void(0)"
+                                    : "javascript:toast('This event\\'s story was never recovered.')";
+        html += '<a class="row item" href="' + go + '">' +
+          (e.banner_url ? '<img src="' + e.banner_url + '" alt="" style="height:56px;border-radius:3px">' : "") +
+          "<span>" + esc(e.title) + "<small>" + esc(e.title_jp) + " &middot; " +
+          (e.game === "famille" ? "Famille (JP)" : "Uchi-Kano (predecessor)") + (e.date ? " &middot; " + esc(e.date) : "") +
+          (parts.length ? " &middot; " + parts.length + (parts.length > 1 ? " parts" : " part") + " recovered" : " &middot; story not recovered") +
+          "</small></span></a>";
+        if (parts.length > 1)
+          for (var j = 0; j < parts.length; j++)
+            html += '<a class="row go" href="' + play(parts[j].scenario_id) + '"><span>&nbsp;&nbsp;' + esc(parts[j].title) + "</span></a>";
+      }
+      b.innerHTML = html + (ev.length ? "" : '<p style="text-align:center;color:#8a6a4a">No memories yet.</p>');
+      b.scrollTop = 0;
+    });
+  }
+  function memTabTo(t) { memTab = t; memOpenHead = null; render_memory(); }
+  function headOf(st) { return st.kind === "secret" ? st.chapter_title : (st.kind === "main" ? st.title : null); }
+  function memToggle(i) { var hd = memHeads[i]; memOpenHead = memOpenHead === hd ? "" : hd; render_memory(); }
+  function memCycle(dir) {
+    var v = visible(), idx = 0;
+    for (var i = 0; i < v.length; i++) if (v[i].id === memHeroine) idx = i;
+    memHeroine = v[(idx + dir + v.length) % v.length].id; render_memory();
+  }
+  function memoryPass() {
+    el("modal-body").innerHTML = "Check Memory Pass to open up all memories you have got!" +
+      '<a class="red" href="javascript:openWin(\'pass\')">Check the detail about Memory Pass</a><a class="blue" href="javascript:hideModal()">Go back to Memory</a>';
+    el("modal").style.display = "block";
+  }
+  function hideModal() { el("modal").style.display = "none"; }
+  function render_pass() {
+    el("pass-body").innerHTML = '<div class="bubble" style="margin:4px 0 8px">With the <em>Memory Pass</em> (Standard Course), every memory you have read opens up in Memory, so you can read your stories with her again any time.</div>' +
+      '<a class="green" href="javascript:openShop(\'course\')">Change Monthly Course</a><a class="blue" href="javascript:openMemory(S.heroine_id)">Go back to Memory</a>';
+  }
+
+  // ---- Character (profile cards, "Select This Girl!") ------------------------
+  function openCharacter() { charIdx = 0; for (var i = 0; i < S.heroines.length; i++) if (S.heroines[i].id === S.heroine_id) charIdx = i; openWin("character"); }
+  function render_character() {
+    var n = S.heroines.length, h = S.heroines[charIdx], pv = S.heroines[(charIdx + n - 1) % n], nx = S.heroines[(charIdx + 1) % n];
+    function tab(x) { return x.hidden ? "#bbb" : (x.card ? x.card.tab : x.color); }
+    var html = '<div class="ribbon"><span class="side" style="background:' + tab(pv) + '">' + (pv.hidden ? "???" : esc(pv.short)) + '</span><a class="arw" href="javascript:charCycle(-1)">&lsaquo;</a>' +
+      '<span class="mid" style="background:' + tab(h) + '">' + (h.hidden ? "? ? ?" : face(h) + esc(h.name) + "<i>&#10084;</i>") + '</span><a class="arw" href="javascript:charCycle(1)">&rsaquo;</a>' +
+      '<span class="side" style="background:' + tab(nx) + '">' + (nx.hidden ? "???" : esc(nx.short)) + "</span></div>";
+    if (h.hidden) html += '<div class="note locked">? ? ? ?</div>';
+    else {
+      var c = h.card || {size: h.height_cm + "cm", measurements: "?", quote: h.quote, text: h.profile, tab: h.color};
+      html += '<div class="note"><h3 style="color:' + c.tab + '">' + esc(h.name) + '</h3><div class="meas">' + esc(c.size) + "<br>Measurements:" + esc(c.measurements) + "</div>" +
+        '<div class="who">' + figure(h) + '</div><div class="selrow"><a class="sel" style="background:radial-gradient(' + c.tab + ', #2fb5a0)" href="javascript:selectHeroine(\'' + h.id + "',closeWin)\">Select<br>This Girl!</a>" +
+        '<div class="q">“' + esc(c.quote) + '”</div></div><div class="tx">' + esc(c.text) + "</div></div>";
+    }
+    el("character-body").innerHTML = html;
+  }
+  function charCycle(dir) { charIdx = (charIdx + dir + S.heroines.length) % S.heroines.length; render_character(); }
+
+  // ---- News ---------------------------------------------------------------
+  function render_news() {
+    if (!newsCache) { el("news-body").innerHTML = "Loading..."; http("GET", "/api/news", null, function (s, d) { newsCache = d.news; render_news(); }); return; }
+    var html = "";
+    for (var i = 0; i < newsCache.length; i++) {
+      html += '<a class="row go" href="javascript:newsItem(' + i + ')"><span>' + esc(newsCache[i].title) + "<small>" + esc(newsCache[i].date) + "</small></span></a>";
+    }
+    el("news-body").innerHTML = html;
+  }
+  function newsItem(i) {
+    var n = newsCache[i];
+    el("news-body").innerHTML = '<small style="color:#e2457a">' + esc(n.date) + "<br>" + esc(n.title) + "</small><hr><pre>" + esc(n.body) +
+      '</pre><a class="blue" href="javascript:render_news()">Back to List</a>';
+  }
+
+  // ---- Shop (Shop / Crystal Shop / Item Shop / Recover Energy / Monthly Course Shop) ---
+  // Real prices from the 2019 "Night of In App Purchase Shut Down" recording.
+  var PACKS = [[1, 0, "0.99"], [5, 1, "4.21"], [12, 3, "10.10"], [20, 6, "16.87"], [28, 12, "23.56"], [42, 26, "35.29"], [78, 57, "65.64"]];
+  function openShop(page) { openWin("shop"); if (page) shopPage(page); }
+  function render_shop() { shopPage("top"); }
+  function shopPage(page) {
+    var b = el("shop-body"), html = "", t = {top: "Shop", crystals: "Crystal Shop", items: "Item Shop", energy: "Recover Energy", course: "Monthly Course Shop"}[page];
+    el("shop-title").textContent = t;
+    if (page === "top") {
+      html = '<a class="red" href="javascript:shopPage(\'crystals\')">Buy Crystals</a><a class="red" href="javascript:shopPage(\'items\')">Exchange items</a>' +
+        '<a class="red" href="javascript:shopPage(\'energy\')">Recover Energy</a><a class="green" href="javascript:shopPage(\'course\')">Change Monthly Course</a>';
+    } else if (page === "crystals") {
+      for (var i = 0; i < PACKS.length; i++) {
+        var p = PACKS[i], total = p[0] + p[1];
+        html += '<div class="row" style="color:#e2457a"><span><span class="hex" style="display:inline-block;width:26px;height:24px;vertical-align:middle;background:linear-gradient(#ffb0c8,#e0457a)"></span> ' +
+          p[0] + " crystal" + (p[1] ? " +" + p[1] + " free" : "") + "<small>Price: $" + p[2] + '</small></span><button class="btn" onclick="buy(' + total + ')">Buy</button></div>';
+      }
+      html += '<a class="blue" href="javascript:shopPage(\'top\')">Back to Shop</a>';
+    } else if (page === "items") {
+      var items = [["gold_ticket", "Gold Ticket", 5, '<i class="tkt gold">GOLD<br>TICKET</i>'],
+                   ["panel_ticket_dx", "Panel Ticket DX", 3, '<i class="tkt panel">PANEL<br>TICKET</i>'],
+                   ["memory_pass_30", "Memory Pass 30", 9, '<i class="tkt pass">ALBUM<br>PASS.</i>'],
+                   ["memory_pass_90", "Memory Pass 90", 23, '<i class="tkt pass">ALBUM<br>PASS.</i>'],
+                   ["memory_pass_180", "Memory Pass 180", 40, '<i class="tkt pass">ALBUM<br>PASS.</i>']];
+      for (var q = 0; q < items.length; q++)
+        html += '<div class="row item">' + items[q][3] + "<span>" + items[q][1] + "<small>" + items[q][2] + ' crystals</small></span><button class="btn" onclick="exchange(\'' + items[q][0] + '\')">check</button></div>';
+      if (S.pass_until && S.pass_until * 1000 > Date.now()) html += '<p style="text-align:center;color:#2b8fd8">Memory Pass valid until ' + new Date(S.pass_until * 1000).toLocaleDateString() + "</p>";
+      html += '<a class="blue" href="javascript:shopPage(\'top\')">Back to Shop</a>';
+    } else if (page === "energy") {
+      html = '<p style="color:#e2457a;text-align:center">Restore one energy bar with 1 crystal.<br><br>The total amount of Crystal: ' + S.crystals + " -> " + Math.max(0, S.crystals - 1) +
+        '</p><a class="red" href="javascript:recover(\'crystal\')">Recover Energy</a><a class="blue" href="javascript:shopPage(\'top\')">Back to Shop</a>';
+    } else if (page === "course") {
+      http("GET", "/api/courses", null, function (s, d) {
+        var c = d.courses, h = "";
+        for (var k in c) h += '<div class="row" style="display:block"><b>' + k.charAt(0).toUpperCase() + k.slice(1) + " Course" + (c[k].price ? " (Monthly " + c[k].price + ")" : "") +
+          "</b><small>" + esc(c[k].text) + "</small></div>";
+        b.innerHTML = h + '<p><small>*Each Monthly Course will be charged. (Subscriptions need Google Play; not available in the mock.)</small></p><a class="blue" href="javascript:shopPage(\'top\')">Back to Shop</a>';
+      });
+      return;
+    }
+    b.innerHTML = html;
+  }
+  function buy(total) {
+    // purchase_dummy: the app GETs /native/purchase on this server instead of Google Play.
+    native("purchase_dummy", [["product_id", "jp.mfapps.novel.roomies.item.credit." + total], ["callback_url", "/my/"]],
+      function () { setTimeout(function () { http("GET", "/api/me", null, function (s, d) { if (d) { S = d; renderHome(); } }); }, 800); });
+  }
+  function exchange(item) { http("POST", "/api/shop/exchange/" + item, {}, function (s, d) { if (s === 200 && d.state) { S = d.state; renderHome(); } toast(s === 200 ? "Exchanged!" : d.error); }); }
+  function recover(method) {
+    http("POST", "/api/energy/recover", {method: method}, function (s, d) {
+      toast(s === 200 ? "Energy recovered!" : d.error);
+      if (s === 200) closeWin();
+    });
+  }
+
+  // ---- Item ---------------------------------------------------------------
+  function render_item() {
+    var it = S.items, rows = [
+      ["Gold Ticket", it.gold_ticket, "Restore all energy", "gold_ticket"],
+      ["Silver Ticket", it.silver_ticket, "Restore one energy bar", "silver_ticket"],
+      ["Bronze Ticket", it.bronze_ticket, "Restore one energy bar with 4 Bronze Tickets", "bronze_ticket"],
+      ["Panel Ticket DX", it.panel_ticket_dx, "Remove one photo panel", "panel"]], html = "";
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      html += '<div class="row"><span>' + r[0] + "<small>You have: " + r[1] + " · " + r[2] + '</small></span><button class="btn" onclick="useItem(\'' + r[3] + "')\">Use</button></div>";
+    }
+    el("item-body").innerHTML = html;
+  }
+  function useItem(kind) {
+    if (kind === "panel") { http("POST", "/api/panels/use_ticket", {}, function (s, d) { toast(s === 200 ? "A panel was removed!" : d.error); render_item(); }); return; }
+    http("POST", "/api/energy/recover", {method: kind}, function (s, d) { toast(s === 200 ? "Energy recovered!" : d.error); render_item(); });
+  }
+
+  // ---- Dress Up / Gacha -----------------------------------------------------
+  // English names (Chicoine Dgd2gg2wIa0 12:06-13:36): the window is "Machine", banner "Spin with Crystal! Get Her
+  // Premium Outfits!! 5 Crystals", "Machine point(s)"; duplicates give Machine Points, 10 points = 1 free spin;
+  // Dress Up tabs Face / Clothes / Background.
+  // Dress Up (「着せ替えアイテム一覧」, 神崎LEN L59 53:26): tabs Expression / Outfit / Background, a grid
+  // of items with locked ones as "?" and a check on the one worn. Outfits come from the gacha; backgrounds and
+  // faces (recovered art, research/dress_backgrounds.py, face_items.py) are all available, "?" where art is missing.
+  var dressTab = "outfit";
+  function setDressTab(t) { dressTab = t; render_dress(); }
+  function render_dress() {
+    var h = heroine(), tabs = [["face", "Face"], ["outfit", "Clothes"], ["bg", "Background"]];
+    var html = '<div class="ptabs">';
+    for (var t = 0; t < tabs.length; t++)
+      html += '<a class="' + (dressTab === tabs[t][0] ? "on" : "") + '" href="javascript:setDressTab(\'' + tabs[t][0] + '\')">' + tabs[t][1] + "</a>";
+    html += '</div><div class="dgrid">';
+    var cells = [];
+    if (dressTab === "outfit") {
+      for (var i = 0; i < h.costume_pool.length; i++) {
+        var c = h.costume_pool[i], owned = h.costumes.indexOf(c) >= 0, on = c === (h.costume || "Casual");
+        cells.push(owned ? '<a class="' + (on ? "on" : "") + '" href="javascript:equip(\'' + esc(c) + '\')">' + esc(c) + "</a>" : "<i>?</i>");
+      }
+    } else if (dressTab === "bg") {
+      // Background items from the Chinese store ad of this screen; "?" = seen there but the art wasn't recovered
+      for (var k = 0; k < S.backgrounds.length; k++) {
+        var bgi = S.backgrounds[k];
+        cells.push(bgi.url ? '<a class="' + (bgi.name === h.bg ? "on" : "") + '" style="background:url(' + bgi.url +
+          ') center / cover;color:#fff;text-shadow:0 0 3px #000" href="javascript:setBg(\'' + esc(bgi.name) + '\')">' + esc(bgi.name) + "</a>" : "<i>?</i>");
+      }
+    } else {
+      // Face: the 9 expressions named on the Taiwan board, each lifted from a story picture (research/face_items.py).
+      // They fit only outfits drawn with the frontal head (the Taiwan wardrobe ones); "Default" is the outfit's own face.
+      cells.push('<a class="' + (h.face === "Default" ? "on" : "") + '" href="javascript:setFace(\'Default\')">Default</a>');
+      for (var j = 0; j < (h.face_pool || []).length; j++) {
+        var fc = h.face_pool[j];
+        cells.push(fc.url ? '<a class="' + (fc.name === h.face ? "on" : "") + '" style="background:#fff url(' + fc.url +
+          ') center 30% / 120% auto no-repeat;color:#fff;text-shadow:0 0 3px #000" href="javascript:setFace(\'' + esc(fc.name) + '\')">' +
+          esc(fc.name) + "</a>" : "<i>?</i>");
+      }
+      if (h.face !== "Default" && !h.face_overlay) html = html.replace('<div class="dgrid">', '<p style="margin:4px 0;font-size:12px;color:#8a6a4a">' +
+        "This outfit has no face layer, so the face shows with the Taiwan-edition outfits.</p>" + '<div class="dgrid">');
+    }
+    while (cells.length < 12) cells.push("<i>?</i>");
+    html += cells.join("") + "</div>";
+    el("dress-body").innerHTML = html;
+  }
+  // Gacha (「ガチャ」, L59 53:37): the 「恋結晶でガチャ 着せ替えアイテムGet!!」 banner, the gacha points owned,
+  // and one pull for 5 crystals (「恋結晶が1個足りません…」 with 4 owned; banner: 「恋結晶5個」).
+  // Gacha flow, as recorded on the same engine (恋Q部, ハルク EygEZekAZhU 1:58-2:17; Famille's own
+  // banner and price from 神崎LEN L59 53:37):
+  //   1. window: banner, gacha points, 「恋結晶5個でガチャを引く」
+  //   2. confirm 「恋結晶5個を使ってガチャを引きますか？ [ガチャる!] [今は辞める!]」
+  //   3. capsule machine: handle turns, a capsule drops, rolls, glows, white flash (Skip button)
+  //   4. result card 「[服装] … をGET!!」 + gacha-get jingle, then Shop / Dress Up buttons
+  var GACHA_COST = 5;   // app.py GACHA_COST
+  var gachaResult = null;
+  function render_gacha() {
+    var h = heroine(), short = GACHA_COST - S.crystals, html = '<img class="gbanner" src="/static/1/img/ui/gacha_banner.png" alt="">';
+    if (gachaResult) {
+      var r = gachaResult;
+      html += '<div class="gres">' + (r.url ? '<img src="' + r.url + '">' : "<i></i>") +
+        "<div><span>[Outfit] " + esc(h.short) + "'s " + esc(r.costume) + "</span><br>GET!!" +
+        (r.duplicate ? "<small>Already owned &mdash; you got a Gold Ticket instead.</small>" : "") + "</div></div>";
+    } else {
+      html += '<div class="gpts">Machine point(s): <b>0</b></div>';
+    }
+    if (h.costume_pool.length <= 1) {
+      html += '<div class="gshort">No outfits for ' + esc(h.short) + " have been recovered yet.</div>";
+    } else if (short > 0) {
+      html += '<div class="gshort">You need ' + short + " more crystal" + (short === 1 ? "" : "s") + '&hellip;</div><a class="blue" href="javascript:openShop()">Go to the Shop!</a>';
+    } else {
+      html += '<a class="red" href="javascript:gachaConfirm()">Spin with ' + GACHA_COST + " Crystals</a>";
+    }
+    if (gachaResult) html += '<a class="blue" href="javascript:openWin(\'dress\')">Dress Up</a>';
+    el("gacha-body").innerHTML = html;
+  }
+  function gachaConfirm() {
+    var g = el("gacha-anim");
+    g.innerHTML = '<div class="gconf"><p>Use ' + GACHA_COST + ' Crystals to spin the Machine?</p>' +
+      '<a class="red" href="javascript:gacha()">Spin!</a><a class="blue" href="javascript:gachaClose()">Not now!</a></div>';
+    g.style.display = "block";
+  }
+  function gachaClose() { var g = el("gacha-anim"); g.style.display = "none"; g.innerHTML = ""; render_gacha(); }
+  function gacha() {
+    http("POST", "/api/gacha/" + S.heroine_id, {}, function (s, d) {
+      if (s !== 200) { gachaClose(); toast((d && d.error) || "Error " + s); return; }
+      S = d.state;
+      gachaResult = d;
+      var g = el("gacha-anim");
+      g.innerHTML = '<video id="gvid" src="/static/1/img/ui/gacha_spin.mp4" playsinline muted autoplay></video>' +
+        '<a class="gskip" href="javascript:gachaDone()">Skip</a>';
+      var v = el("gvid");
+      v.onended = gachaDone;
+      v.onerror = gachaDone;
+      var p = v.play && v.play(); if (p && p.catch) p.catch(gachaDone);
+    });
+  }
+  function gachaDone() {
+    var g = el("gacha-anim");
+    if (g.style.display === "none") return;
+    playSound("/static/1/img/ui/gachaget.ogg");
+    gachaClose();
+    renderHome();
+  }
+  function setFace(f) { http("POST", "/api/dress_face/" + S.heroine_id, {face: f}, function (s, d) { if (d) { S = d; renderHome(); render_dress(); } }); }
+  // Dress Up > Face: the chosen face drawn over her outfit, scaled like the stand (centre top, full height of #heroine).
+  function placeFace() {
+    var h = heroine(), box = el("heroine"), o = h && h.face_overlay, im = el("faceov");
+    if (!o || !h.stand_url) { if (im) im.style.display = "none"; return; }
+    if (!im) { im = document.createElement("img"); im.id = "faceov"; im.alt = ""; im.style.position = "absolute"; im.style.pointerEvents = "none"; }
+    if (im.parentNode !== box) box.appendChild(im);
+    var k = box.offsetHeight / o.ih, left = (box.offsetWidth - o.iw * k) / 2;
+    im.src = o.url; im.style.display = "block";
+    im.style.left = (left + o.x * k) + "px"; im.style.top = (o.y * k) + "px";
+    im.style.width = (o.w * k) + "px"; im.style.height = (o.h * k) + "px";
+  }
+  window.addEventListener("resize", function () { if (S) placeFace(); });
+  function setBg(b) { http("POST", "/api/dress_bg/" + S.heroine_id, {bg: b}, function (s, d) { if (d) { S = d; renderHome(); render_dress(); } }); }
+  function equip(c) { http("POST", "/api/costume/" + S.heroine_id, {costume: c}, function (s, d) { if (d) { S = d; renderHome(); render_dress(); } }); }
+
+  // ---- Photo / More --------------------------------------------------------
+  // Photo window (DBzQdN-tyn4 3:57:20): tabs Photo Panel / Event / Epilogue; the current panel
+  // picture shows through the panels already removed (4x4); a viewed picture has its caption.
+  var photoTab = "panel";
+  function render_photo() {
+    var P = S.panels, cur = P.current, html = "", tabs = [["panel", "Photo Panel"], ["event", "Event"], ["epilogue", "Epilogue"]];
+    html += '<div class="ptabs">';
+    for (var t = 0; t < tabs.length; t++) html += '<a class="' + (photoTab === tabs[t][0] ? "on" : "") + '" href="javascript:setPhotoTab(\'' + tabs[t][0] + '\')">' + tabs[t][1] + "</a>";
+    html += "</div>";
+    if (photoTab === "panel") {
+      var g = "";
+      for (var i = 0; i < P.total; i++) g += i < P.revealed ? "<i class=\"open\"></i>" : "<i></i>";
+      html += '<div id="panels"' + (cur ? ' style="background-image:url(' + cur.url + ')"' : "") + ">" + g + "</div>" +
+        '<p class="pcap">' + (cur ? esc(cur.caption) + "<br>" : "") + "<small>Log in daily to remove a panel · " + P.revealed + "/" + P.total + "</small></p>";
+    }
+    var list = S.photos.filter(function (p) { return p.kind === photoTab; });
+    for (var j = 0; j < list.length; j++)
+      html += '<a class="row" href="javascript:viewPhoto(' + S.photos.indexOf(list[j]) + ')"><span>' + esc(list[j].caption) + "<small>" + esc(list[j].sub) + "</small></span></a>";
+    if (!list.length && photoTab !== "panel") html += "<p><small>" + (photoTab === "event" ? "No event pictures have been recovered." : "Read an epilogue to keep its picture here.") + "</small></p>";
+    el("photo-body").innerHTML = html;
+  }
+  function setPhotoTab(t) { photoTab = t; render_photo(); }
+  function closePhoto() { el("photoview").style.display = "none"; }
+  function viewPhoto(i) {
+    var p = S.photos[i], v = el("photoview");
+    v.innerHTML = '<img src="' + p.url + '"><div>' + esc(p.caption) + "<br>" + esc(p.sub) + '<br><a href="javascript:closePhoto()">Close</a></div>';
+    v.style.display = "block";
+  }
+  function render_more() {
+    el("more-body").innerHTML =
+      '<div class="row"><span>Name<small>Shown in the story</small></span><button class="btn" onclick="rename()">' + esc(S.name) + "</button></div>" +
+      '<div class="row"><span>User ID<small>' + esc(S.invite_id) + "</small></span></div>" +
+      '<div class="row"><span>Options</span><button class="btn" onclick="native(\'show_option_menu\')">Open</button></div>' +
+      '<div class="row"><span>Opening movie</span><button class="btn" onclick="native(\'play_movie\',[[\'scene\',\'opening\'],[\'callback_url\',\'/my/\']])">Play</button></div>' +
+      '<div class="row"><span>Back to title</span><button class="btn" onclick="native(\'go_top\')">Go</button></div>';
+  }
+  // The app's WebView has no prompt() dialog, so the name is typed into the page's own modal box.
+  function rename() {
+    el("modal-body").innerHTML = "What's your name?<br><small>Up to 12 letters. It replaces William in the stories; change it any time in Menu &gt; More.</small>" +
+      '<input id="namein" maxlength="12" style="display:block;width:80%;margin:10px auto;font-size:16px;padding:6px;' +
+      'border:1px solid #9cc;border-radius:4px;text-align:center">' +
+      '<a class="red" href="javascript:saveName()">OK</a><a class="blue" href="javascript:hideModal()">Cancel</a>';
+    el("modal").style.display = "block";
+    var i = el("namein"); i.value = S.name || ""; i.focus();
+    i.onkeydown = function (e) { if (e.keyCode === 13) saveName(); };
+  }
+  function saveName() {
+    var n = (el("namein").value || "").replace(/^\s+|\s+$/g, "");
+    if (!n) { toast("Please enter a name."); return; }
+    http("POST", "/api/name", {name: n}, function (s, d) { hideModal(); if (d) { S = d; render_more(); toast("Name changed!"); } });
+  }
+
+  // ---- boot ---------------------------------------------------------------
+  el("homeicon").innerHTML = svg(ICON.house, 34);
+  el("bookicon").innerHTML = '<svg viewBox="0 0 84 66" width="84" height="66"><path d="M42 12C30 4 14 4 4 8v52c10-4 26-4 38 4 12-8 28-8 38-4V8C70 4 54 4 42 12z" fill="#fff" stroke="#f7a6c2" stroke-width="2"/>' +
+    '<path d="M42 12v52" stroke="#f7a6c2" stroke-width="2"/><path d="M12 20c8-2 16-2 24 2M12 30c8-2 16-2 24 2M12 40c8-2 16-2 24 2M48 22c8-4 16-4 24-2M48 32c8-4 16-4 24-2M48 42c8-4 16-4 24-2" stroke="#f9c0d4" stroke-width="2" fill="none"/></svg>';
+  el("lockicon").innerHTML = '<svg viewBox="0 0 36 32" width="36" height="32"><path d="M18 30C6 21 1 15 1 9a8 8 0 0 1 17-3 8 8 0 0 1 17 3c0 6-5 12-17 21z" fill="#ffc7c0" stroke="#f6be5a" stroke-width="2"/>' +
+    '<rect x="12" y="13" width="12" height="10" rx="2" fill="#9a7a4a"/><path d="M14 13v-3a4 4 0 0 1 8 0v3" stroke="#9a7a4a" stroke-width="2" fill="none"/></svg>';
+  el("tickertext").textContent = "Welcome to the share-house Famille!";
+  http("GET", "/api/news", null, function (st, d) { var n = d && (d.news || d)[0]; if (n && n.title) el("tickertext").textContent = n.title; });
+  var his = document.querySelectorAll(".win .t .hi");
+  for (var hi = 0; hi < his.length; hi++) his[hi].innerHTML = svg(ICON.house, 22);
+  renderHome();
+  http("POST", "/api/login_bonus", {}, function (status, data) {
+    if (data && data.granted) se("bonus");
+    if (data && data.granted) toast(data.item ? "You got a LOGIN BONUS! " + (data.item === "silver_ticket" ? "A Silver Ticket" : "A Panel Ticket DX") + " and a photo panel!"
+                                              : "A photo panel was removed! Next LOGIN BONUS: " + data.next_in + " more login.");
+  });
+  var after = /^#\/my\/after\/(\w+)/.exec(location.hash), touched = /^#\/my\/touched\/(\w+)/.exec(location.hash);
+  if (!location.hash && !store("title_seen")) { store("title_seen", "1"); bootIntro(); }
+  if (after) showResult(after[1]);
+  else if (touched) showTouched();
+  else if (!S.prologue_done) storyButton();
+  // Ask once for the player's name, after the Prologue (the stories call the player William until then).
+  else if (S.prologue_done && S.name === "William") {
+    var asked = null; try { asked = localStorage.getItem("name_asked"); localStorage.setItem("name_asked", "1"); } catch (e) {}
+    if (!asked) setTimeout(rename, 600);
+  }
+</script>
+</body>
+</html>
