@@ -1701,6 +1701,20 @@ Everything needed is in this folder. Nothing depends on a temp folder.
   time, so the header crypto works with any key.
 - **Rebuild after server changes:** `cd offline && python export_data.py && python export_static.py && python
   build_apk.py`. Rule changes in `app.py` must also be ported to `Game.java`.
+- **Installing on real hardware:** the original targets API 21, which Android 14+ refuses to install ("not
+  compatible"), so `build_apk.py` bumps `targetSdkVersion` to 23 (the lowest that clears the block while keeping
+  cleartext HTTP on by default and not needing explicit `android:exported`), adds `usesCleartextTraffic="true"`
+  for the localhost mock, and drops the permissions an offline build never uses — the ones Play Protect flags on a
+  sideloaded repack (`INTERACT_ACROSS_USERS_FULL`, `SYSTEM_ALERT_WINDOW`, `WRITE_SETTINGS`, `GET_TASKS`, Play
+  Billing, C2DM push, `GET_ACCOUNTS`, `DISABLE_KEYGUARD`, `ACCESS_WIFI_STATE`). The generic unknown-source warning
+  still needs a one-time "install anyway". `lib/armeabi/libotome.so` is 32-bit-only, so a 64-bit-only phone
+  (e.g. Pixel 7+) still can't run it — there's no source to rebuild it for arm64.
+- **Loading-screen crash (fixed):** `AuthInfo.readDeviceId` called `TelephonyManager.getDeviceId()`, which throws
+  `SecurityException` on Android 10+ for a non-privileged app; it crashed on the WebView's first request, so the
+  app sat on the loading screen forever on real phones (the MuMu emulator doesn't enforce the restriction, which
+  is why it was missed). `build_apk.py` patches that call in `AuthInfo.smali` to `const/4 v1, 0x0`, so the method's
+  existing Build-based fallback id is used; no telephony permission is needed and it runs on every phone. Confirmed
+  on a real moto g stylus 5G (Android 13): installs with no granted permissions, title screen and Prologue play.
 - **Checked on MuMu (Android 12):** title, Prologue, home, touch scene, Dress Up, name change. Android shows its
   usual "built for an older version" and permission prompts on first launch, as for the original.
 - **Name:** More > Name (and a one-time prompt after the Prologue) opens an in-page box (the app's WebView has no

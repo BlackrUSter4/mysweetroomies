@@ -2,8 +2,10 @@
 
 Starting from the decoded original (offline/decoded, apktool 2.10.0):
   1. app.json (assets/Application/document/json/*/android) points site_url / resource_url at http://127.0.0.1:18765
-  2. the manifest gets package jp.mfapps.novel.roomies.offline (so it installs next to the original), its own
-     C2D_MESSAGE permission name, and a content provider mock.offline.Boot that starts the server at launch
+  2. the manifest gets package jp.mfapps.novel.roomies.offline (so it installs next to the original), targetSdk 23
+     (so Android 14+ will install it), usesCleartextTraffic (the mock is plain HTTP on localhost), its unused and
+     Play-Protect-flagging permissions dropped, and a content provider mock.offline.Boot that starts the server;
+     AuthInfo.smali's getDeviceId() call is patched out (it throws on Android 10+ and crashed the loading screen)
   3. apktool rebuilds it; then the Java server (offline/java, compiled to classes2.dex) and assets/server
      (export_data.py, export_static.py) are added, pictures/sound/video stored uncompressed
   4. zipalign, then apksigner with offline/offline.keystore (made on first run)
@@ -29,6 +31,27 @@ OUT = os.path.join(R, "MySweetRoomies_offline.apk")
 PKG = "jp.mfapps.novel.roomies.offline"
 SITE = "http://127.0.0.1:18765"
 STORE_EXT = (".webp", ".png", ".jpg", ".ogg", ".mp3", ".mp4", ".ttf", ".otf", ".woff", ".woff2", ".zip")
+TARGET_SDK = 23          # Android 14+ refuses to install an app targeting < 23; 23 is the lowest that clears
+                         # the block while keeping cleartext on by default (off only at 28+) and avoiding the
+                         # exported-component requirement (31+) -- the fewest behaviour changes vs. the 21 original.
+# Permissions an offline build never uses; several (INTERACT_ACROSS_USERS_FULL, SYSTEM_ALERT_WINDOW,
+# WRITE_SETTINGS, GET_TASKS) are exactly what Play Protect flags on a sideloaded repack, so drop them all.
+DROP_PERMS = {
+    "android.permission.INTERACT_ACROSS_USERS_FULL",
+    "android.permission.SYSTEM_ALERT_WINDOW",
+    "android.permission.WRITE_SETTINGS",
+    "android.permission.GET_TASKS",
+    "android.permission.DISABLE_KEYGUARD",
+    "android.permission.GET_ACCOUNTS",
+    "android.permission.ACCESS_WIFI_STATE",
+    "com.android.vending.BILLING",
+    "com.google.android.c2dm.permission.RECEIVE",
+    "jp.mfapps.novel.roomies.permission.C2D_MESSAGE",
+    # No longer needed once the getDeviceId() call is patched out (see patch_tree); the offline build keeps
+    # only INTERNET (localhost socket), ACCESS_NETWORK_STATE, VIBRATE and WAKE_LOCK, all "normal" permissions.
+    "android.permission.READ_PHONE_STATE",
+    "android.permission.WRITE_EXTERNAL_STORAGE",
+}
 
 
 def run(*cmd, **kw):
@@ -69,14 +92,33 @@ def patch_tree():
                 open(p, "w", encoding="utf8").write(s2)
     man = os.path.join(WORK, "AndroidManifest.xml")
     s = open(man, encoding="utf8").read()
-    s = s.replace("jp.mfapps.novel.roomies.permission.C2D_MESSAGE", PKG + ".permission.C2D_MESSAGE")
+    # Strip the unused / Play-Protect-flagging permissions and the custom C2D_MESSAGE <permission> they go with.
+    s = re.sub(r' *<uses-permission android:name="([^"]+)"/>\n',
+               lambda m: "" if m.group(1) in DROP_PERMS else m.group(0), s)
+    s = re.sub(r' *<permission android:name="jp\.mfapps\.novel\.roomies\.permission\.C2D_MESSAGE"[^>]*/>\n', "", s)
+    # The in-app mock is plain HTTP on localhost; keep cleartext allowed now that we target API 23.
+    s = s.replace("<application ", '<application android:usesCleartextTraffic="true" ', 1)
     provider = (f'<provider android:name="mock.offline.Boot" android:authorities="{PKG}.mockserver" '
                 'android:exported="false" android:initOrder="1000"/>')
     s = s.replace("</application>", provider + "</application>", 1)
     open(man, "w", encoding="utf8").write(s)
     yml = os.path.join(WORK, "apktool.yml")
     y = open(yml, encoding="utf8").read().replace("renameManifestPackage: null", f"renameManifestPackage: {PKG}")
+    y = re.sub(r"targetSdkVersion:\s*\d+", f"targetSdkVersion: {TARGET_SDK}", y)
     open(yml, "w", encoding="utf8").write(y)
+    # TelephonyManager.getDeviceId() throws SecurityException on Android 10+ for a non-privileged app, which
+    # crashed the app on the WebView's first request ("stuck on the loading screen"). AuthInfo.readDeviceId already
+    # falls back to a Build-based id when getDeviceId returns null, so force the null: replace the call + its result
+    # with "const/4 v1, 0x0". This works on every phone and needs no READ_PHONE_STATE.
+    auth = os.path.join(WORK, "smali", "jp", "mfapps", "framework", "maidengine", "model", "info", "AuthInfo.smali")
+    a = open(auth, encoding="utf8").read()
+    a2 = a.replace(
+        "    invoke-virtual {v2}, Landroid/telephony/TelephonyManager;->getDeviceId()Ljava/lang/String;\n\n"
+        "    move-result-object v1\n",
+        "    const/4 v1, 0x0\n")
+    if a2 == a:
+        raise SystemExit("AuthInfo getDeviceId patch did not apply -- the smali changed")
+    open(auth, "w", encoding="utf8").write(a2)
     strings = os.path.join(WORK, "res", "values", "strings.xml")
     t = open(strings, encoding="utf8").read()
     t = t.replace('<string name="app_name">Roomies!</string>', '<string name="app_name">Roomies! Offline</string>')
