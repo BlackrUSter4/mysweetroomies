@@ -21,6 +21,7 @@ playthrough videos (section 4).
 |---|---|
 | Run | `cd server && python app.py` (port 80) · `--port 8080` · `--apk <apk>` for a re-signed APK |
 | Offline APK | `offline/MySweetRoomies_offline.apk` (955 MB, the server inside; see section 5a) |
+| Repository | https://github.com/BlackrUSter4/mysweetroomies (public, AGPL-3.0; APK under Releases v1.0) |
 | Try in a browser | `http://localhost/?dev=1` |
 | Tests | `python -m pytest test_server.py` (34 pass) |
 | Research scripts + raw data | `research/` |
@@ -1704,6 +1705,24 @@ Everything needed is in this folder. Nothing depends on a temp folder.
   usual "built for an older version" and permission prompts on first launch, as for the original.
 - **Name:** More > Name (and a one-time prompt after the Prologue) opens an in-page box (the app's WebView has no
   `prompt()`); both servers put the chosen name in place of William in the speaker box and story text.
+
+## 5b. GitHub repository (2026-10-15)
+
+- **Where:** https://github.com/BlackrUSter4/mysweetroomies (public). The offline APK is the asset of release
+  **v1.0** (`MySweetRoomies_offline.apk`, 955 MB).
+- **License:** AGPL-3.0 (`LICENSE`) for the project's own code and documentation. `README.md` states that the
+  game's content (story text, characters, art, music, voices, names, logos) belongs to its owners and isn't covered,
+  and that the project isn't affiliated with the rights holders.
+- **What's in it** (`.gitignore`): `README.md`, `DOCUMENTATION.md`, `LICENSE`, `server/` (code, tests, data, story
+  transcripts, and the static files except the story pictures) and `offline/` (the in-app server's Java source and
+  the three build scripts), about 360 MB.
+- **What's left out:** `research/` (videos, OCR output and frame caches, tens of GB), the original APK and anything
+  built from it, `offline/decoded`, `offline/build`, `offline/tools`, the signing keystore, the story pictures
+  (`server/data/static/img/resource`, 7.3 GB; they're inside the APK), the local player database and logs. Without
+  the story pictures, stories play on a plain background and the tests that check pictures fail.
+- **Publishing an update:** commit and `git push`; for a new APK, rebuild (section 5a) and attach it to a new
+  release. A rebuilt APK is signed with a new key unless `offline/offline.keystore` is kept, and Android won't
+  install it over the released one without uninstalling first.
 
 ## 6. Still unknown or guessed
 
