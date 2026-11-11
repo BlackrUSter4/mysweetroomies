@@ -204,7 +204,10 @@ def main():
         z.write(os.path.join(R, "decoded", "assets", "Application", "sound", "bgm", "splash", "13_01.ogg"),
                 "assets/Application/cache/sound/bgm/13_01.ogg", compress_type=zipfile.ZIP_STORED)
         ost = os.path.join(R, "..", "server", "data", "static", "sound", "bgm", "ost")
-        for f in sorted(os.listdir(ost)):
+        if not os.path.isdir(ost):
+            # The soundtrack isn't in the repository (copyrighted); without it stories play without music.
+            print("no soundtrack in", ost, "(run convert_ost.py to add it); building without")
+        for f in sorted(os.listdir(ost)) if os.path.isdir(ost) else []:
             if f.endswith(".ogg"):
                 z.write(os.path.join(ost, f), "assets/Application/cache/sound/bgm/ost/" + f,
                         compress_type=zipfile.ZIP_STORED)

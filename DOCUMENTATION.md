@@ -1818,6 +1818,10 @@ Everything needed is in this folder. Nothing depends on a temp folder.
   built from it, `offline/decoded`, `offline/build`, `offline/tools`, the signing keystore, the story pictures
   (`server/data/static/img/resource`, 7.3 GB; they're inside the APK), the local player database and logs. Without
   the story pictures, stories play on a plain background and the tests that check pictures fail.
+  The soundtrack (MP3s and `static/sound/bgm/ost/`) is left out too (2026-11-11). The README's "What isn't in this
+  repository" table lists every left-out item with its size and what a build does without it, and "Building the
+  offline APK" has the step-by-step build, including the 64-bit one. A build without the soundtrack works
+  (`build_apk.py` skips it); `convert_ost.py <folder>` adds it.
 - **Publishing an update:** commit and `git push`. Never attach an APK or other game files to a release. A
   rebuilt APK is signed with a new key unless `offline/offline.keystore` is kept, and Android won't install it over
   one signed with another key without uninstalling first.

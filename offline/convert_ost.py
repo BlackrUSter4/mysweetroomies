@@ -1,17 +1,18 @@
 """Offline APK / server, soundtrack step: transcode the official soundtrack to the engine's BGM format.
 
 The "My Sweet Roomies! (Original Soundtrack)" download is 21 MP3s; the game engine (and the title BGM it ships,
-sound/bgm/13_01.ogg) uses Vorbis .ogg, so each track is re-encoded to .ogg (libvorbis -q:a 6) under the server's
+sound/bgm/13_01.ogg) uses Vorbis .ogg, so each track is re-encoded to .ogg (libvorbis -q:a 5, 44.1 kHz stereo) under the server's
 static tree at static/sound/bgm/ost/<slug>.ogg, and data/soundtrack.json is written with the catalog the server
 and the in-app music room read (app.py SOUNDTRACK). Resumable (skips tracks already converted). Needs ffmpeg.
-usage: python convert_ost.py   (point SRC at the soundtrack folder)"""
+usage: python convert_ost.py [folder]   (the folder holding the 21 MP3s, named like "Aki Theme1 - My Sweet
+Roomies!.mp3"; default: the download folder next to the repository root)"""
 import json
 import os
 import subprocess
 import sys
 
 R = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(R, "..", "My Sweet Roomies! (Original Soundtrack)_SpotifyDown_com")
+SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(R, "..", "My Sweet Roomies! (Original Soundtrack)_SpotifyDown_com")
 DST = os.path.join(R, "..", "server", "data", "static", "sound", "bgm", "ost")
 CATALOG = os.path.join(R, "..", "server", "data", "soundtrack.json")
 SUFFIX = " - My Sweet Roomies!.mp3"
