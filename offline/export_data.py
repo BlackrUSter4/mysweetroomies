@@ -90,6 +90,7 @@ def main():
         "panels_per_picture": S.PANELS_PER_PICTURE, "default_costume": S.DEFAULT_COSTUME,
         "card_suffix": S.CARD_SUFFIX, "default_bg": S.DEFAULT_BG, "default_face": S.DEFAULT_FACE,
         "courses": S.COURSES, "news": S.NEWS,
+        "soundtrack": [{**t, "url": f"/static/{v}/{t['file']}"} for t in S.SOUNDTRACK],
         "heroines": heroines, "overlays": overlays, "stories": stories, "photos": photos,
         "backgrounds": [{"name": k, "url": f"/static/{v}/{u}" if u else None} for k, u in S.BACKGROUNDS.items()],
         "events": [{**e, "banner_url": f"/static/{v}/{e['banner']}" if e.get("banner") else None} for e in S.EVENTS],

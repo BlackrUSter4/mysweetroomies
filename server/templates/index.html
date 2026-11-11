@@ -170,6 +170,13 @@
   .row.head.open:after { transform: rotate(-135deg); margin-top: 9px; }
   .row.go > span:first-child { text-decoration: underline; }
   .row.go:after { content: "\203A"; display: inline-block; color: #3d8fe0; font-size: 22px; line-height: 12px; }
+  /* Soundtrack (music room) */
+  #ost-body .sec { margin: 11px 4px 5px; font: 14px "Rnd", sans-serif; color: #c98a3a; }
+  #ost-body .sec:first-child { margin-top: 4px; }
+  #ost-body .trk { cursor: pointer; }
+  #ost-body .trk .ic { flex: 0 0 26px; height: 26px; border-radius: 50%; background: #5fd6a8; color: #fff; display: flex; align-items: center; justify-content: center; }
+  #ost-body .trk.on { border-left-color: #e2457a; color: #e2457a; background: repeating-linear-gradient(90deg, #ffe0ec 0 4px, #ffd4e4 4px 8px); }
+  #ost-body .trk.on .ic { background: #e2457a; }
   .red, .blue, .green { display: block; text-align: center; color: #fff; border-radius: 16px; padding: 7px; margin: 6px 4px; font-size: 13px; border: 2px solid #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
   .red { background: linear-gradient(#ff6b6b, #e3212e); } .blue { background: linear-gradient(#5aa8ff, #1e6ee0); margin: 6px 30px; }
   .green { background: linear-gradient(#6fd84f, #2fa52a); }
@@ -314,6 +321,7 @@
 <div id="photoview"></div>
 <div class="win" id="win-photo"><div class="t"><span class="hi"></span>Photo</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="photo-body"></div></div>
 <div class="win" id="win-more"><div class="t"><span class="hi"></span>More</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="more-body"></div></div>
+<div class="win" id="win-ost"><div class="t"><span class="hi"></span>Soundtrack</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="ost-body"></div></div>
 <div class="win" id="win-pass"><div class="t"><span class="hi"></span>Memory Pass</div><a class="x" href="javascript:closeWin()"></a><div class="b" id="pass-body"></div></div>
 <div class="win" id="win-result"><div class="t" id="result-title"></div><a class="x" href="javascript:closeWin()"></a><div class="b" id="result-body"></div></div>
 <div id="modal"><div id="modal-body"></div></div>
@@ -323,6 +331,7 @@
   var SESSION = "{{ session }}";
   var S = {{ state | tojson }};
   var timer = null, memTab = "main", memHeroine = null, memOpenHead = null, memHeads = [], charIdx = 0, newsCache = null;
+  var ostCache = null, ostAudio = null, ostPlaying = null;
   // What each heroine says in the post-story popup, read from the "Memory of ..." popups
   // in DevilGh0stz's chapter uploads (Chapter 5 of each route; the chapter-end lines from
   // Aoi C09, Ren C07/C11, Sayaka C12, Mitsuka C15, Aki C55, Misaki C23).
@@ -359,12 +368,13 @@
     more: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><circle cx="12" cy="17" r=".6"/>',
     mail: '<rect x="3" y="5" width="18" height="14"/><path d="M3 5l9 8 9-8"/>',
     grid: '<rect x="3" y="3" width="5" height="5"/><rect x="10" y="3" width="5" height="5"/><rect x="17" y="3" width="4" height="5"/><rect x="3" y="10" width="5" height="5"/><rect x="10" y="10" width="5" height="5"/><rect x="17" y="10" width="4" height="5"/><rect x="3" y="17" width="5" height="4"/><rect x="10" y="17" width="5" height="4"/><rect x="17" y="17" width="4" height="4"/>',
-    book: '<path d="M2 5c4-1 7 0 10 2 3-2 6-3 10-2v14c-4-1-7 0-10 2-3-2-6-3-10-2z"/><path d="M12 7v14"/>'
+    book: '<path d="M2 5c4-1 7 0 10 2 3-2 6-3 10-2v14c-4-1-7 0-10 2-3-2-6-3-10-2z"/><path d="M12 7v14"/>',
+    sound: '<path d="M9 17V4l10-2v13"/><circle cx="6.5" cy="17" r="2.5"/><circle cx="16.5" cy="15" r="2.5"/>'
   };
   var MENU = [["News", "news", "openWin('news')"], ["Present", "present", "toast('No present available.')"], ["Photo", "photo", "openWin('photo')"],
     ["Item", "item", "openWin('item')"], ["Shop", "shop", "openShop()"], ["Machine", "gacha", "openWin('gacha')"], ["Dress Up", "dress", "openWin('dress')"],
     ["Character", "character", "openCharacter()"], ["Memory", "memory", "openMemory(S.heroine_id)"], ["More", "more", "openWin('more')"],
-    ["Inquiries", "mail", "toast('Inquiries are closed.')"]];
+    ["Soundtrack", "sound", "openWin('ost')"], ["Inquiries", "mail", "toast('Inquiries are closed.')"]];
 
   // ---- plumbing -----------------------------------------------------------
   function qs(pairs) {
@@ -387,7 +397,7 @@
     xhr.send(body ? JSON.stringify(body) : null);
   }
   // pairs is an ordered array because the bridge maps arguments by position.
-  function native(name, pairs, cb) { http("GET", "/native/" + name + qs(pairs), null, function (s, d, t) { if (cb) cb(t); }); }
+  function native(name, pairs, cb) { if (name === "start_story") fadeBgm(); http("GET", "/native/" + name + qs(pairs), null, function (s, d, t) { if (cb) cb(t); }); }
   function el(id) { return document.getElementById(id); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
   function toast(msg) { var t = el("toast"); t.textContent = msg; t.style.display = "block"; setTimeout(function () { t.style.display = "none"; }, 2200); }
@@ -404,9 +414,14 @@
   function playSound(url) { try { var p = new Audio(url).play(); if (p && p.catch) p.catch(function () {}); } catch (e) {} }
   function se(name) { playSound("/static/1/sound/se/se-system-" + name + ".ogg"); }
   function store(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) {} }
-  // Title music: the APK's splash BGM. Browsers block sound before a touch, so a touch on the title starts
-  // it if the 4.03 s callback couldn't. Option turns it off (remembered per browser); it fades out on home.
+  // Music: the APK's splash BGM, the only music that survived (the home and story tracks were downloads from
+  // the live server). It starts on the title, keeps looping on home and fades out when a story starts.
+  // Browsers block sound before a touch, so any touch starts it if nothing could (the 4.03 s title callback,
+  // or home after returning from a story). Option turns it off (remembered per browser).
   var bgm = null;
+  document.addEventListener("click", function () {
+    if ((!bgm || bgm.paused) && el("opening").style.display !== "block") playBgm();
+  }, true);
   function bgmOff() { try { return localStorage.getItem("bgm_off") === "1"; } catch (e) { return false; } }
   function playBgm() {
     if (bgmOff()) return;
@@ -479,9 +494,9 @@
     se("button");
     el("title").style.display = "none"; el("alttitle").style.display = "none";
     var seen = null; try { seen = localStorage.getItem("notice_seen"); localStorage.setItem("notice_seen", "1"); } catch (e) {}
-    if (!seen) el("notice").style.display = "block"; else fadeBgm();
+    if (!seen) el("notice").style.display = "block";
   }
-  function closeNotice() { el("notice").style.display = "none"; se("close"); fadeBgm(); }
+  function closeNotice() { el("notice").style.display = "none"; se("close"); }
   function openWin(name) {
     se("button");
     closeWin(true);
@@ -491,6 +506,7 @@
   }
   function closeWin(keepTimer) {
     if (document.body.className === "win-open" && keepTimer !== true) se("close");
+    ostStop();
     var w = document.querySelectorAll(".win");
     for (var i = 0; i < w.length; i++) w[i].className = "win";
     el("modal").style.display = "none";
@@ -639,6 +655,35 @@
     for (var i = 0; i < MENU.length; i++) html += '<a href="javascript:' + MENU[i][2] + '"><span>' + svg(ICON[MENU[i][1]], 30) + "<b>" + MENU[i][0] + "</b></span></a>";
     el("menugrid").innerHTML = html;
   }
+
+  // ---- Soundtrack (music room) ----------------------------------------------
+  // The official soundtrack (/api/soundtrack), grouped main / character themes / mood. Tapping a track plays it on
+  // a loop with its own <audio>; the title BGM is paused so they don't overlap, and playback stops on close.
+  function render_ost() {
+    if (!ostCache) { el("ost-body").innerHTML = '<p style="text-align:center;color:#8a6a4a">Loading...</p>';
+      http("GET", "/api/soundtrack", null, function (s, d) { ostCache = (d && d.tracks) || []; render_ost(); }); return; }
+    var secName = {main: "Main Theme", character: "Character Themes", mood: "Mood"}, html = "", lastCat = null;
+    for (var i = 0; i < ostCache.length; i++) {
+      var t = ostCache[i], on = ostPlaying === t.slug;
+      if (t.category !== lastCat) { lastCat = t.category; html += '<div class="sec">' + (secName[t.category] || "") + "</div>"; }
+      var icon = on ? '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>' : '<path d="M8 5v14l11-7z"/>';
+      html += '<a class="row trk' + (on ? " on" : "") + '" href="javascript:ostPlay(\'' + t.slug + '\')"><span>' + esc(t.title) +
+        '</span><span class="ic">' + svg(icon, 15, true) + "</span></a>";
+    }
+    el("ost-body").innerHTML = html;
+  }
+  function ostPlay(slug) {
+    var t = null;
+    for (var i = 0; i < ostCache.length; i++) if (ostCache[i].slug === slug) t = ostCache[i];
+    if (!t) return;
+    if (ostPlaying === slug) { if (ostAudio) ostAudio.pause(); ostPlaying = null; render_ost(); return; }
+    if (bgm) bgm.pause();   // don't play over the title theme
+    if (!ostAudio) { ostAudio = new Audio(); ostAudio.loop = true; ostAudio.volume = .7; }
+    ostAudio.src = t.url;
+    try { var p = ostAudio.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {}
+    ostPlaying = slug; render_ost();
+  }
+  function ostStop() { if (ostAudio) ostAudio.pause(); ostPlaying = null; }
 
   // ---- Memory (Main Story / Secret Story / Epilogue / Event Story) ---------
   function openMemory(hid) { memHeroine = heroine(hid).hidden ? visible()[0].id : hid; memTab = "main"; memOpenHead = null; openWin("memory"); }

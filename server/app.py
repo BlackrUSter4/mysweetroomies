@@ -108,6 +108,18 @@ def load_fixture(path):
 HEROINES = load_fixture(DATA_DIR / "heroines.json")
 HEROINE_BY_ID = {h["id"]: h for h in HEROINES}
 
+# The official soundtrack (My Sweet Roomies! Original Soundtrack, 21 tracks), transcoded to the engine's BGM
+# format (Vorbis .ogg, like sound/bgm/13_01.ogg) under static/sound/bgm/ost/ (offline/convert_ost.py). Each
+# entry: slug, display title, category (main|character|mood), file path, and heroine_id for a character theme.
+SOUNDTRACK = load_fixture(DATA_DIR / "soundtrack.json") or []
+SOUNDTRACK_BY_SLUG = {t["slug"]: t for t in SOUNDTRACK}
+# A story plays its heroine's first character theme; the shared prologue and any heroine-less story use the main
+# theme. The original per-scene tracks were downloads from the live server and are lost, so this is a best-effort
+# match rather than the exact in-game cue (see engine_format).
+HEROINE_BGM = {t["heroine_id"]: t["file"] for t in SOUNDTRACK
+               if t.get("category") == "character" and t["title"].endswith("Theme 1")}
+MAIN_BGM = next((t["file"] for t in SOUNDTRACK if t.get("category") == "main"), "sound/bgm/13_01.ogg")
+
 
 # Route structure from data/chapter_titles.json: an ordered list of chapters per
 # heroine with the label and title printed on each in-game title card. Lengths
@@ -970,6 +982,14 @@ def api_courses():
     return jsonify(courses=COURSES)
 
 
+@app.route("/api/soundtrack")
+def api_soundtrack():
+    """The official soundtrack for the in-app music room (templates/index.html). Each track carries a ready URL
+    to its .ogg under the static tree; the home screen plays it with an HTML5 <audio>."""
+    tracks = [{**t, "url": f"/static/{STATIC_VERSION}/{t['file']}"} for t in SOUNDTRACK]
+    return jsonify(tracks=tracks)
+
+
 @app.route("/api/gacha/<heroine_id>", methods=["POST"])
 def api_gacha(heroine_id):
     """Crystals buy costume gacha pulls for the dress-up (着せ替え) mode."""
@@ -1092,6 +1112,29 @@ def end_mark_type(sid):
     return "end" if last and s["kind"] != "prologue" else "continue"
 
 
+# Story pictures that came out solid black: the line's text appeared while the scene was still fading in, so its
+# frame of the recording is black (research/black_frames.py, 115 of 9,874).
+BLACK_FRAMES = set(load_fixture(DATA_DIR / "black_frames.json") or [])
+
+
+def unblack(bgs):
+    """Per-line picture names -> the same with each black one replaced by the part's next real picture (the scene
+    fading in), or the previous one at the end of a part."""
+    out, nxt = list(bgs), None
+    for i in range(len(out) - 1, -1, -1):
+        if out[i] in BLACK_FRAMES:
+            out[i] = nxt
+        elif out[i]:
+            nxt = out[i]
+    prev = None
+    for i, bg in enumerate(out):
+        if bg:
+            prev = bg
+        elif bgs[i] in BLACK_FRAMES:
+            out[i] = prev
+    return out
+
+
 def engine_format(sid, content):
     """Convert stored transcripts to the layout libotome.so actually parses.
 
@@ -1132,6 +1175,11 @@ def engine_format(sid, content):
         if visual:
             entry["visual"] = visual
         out.append(entry)
+    for entry, bg in zip(out, unblack([e["scene"].get("bg") for e in out])):
+        if bg:
+            entry["scene"]["bg"] = bg
+        else:
+            entry["scene"].pop("bg", None)
     # Recordings: a chapter's first part opens on the heroine's name card with the
     # title in the narration box ("Chapter 5 - A Helping Hand", "Epilogue 2").
     story = STORY_BY_ID.get(sid)
@@ -1144,6 +1192,15 @@ def engine_format(sid, content):
         elif out and out[0]["scene"].get("bg"):
             title["bg"] = out[0]["scene"]["bg"]
         out.insert(0, {"scene": title})
+    # Music: the original per-scene tracks were downloads from the live server and are lost, so each story opens on
+    # its heroine's character theme from the official soundtrack (HEROINE_BGM; the shared prologue and heroine-less
+    # stories use the main theme). The engine passes "Application/cache/" + audio.bgm to AudioProcessor.playBgm,
+    # which opens a path without a leading "/" from the APK's assets and loops it; lines without audio.bgm keep it
+    # playing. The offline APK carries every soundtrack file there (offline/build_apk.py); the original APK doesn't,
+    # so on the PC server stories stay silent (the engine catches the FileNotFoundException).
+    if out and not any(e.get("audio", {}).get("bgm") for e in out):
+        story_bgm = HEROINE_BGM.get((story or {}).get("heroine_id"), MAIN_BGM)
+        out[0].setdefault("audio", {})["bgm"] = story_bgm
     if out and "end_mark" not in out[-1].get("visual", {}):
         out[-1].setdefault("visual", {})["end_mark"] = {"type": end_mark_type(sid)}
     return {"scenario_id": content.get("scenario_id", sid), "scenario_data": out}
@@ -1157,9 +1214,8 @@ def scene_pictures(sid):
     seen = []
     if story.get("kind") in ("main", "epilogue") and story.get("part") == 1             and (STATIC_DIR / "img" / "resource" / "bg" / f"card_{story['heroine_id']}.png").is_file():
         seen.append(f"/img/resource/bg/card_{story['heroine_id']}.png")
-    for line in content.get("scenario_data", []):
-        scene = line.get("scene") if isinstance(line.get("scene"), dict) else {}
-        bg = scene.get("bg")
+    lines = content.get("scenario_data", [])
+    for bg in unblack([(line.get("scene") if isinstance(line.get("scene"), dict) else {}).get("bg") for line in lines]):
         if isinstance(bg, str) and bg and f"/img/resource/bg/{bg}.png" not in seen                 and (STATIC_DIR / "img" / "resource" / "bg" / f"{bg}.png").is_file():
             seen.append(f"/img/resource/bg/{bg}.png")
     return seen

@@ -1271,7 +1271,8 @@ A fan collection from a Google Drive folder "My Sweet Roomies! Mega Assets".
     `NoticeSceneLayer.ccbi` is `top_bg` with the notice fading in at 0.17–1.03 s.
 
     **Title music:** the pack's "Opening Track.ogg" is byte-identical to the APK's `sound/bgm/splash/13_01.ogg`,
-    the only BGM in the APK.
+    the only BGM the *original* APK ships. (The offline build also carries the official soundtrack — see
+    **Soundtrack** below — but the title screen still plays this track, as the game did.)
 
     **The mock** (`templates/index.html`) follows this exactly.
     - The game starts on the START button; the notice follows on first use.
@@ -1299,6 +1300,21 @@ A fan collection from a Google Drive folder "My Sweet Roomies! Mega Assets".
   - **Sounds:** `se-system-button` when a window opens or on the title tap, `se-system-close` when a window
     closes, `se-system-bonus` on a login bonus (`static/sound/se/`). `se-system-gachaget` was already in use.
     The story sound effects (door, footsteps…) aren't wired up, because the transcripts carry no sound cues.
+  - **Soundtrack (2026-10-16):** the official **My Sweet Roomies! Original Soundtrack** (21 tracks: the main
+    theme, each heroine's one-to-three character themes, and seven mood pieces — Common, Date, Recollection,
+    Noisy, Anger, Painful, Sadness) is now in the game. `offline/convert_ost.py` transcodes the download's MP3s
+    to the engine's BGM format (Vorbis `.ogg`, like `sound/bgm/13_01.ogg`) under
+    `static/sound/bgm/ost/<slug>.ogg` and writes the catalog `data/soundtrack.json`.
+    - **Story music.** The original per-scene tracks were downloads from the live server and are lost, so
+      `engine_format` (app.py) now opens each story on **its heroine's first character theme** (`HEROINE_BGM`);
+      the shared prologue and any heroine-less story use the main theme (`MAIN_BGM`). This is a best-effort match,
+      not the exact in-game cue. As before, the native engine plays `Application/cache/` + `audio.bgm`, so the
+      offline APK carries every track there (`offline/build_apk.py`, stored uncompressed); the PC server stays
+      silent for stories (no native engine).
+    - **Music room.** A new **Soundtrack** item on the home MENU opens a list of all 21 tracks grouped main /
+      character / mood; tapping one loops it on an HTML5 `<audio>` (the title BGM is paused so they don't overlap,
+      and it stops when the window closes). Served from `/api/soundtrack`; in the offline APK the Java server
+      answers the same route from `static.json` (`export_data.py`, `Game.java`).
 - **Used so far:** Ren's six outfits (`research/ren_outfits.py`, via the new `research/cut_anime.py`, which runs
   background removal at the CPU cap, with options for crop, upscale, colour drop, erosion and top-bar
   repair), and on 2026-10-13 the other heroines' 19 (`research/mega_outfits.py`; section 3
@@ -1701,20 +1717,75 @@ Everything needed is in this folder. Nothing depends on a temp folder.
   time, so the header crypto works with any key.
 - **Rebuild after server changes:** `cd offline && python export_data.py && python export_static.py && python
   build_apk.py`. Rule changes in `app.py` must also be ported to `Game.java`.
-- **Installing on real hardware:** the original targets API 21, which Android 14+ refuses to install ("not
-  compatible"), so `build_apk.py` bumps `targetSdkVersion` to 23 (the lowest that clears the block while keeping
-  cleartext HTTP on by default and not needing explicit `android:exported`), adds `usesCleartextTraffic="true"`
+- **Installing on real hardware:** the original targets API 21, which newer Android refuses to install ("not
+  compatible" — API 14 blocks `targetSdk < 23`, API 15/16 block `< 24`), so `build_apk.py` bumps
+  `targetSdkVersion` to 24 (the lowest that installs everywhere while keeping cleartext HTTP on by default and not
+  needing explicit `android:exported`), adds `usesCleartextTraffic="true"`
   for the localhost mock, and drops the permissions an offline build never uses — the ones Play Protect flags on a
   sideloaded repack (`INTERACT_ACROSS_USERS_FULL`, `SYSTEM_ALERT_WINDOW`, `WRITE_SETTINGS`, `GET_TASKS`, Play
   Billing, C2DM push, `GET_ACCOUNTS`, `DISABLE_KEYGUARD`, `ACCESS_WIFI_STATE`). The generic unknown-source warning
   still needs a one-time "install anyway". `lib/armeabi/libotome.so` is 32-bit-only, so a 64-bit-only phone
-  (e.g. Pixel 7+) still can't run it — there's no source to rebuild it for arm64.
+  (e.g. Pixel 7+) still can't run it — there's no source to rebuild it for arm64, so it's being rewritten (see "64-bit rebuild" below).
+- **64-bit rebuild (started 2026-11-10, paused 2026-11-11 after phase 1; not yet linked or tested on a device):** a new `libotome.so` for
+  `arm64-v8a`, so the APK runs on 64-bit-only phones (Snapdragon 8 Elite class, Pixel 7+) that can't run the
+  32-bit original at all. Working notes, rules and per-subsystem status: `offline/native64/REWRITE.md`.
+  - **What the original is:** `lib/armeabi/libotome.so` (5.9 MB, the only native library) is **cocos2d-x 2.2.6**
+    (build paths `cocos2d-x-2.2.6/projects/cocos2dx-MaidOtome/proj.roomies`, the studio's shared "MaidOtome" novel
+    engine) plus the game's own C++ (~700 functions in ~100 classes: scene manager, story parser, canvas and
+    character rendering, text window, title/option screens). The dynamic symbol table kept every C++ name and
+    signature, which is what makes a faithful rewrite possible. Java does all networking and downloads
+    (`ResourceLoader` fetches the story JSON and pictures to files) and plays sound (`AudioProcessor`); the native
+    side reads local files and draws.
+  - **How it's rebuilt:** stock cocos2d-x 2.2.6 compiled for arm64 with NDK 27.2 through CMake + Ninja
+    (`offline/native64/CMakeLists.txt`; ndk-build can't handle the space in the project path). Only the pieces the
+    game uses: cocos2dx core, CocosDenshion, and the CCBReader / CCControlExtension / CCScrollView extensions;
+    libpng 1.6.44 from source. JPEG/TIFF/WebP are compiled out (every asset is PNG, and the 2014 prebuilt image
+    libraries have no arm64 build). The core links whole-archive, because the engine's JNI entry points are only
+    called from Java and a normal static link drops them. `tools/fetch_deps.py` downloads cocos2d-x and libpng and
+    reapplies the one engine patch (CCImage PNG-only), so a fresh clone can rebuild.
+  - **The game code:** decompiled with Ghidra 12.1.4 headless (`native64/re/`, kept local and out of git), with
+    the PIC string loads resolved to their literals (`re/resolve_strings.py`; Ghidra loads the .so at base
+    0x10000) and every symbol grouped per class as the interface contract (`re/signatures.txt`). Each class is
+    rewritten as readable C++11 in `native64/src/` with the original class and method names, so the unchanged
+    Java side and the `.ccbi` layouts bind to it as before. It's done in five subsystems:
+    - **story-core (done):** story / scenario / offset JSON data (picojson), every enum with the original's values
+      (read from its static initialisers), `SceneDataParser`, `SceneManager`. Event cycle: Setup, then per line
+      PreRender, PreEffect and MainRender (from the second line on, PostEffect of the previous line first), then
+      Finish; `link_scene` "1" advances by itself after 0.25 s. Default auto-play delay 4.25 s.
+    - **platform (done):** all 27 game JNI entry points, checked against the smali; `AppDelegate`; config
+      (`/json/app.json` with the `product` and `product/android` overlays); preferences; `SoundEngine` through Java
+      `AudioProcessor`; `MediaConnector`, `ResourceManager`, `TextureManager`, `SceneConnector`.
+    - **render, text, ui (next; paused 2026-11-11 before any files were written):** canvas, characters,
+      backgrounds, effects, filters and shaders, the story scene; the text window and backlog; title / notice /
+      debug screens, options, menus and widgets. Each can start straight from `REWRITE.md` (the phase-1 Status
+      sections list the APIs they code against and the headers phase 1 expects from them: `FilterData.h`,
+      `BaseFilter.h`, `BeforeScene.h`, `AfterScene.h`, `ColorString.h`).
+  - **Checks:** `tools/check.py` syntax-checks sources with the real build flags; `tools/check_exports.py`
+    compares the new library's `Java_*` exports with the original's 44 (all 17 cocos2d-x ones present; the game's
+    27 need the finished link).
+  - **Deliberate changes:** where the original crashed on bad input (wrong-typed JSON, missing offset entries,
+    null Java strings, failed JNI lookups) the rewrite skips or uses defaults. The four image filters call their
+    Java methods as boolean, where the original read them as float (wrong JNI type; nothing reads the result).
+  - **Packaging:** `build_apk.py --arm64` adds the build as `lib/arm64-v8a/libotome.so` next to the original
+    `armeabi` one; without the flag the APK is unchanged. Phones that can still run 32-bit code will also pick the
+    64-bit build (Android prefers the primary ABI). The library links with 16 KB page alignment for Android 15+.
+  - **Still to do:** write render/text/ui, full link and export check, `--arm64` APK build, then testing on a
+    device (held until the user says so).
 - **Loading-screen crash (fixed):** `AuthInfo.readDeviceId` called `TelephonyManager.getDeviceId()`, which throws
   `SecurityException` on Android 10+ for a non-privileged app; it crashed on the WebView's first request, so the
   app sat on the loading screen forever on real phones (the MuMu emulator doesn't enforce the restriction, which
   is why it was missed). `build_apk.py` patches that call in `AuthInfo.smali` to `const/4 v1, 0x0`, so the method's
   existing Build-based fallback id is used; no telephony permission is needed and it runs on every phone. Confirmed
   on a real moto g stylus 5G (Android 13): installs with no granted permissions, title screen and Prologue play.
+- **Stories failing to load / "Failed Loading" (fixed 2026-10-16):** on some devices (confirmed on a Galaxy Tab
+  S9 FE, Android 16) the native engine's HTTP client (Volley) sends the request line in **absolute-form**
+  (`GET http://127.0.0.1:18765/my/ HTTP/1.1`) rather than origin-form (`GET /my/`). The in-app `HttpServer` was
+  using the whole target as the path, so every route missed and the request fell through to the SPA index page;
+  the engine's `ProxyJson.parse` then failed on the HTML, which the mypage loader swallows (home still renders
+  from the WebView) but the adventure loader reports as "Failed Loading", and in a `--debug` build the engine's
+  own `AppLog.loge` even crashes formatting the HTML (a stray `%`). `HttpServer.parse` now strips the scheme and
+  authority from an absolute-form target (RFC 7230 §5.3.2), so mypage and all story loading work. The static
+  requests always worked because the WebView sends them origin-form. Confirmed: stories load and play on the tablet.
 - **Checked on MuMu (Android 12):** title, Prologue, home, touch scene, Dress Up, name change. Android shows its
   usual "built for an older version" and permission prompts on first launch, as for the original.
 - **Name:** More > Name (and a one-time prompt after the Prologue) opens an in-page box (the app's WebView has no
@@ -1758,6 +1829,7 @@ Everything needed is in this folder. Nothing depends on a temp folder.
 | Secret Story / Event Story lists | 56 secret stories in the mock, 49 with official English titles, 5 crystals each; text for Aki 1 and Aoi 1 (sixth pass); Event Stories: names only | REBIRTH Discord; more SandDistress/Yu_Tsugami footage |
 | Whether the Prologue costs energy | guessed (it does in the mock) | footage of a fresh account |
 | 3 chapter titles (Mitsuka 13, Aoi 54, Sayaka 48) | **official English found** 2026-10-12: The Bikini Show / Our Happiness / Brief Respite | — |
+| 64-bit-only devices | **in progress** since 2026-11-10: arm64 rewrite of `libotome.so` on cocos2d-x 2.2.6 (section 5a, "64-bit rebuild"; `offline/native64/REWRITE.md`) | — |
 | Story text, all routes | **done** 2026-10-10; skipped-line pass done 2026-10-12 (67 lines restored, Sayaka 48 part 2 added); proofreading pass + frame check 2026-10-15 (3,258 lines corrected); full second read against the videos 2026-10-15 (1,414 more + quotes on 2,013); punctuation-only slips remain | — |
 
 ## 7. Sources and tools

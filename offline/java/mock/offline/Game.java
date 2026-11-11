@@ -342,6 +342,7 @@ final class Game {
         if (p.equals("/api/name") && post) return setName(c);
         if (p.equals("/api/news") && get) return json(jo("news", S.getJSONArray("news")));
         if (p.equals("/api/courses") && get) return json(jo("courses", S.getJSONObject("courses")));
+        if (p.equals("/api/soundtrack") && get) return json(jo("tracks", S.getJSONArray("soundtrack")));
         Matcher mm = P_HEROINE.matcher(p);
         if (mm.matches()) {
             String kind = mm.group(1), hid = mm.group(2);

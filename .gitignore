@@ -19,3 +19,17 @@ __pycache__/
 .pytest_cache/
 *.idsig
 /.claude/
+
+# arm64 engine rewrite: downloaded sources (offline/native64/tools/fetch_deps.py), build output, and the
+# decompile of the original library (third-party code, kept local)
+/offline/native64/cocos2d-x-cocos2d-x-2.2.6/
+/offline/native64/libpng-1.6.44/
+/offline/native64/build/
+/offline/native64/re/
+
+# the official soundtrack: the ripped mp3s/zip and their ogg transcodes (offline/convert_ost.py) are copyrighted
+# audio; build_apk.py bundles them locally, data/soundtrack.json lists what's expected
+/*.mp3
+/*_SpotifyDown_com.zip
+/*_SpotifyDown_com/
+/server/data/static/sound/bgm/ost/

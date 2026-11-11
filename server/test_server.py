@@ -448,3 +448,26 @@ def test_player_name_replaces_william_in_stories():
     assert c.post("/api/name", headers=h, json={"name": "Mihile"}).status_code == 200
     text = body()
     assert "William" not in text and "Mihile" in text
+
+
+def test_soundtrack_catalog():
+    c = make_client()
+    r = c.get("/api/soundtrack", headers=client_headers()).get_json()
+    tracks = r["tracks"]
+    assert len(tracks) == 21                                                   # the full official soundtrack
+    assert tracks[0]["category"] == "main"                                     # main theme listed first
+    # every track resolves to an .ogg the static route serves, and one per heroine is a "Theme 1"
+    for t in tracks:
+        assert t["url"] == f"/static/{server.STATIC_VERSION}/{t['file']}"
+        assert (server.STATIC_DIR / t["file"]).is_file()
+    assert set(server.HEROINE_BGM) == {"01", "02", "03", "04", "05", "06"}
+
+
+def test_story_plays_heroine_theme():
+    c = make_client()
+    h = client_headers()
+    first_bgm = lambda sid: next(                                              # noqa: E731
+        (x["audio"]["bgm"] for x in c.get(f"/scenarios/{sid}/transcript", headers=h)
+         .get_json()["content"]["scenario_data"] if x.get("audio", {}).get("bgm")), None)
+    assert first_bgm(server.story_id("04", 1, 1)) == server.HEROINE_BGM["04"]  # Aoi -> her theme
+    assert first_bgm("530000000001") == server.MAIN_BGM                        # shared prologue -> main theme

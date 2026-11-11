@@ -152,6 +152,14 @@ public final class HttpServer {
         Req r = new Req();
         r.method = parts[0];
         String target = parts[1];
+        // The native engine's HTTP client (Volley/HttpURLConnection) sends the request line in absolute-form
+        // ("GET http://127.0.0.1:18765/my/ HTTP/1.1") on some devices/Android versions, not origin-form ("GET /my/").
+        // RFC 7230 5.3.2: a server must accept absolute-form, so strip the scheme+authority down to the path, or every
+        // route misses and the request falls through to the SPA index (mypage + all story loading fail).
+        if (target.startsWith("http://") || target.startsWith("https://")) {
+            int s = target.indexOf("://") + 3, slash = target.indexOf('/', s);
+            target = slash >= 0 ? target.substring(slash) : "/";
+        }
         int q = target.indexOf('?');
         r.path = q >= 0 ? target.substring(0, q) : target;
         if (q >= 0) { r.rawQuery = target.substring(q + 1); parseQuery(r.rawQuery, r.query); }
