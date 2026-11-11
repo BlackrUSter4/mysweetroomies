@@ -21,7 +21,7 @@ playthrough videos (section 4).
 |---|---|
 | Run | `cd server && python app.py` (port 80) · `--port 8080` · `--apk <apk>` for a re-signed APK |
 | Offline APK | `offline/MySweetRoomies_offline.apk` (955 MB, the server inside; see section 5a) |
-| Repository | https://github.com/BlackrUSter4/mysweetroomies (public, AGPL-3.0; APK under Releases v1.0) |
+| Repository | https://github.com/BlackrUSter4/mysweetroomies (public, AGPL-3.0; no prebuilt APK, see section 5b) |
 | Try in a browser | `http://localhost/?dev=1` |
 | Tests | `python -m pytest test_server.py` (34 pass) |
 | Research scripts + raw data | `research/` |
@@ -1726,7 +1726,7 @@ Everything needed is in this folder. Nothing depends on a temp folder.
   Billing, C2DM push, `GET_ACCOUNTS`, `DISABLE_KEYGUARD`, `ACCESS_WIFI_STATE`). The generic unknown-source warning
   still needs a one-time "install anyway". `lib/armeabi/libotome.so` is 32-bit-only, so a 64-bit-only phone
   (e.g. Pixel 7+) still can't run it — there's no source to rebuild it for arm64, so it's being rewritten (see "64-bit rebuild" below).
-- **64-bit rebuild (started 2026-11-10, paused 2026-11-11 after phase 1; not yet linked or tested on a device):** a new `libotome.so` for
+- **64-bit rebuild (started 2026-11-10; all code written, linked and packaged 2026-11-11; not yet tested on a device):** a new `libotome.so` for
   `arm64-v8a`, so the APK runs on 64-bit-only phones (Snapdragon 8 Elite class, Pixel 7+) that can't run the
   32-bit original at all. Working notes, rules and per-subsystem status: `offline/native64/REWRITE.md`.
   - **What the original is:** `lib/armeabi/libotome.so` (5.9 MB, the only native library) is **cocos2d-x 2.2.6**
@@ -1755,22 +1755,34 @@ Everything needed is in this folder. Nothing depends on a temp folder.
     - **platform (done):** all 27 game JNI entry points, checked against the smali; `AppDelegate`; config
       (`/json/app.json` with the `product` and `product/android` overlays); preferences; `SoundEngine` through Java
       `AudioProcessor`; `MediaConnector`, `ResourceManager`, `TextureManager`, `SceneConnector`.
-    - **render, text, ui (next; paused 2026-11-11 before any files were written):** canvas, characters,
-      backgrounds, effects, filters and shaders, the story scene; the text window and backlog; title / notice /
-      debug screens, options, menus and widgets. Each can start straight from `REWRITE.md` (the phase-1 Status
-      sections list the APIs they code against and the headers phase 1 expects from them: `FilterData.h`,
-      `BaseFilter.h`, `BeforeScene.h`, `AfterScene.h`, `ColorString.h`).
+    - **render (done 2026-11-11):** `CanvasLayer`, the person / background / effect renderers, `FilterData` and
+      the six filters, shader and blur sprites, `ConversationScene`, `BeforeScene` / `AfterScene` / `IdleScene`.
+      Timings read from the disassembly: BeforeScene 0.01 s, AfterScene 0.5 s, taps re-armed every 0.3 s; Java
+      blur radius 7 / 15 for option 0 / 1. Fixes: a fade of type "none" now reports done (the original never did
+      and the story froze); `ShaderSprite::draw` sets its vertex attributes and keeps the shader source alive.
+    - **text (done 2026-11-11):** `TextWindowLayer`, `ColorString`, `TextLogManager` (backlog capped at 80 lines,
+      in memory only, as in the original), `TextLogDialog`; helpers in `TextHelpers`.
+    - **ui (done 2026-11-11, two halves):** scenes and menus (start / notice / debug screens and their CCBReader
+      loaders, `OptionMenuScene`, `OptionsDialog`, `OverlayMenuLayer`, `MenuLayer`, `AppMenuLayer`, shared helpers
+      in `UiHelpers`) and widgets (`MiModalLayer`, `MiDialog`, `MiToast`, `MiSlider`, `MiScale9Sprite`,
+      `CCControlSliderTouchable`, `EnvTableLayer`, `LoadingSceneLayer`, `TouchLayer`). Selector casts to
+      mismatched member types became small adapter methods; listeners that captured a destroyed layer are now
+      removed in its destructor.
   - **Checks:** `tools/check.py` syntax-checks sources with the real build flags; `tools/check_exports.py`
-    compares the new library's `Java_*` exports with the original's 44 (all 17 cocos2d-x ones present; the game's
-    27 need the finished link).
+    compares the new library's `Java_*` exports with the original's 44. As of 2026-11-11: all 81 sources pass
+    check.py with no warnings in the game code, the library links (AArch64; needs only GLESv2, EGL, log, z,
+    android, m, dl, c) and **44/44 exports are present**.
   - **Deliberate changes:** where the original crashed on bad input (wrong-typed JSON, missing offset entries,
     null Java strings, failed JNI lookups) the rewrite skips or uses defaults. The four image filters call their
     Java methods as boolean, where the original read them as float (wrong JNI type; nothing reads the result).
   - **Packaging:** `build_apk.py --arm64` adds the build as `lib/arm64-v8a/libotome.so` next to the original
     `armeabi` one; without the flag the APK is unchanged. Phones that can still run 32-bit code will also pick the
-    64-bit build (Android prefers the primary ABI). The library links with 16 KB page alignment for Android 15+.
-  - **Still to do:** write render/text/ui, full link and export check, `--arm64` APK build, then testing on a
-    device (held until the user says so).
+    64-bit build (Android prefers the primary ABI). The library links with 16 KB page alignment for Android 15+ (LOAD segments align 0x4000). The CMake build keeps
+    debug info (30 MB) for `ndk-stack`; `build_apk.py` packs a copy run through `llvm-strip --strip-unneeded`.
+  - **Still to do:** testing on a device (held until the user says so). Open questions to settle there are listed
+    in `REWRITE.md`: whether particle x is mirrored the way the stories were authored, whether the "hard" shake
+    (1/5 of the screen width) was intended, and `ConversationScene::onTouchMenuPopup` running with the
+    `AppMenuLayer` as `this` (kept from the original; safe because it only calls `addChild`).
 - **Loading-screen crash (fixed):** `AuthInfo.readDeviceId` called `TelephonyManager.getDeviceId()`, which throws
   `SecurityException` on Android 10+ for a non-privileged app; it crashed on the WebView's first request, so the
   app sat on the loading screen forever on real phones (the MuMu emulator doesn't enforce the restriction, which
@@ -1793,8 +1805,9 @@ Everything needed is in this folder. Nothing depends on a temp folder.
 
 ## 5b. GitHub repository (2026-10-15)
 
-- **Where:** https://github.com/BlackrUSter4/mysweetroomies (public). The offline APK is the asset of release
-  **v1.0** (`MySweetRoomies_offline.apk`, 955 MB).
+- **Where:** https://github.com/BlackrUSter4/mysweetroomies (public). The offline APK was the asset of release
+  **v1.0** until 2026-11-11; it contains the original game, and posting it got the owner's account banned, so it
+  was removed and **no APK is published any more**. People build it from their own copy of the original APK.
 - **License:** AGPL-3.0 (`LICENSE`) for the project's own code and documentation. `README.md` states that the
   game's content (story text, characters, art, music, voices, names, logos) belongs to its owners and isn't covered,
   and that the project isn't affiliated with the rights holders.
@@ -1805,9 +1818,11 @@ Everything needed is in this folder. Nothing depends on a temp folder.
   built from it, `offline/decoded`, `offline/build`, `offline/tools`, the signing keystore, the story pictures
   (`server/data/static/img/resource`, 7.3 GB; they're inside the APK), the local player database and logs. Without
   the story pictures, stories play on a plain background and the tests that check pictures fail.
-- **Publishing an update:** commit and `git push`; for a new APK, rebuild (section 5a) and attach it to a new
-  release. A rebuilt APK is signed with a new key unless `offline/offline.keystore` is kept, and Android won't
-  install it over the released one without uninstalling first.
+- **Publishing an update:** commit and `git push`. Never attach an APK or other game files to a release. A
+  rebuilt APK is signed with a new key unless `offline/offline.keystore` is kept, and Android won't install it over
+  one signed with another key without uninstalling first.
+- **Pushing:** git uses the gh login (`gh auth setup-git`, 2026-11-11); a stored Windows credential for another
+  account had caused a 403.
 
 ## 6. Still unknown or guessed
 
@@ -1829,7 +1844,7 @@ Everything needed is in this folder. Nothing depends on a temp folder.
 | Secret Story / Event Story lists | 56 secret stories in the mock, 49 with official English titles, 5 crystals each; text for Aki 1 and Aoi 1 (sixth pass); Event Stories: names only | REBIRTH Discord; more SandDistress/Yu_Tsugami footage |
 | Whether the Prologue costs energy | guessed (it does in the mock) | footage of a fresh account |
 | 3 chapter titles (Mitsuka 13, Aoi 54, Sayaka 48) | **official English found** 2026-10-12: The Bikini Show / Our Happiness / Brief Respite | — |
-| 64-bit-only devices | **in progress** since 2026-11-10: arm64 rewrite of `libotome.so` on cocos2d-x 2.2.6 (section 5a, "64-bit rebuild"; `offline/native64/REWRITE.md`) | — |
+| 64-bit-only devices | **built, untested** 2026-11-11: arm64 rewrite of `libotome.so` on cocos2d-x 2.2.6 links with all 44 JNI exports (section 5a, "64-bit rebuild"; `offline/native64/REWRITE.md`) | testing on a 64-bit-only phone |
 | Story text, all routes | **done** 2026-10-10; skipped-line pass done 2026-10-12 (67 lines restored, Sayaka 48 part 2 added); proofreading pass + frame check 2026-10-15 (3,258 lines corrected); full second read against the videos 2026-10-15 (1,414 more + quotes on 2,013); punctuation-only slips remain | — |
 
 ## 7. Sources and tools

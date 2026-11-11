@@ -8,12 +8,14 @@ and every story — from the server, so it has been unplayable since.
 This project rebuilds that server from the decompiled app, archived pages and playthrough videos, and makes the
 whole game playable again: on your PC with the original app, or fully offline with a single APK.
 
-## Download
+## Getting the offline APK
 
-**[Releases](../../releases)** has `MySweetRoomies_offline.apk` (about 955 MB): the game with this server built
-in. No PC, no internet, no root. It installs as **"Roomies! Offline"** next to the original app if you have it.
+No prebuilt APK is published; it contains the original game, so it isn't distributed here. Build it yourself
+from your own copy of the original 1.4.6 APK ([Building the offline APK](#building-the-offline-apk)). The result
+(about 1 GB) is the game with this server built in: no PC, no internet, no root. It installs as
+**"Roomies! Offline"** next to the original app if you have it, and runs on 32-bit and 64-bit-only phones.
 
-On first launch Android shows an "built for an older version of Android" notice and a permission screen, as it
+On first launch Android shows a "built for an older version of Android" notice and a permission screen, as it
 does for the original app. Tap **OK** and **Continue**.
 
 ## What works
@@ -81,8 +83,9 @@ python build_apk.py        # patch, add the server, align and sign
 ```
 
 `build_apk.py` also needs `tools/apktool.jar` (Apktool 2.10.0) and `decoded/` (the original APK decoded with
-Apktool). It creates its own signing key on first run, so your build can't update the released APK in place;
-uninstall that first.
+Apktool). It creates its own signing key on first run, so a build from another key can't update an installed one in place;
+uninstall that first. `python build_apk.py --arm64` also packs the 64-bit engine rewrite (`native64/`, built with
+CMake; see `native64/REWRITE.md`) for phones that can't run 32-bit code.
 
 ## Documentation
 
