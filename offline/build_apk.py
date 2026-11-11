@@ -16,6 +16,7 @@ usage: python build_apk.py [--debug] [--arm64]   (run export_data.py and export_
   --arm64: also pack the rewritten engine (native64/, built with CMake) as lib/arm64-v8a/libotome.so, so the APK
            runs on 64-bit-only phones; 64-bit phones that can still run 32-bit code pick it too (Android prefers
            the primary ABI), while 32-bit phones keep the original lib/armeabi build"""
+import glob
 import os
 import re
 import shutil
@@ -172,6 +173,17 @@ def main():
     lib64 = os.path.join(R, "native64", "build", "libotome.so")
     if arm64 and not os.path.exists(lib64):
         raise SystemExit("--arm64: build native64 first (see native64/REWRITE.md)")
+    if arm64:
+        # The CMake build keeps debug info (30 MB vs. 5.9 MB for the original) so ndk-stack can symbolicate a crash;
+        # ship a stripped copy and leave the unstripped one in native64/build.
+        strip = glob.glob(os.path.join(SDK, "ndk", "*", "toolchains", "llvm", "prebuilt", "windows-x86_64", "bin",
+                                       "llvm-strip.exe"))
+        if not strip:
+            raise SystemExit("--arm64: llvm-strip not found under " + os.path.join(SDK, "ndk"))
+        os.makedirs(B, exist_ok=True)
+        stripped = os.path.join(B, "libotome-arm64.so")
+        run(sorted(strip)[-1], "--strip-unneeded", "-o", stripped, lib64)
+        lib64 = stripped
     out = OUT.replace(".apk", "_debug.apk") if debug else OUT
     dex = compile_java()
     patch_tree(debug)
